@@ -67,11 +67,20 @@
   /* ---- drawer ---- */
   var cache = {};
 
+  function root() {
+    return (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  }
+
   function fetchProduct(handle) {
     if (cache[handle]) return cache[handle];
-    cache[handle] = fetch(window.Shopify.routes.root + 'products/' + handle + '.js')
+    cache[handle] = fetch(root() + 'products/' + handle + '.js', { credentials: 'same-origin', headers: { Accept: 'application/json' } })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .catch(function () { return null; });
+      .catch(function () { return null; })
+      .then(function (p) {
+        if (p) return p;
+        // Fallback so the drawer never looks empty: link by handle
+        return { handle: handle, title: handle.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); }), price: null, featured_image: null, _fallback: true };
+      });
     return cache[handle];
   }
 
@@ -82,6 +91,7 @@
     var empty = document.getElementById('wishlist-drawer-empty');
     if (empty) empty.hidden = handles.length > 0;
     if (!handles.length) { list.innerHTML = ''; return; }
+    if (!list.children.length) list.innerHTML = '<li class="wishlist-drawer__loading text-subdued">Loading…</li>';
 
     Promise.all(handles.map(fetchProduct)).then(function (products) {
       list.innerHTML = products.map(function (p, i) {
@@ -92,7 +102,7 @@
             '<a href="/products/' + p.handle + '" class="wishlist-drawer__media">' + (img ? '<img src="' + img + '" alt="" loading="lazy" width="200" height="250">' : '') + '</a>' +
             '<div class="wishlist-drawer__info">' +
               '<a href="/products/' + p.handle + '" class="wishlist-drawer__title">' + p.title + '</a>' +
-              '<span class="wishlist-drawer__price">' + formatMoney(p.price) + '</span>' +
+              (p.price != null ? '<span class="wishlist-drawer__price">' + formatMoney(p.price) + '</span>' : '') +
               '<a href="/products/' + p.handle + '" class="wishlist-drawer__link">View product</a>' +
             '</div>' +
             '<button type="button" class="wishlist-drawer__remove" data-wishlist-remove="' + handles[i] + '" aria-label="Remove">&times;</button>' +
@@ -106,8 +116,8 @@
   document.addEventListener('DOMContentLoaded', refresh);
   document.addEventListener('reve:wishlist:change', refresh);
   document.addEventListener('shopify:section:load', function (e) { syncButtons(e.target); syncCount(); });
-  document.addEventListener('dialog:after-show', function (e) {
-    if (e.target && e.target.id === 'wishlist-drawer') renderDrawer();
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[aria-controls="wishlist-drawer"]')) setTimeout(renderDrawer, 50);
   });
   if (document.readyState !== 'loading') refresh();
 
