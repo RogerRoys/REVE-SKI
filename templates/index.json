@@ -161,12 +161,6 @@
             "collapse_content": false
           }
         },
-        "price": {
-          "type": "price",
-          "settings": {
-            "show_taxes_notice": false
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -187,6 +181,13 @@
             "payment_button_text_color": ""
           }
         },
+        "wishlist": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "<a href=\"#\" class=\"text-with-icon justify-center text-xs\" style=\"display:flex;gap:.5rem;align-items:center;justify-content:center;\">{% render 'icon' with 'heart', width: 16 %} Add to Wishlist</a>"
+          }
+        },
         "more_details": {
           "type": "button",
           "settings": {
@@ -201,19 +202,19 @@
       "block_order": [
         "title",
         "description",
-        "price",
         "variant_picker",
         "buy_buttons",
+        "wishlist",
         "more_details"
       ],
       "settings": {
         "product": "phoenix-ski-pants",
         "separate_section_with_border": false,
-        "container_size": "lg",
-        "product_info_size": 40,
-        "center_basic_info": false,
-        "desktop_media_layout": "carousel_thumbnails_bottom",
-        "desktop_media_grid_gap": 30,
+        "container_size": "full",
+        "product_info_size": 38,
+        "center_basic_info": true,
+        "desktop_media_layout": "carousel_dots",
+        "desktop_media_grid_gap": 0,
         "mobile_controls": "dots",
         "enable_media_autoplay": false,
         "enable_video_looping": true,
@@ -221,7 +222,24 @@
         "max_image_zoom_level": 3,
         "subheading": "",
         "title": "",
-        "content": ""
+        "content": "",
+        "media_background": "#e6e3df",
+        "media_padding": 40,
+        "info_background": "#ffffff",
+        "info_padding": 40,
+        "column_gap": 0,
+        "title_font": "heading",
+        "title_weight": "700",
+        "title_size": 36,
+        "title_size_mobile": 26,
+        "title_alignment": "center",
+        "title_uppercase": false,
+        "title_letter_spacing": 0,
+        "text_font": "heading",
+        "text_size": 12,
+        "link_button_as_link": true,
+        "link_button_size": 13,
+        "link_button_color": "#000000"
       }
     },
     "new_arrivals_carousel": {

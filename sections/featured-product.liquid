@@ -8,6 +8,72 @@
       --product-grid: "product-gallery product-info" / minmax(0, {{ 100.0 | minus: section.settings.product_info_size | divided_by: 100.0 }}fr) minmax(0, {{ section.settings.product_info_size | divided_by: 100.0 }}fr);
     }
   }
+
+  /* Layout & style — Theme editor > Featured product > Style */
+  #shopify-section-{{ section.id }} .product {
+    gap: {{ section.settings.column_gap }}px;
+  }
+
+  #shopify-section-{{ section.id }} .product-gallery {
+    {%- if section.settings.media_background != blank and section.settings.media_background != 'rgba(0,0,0,0)' %}background: {{ section.settings.media_background }};{% endif %}
+    padding: {{ section.settings.media_padding }}px;
+  }
+
+  #shopify-section-{{ section.id }} .product-info {
+    {%- if section.settings.info_background != blank and section.settings.info_background != 'rgba(0,0,0,0)' %}background: {{ section.settings.info_background }};{% endif %}
+    padding: {{ section.settings.info_padding }}px;
+  }
+
+  #shopify-section-{{ section.id }} .product-title {
+    {%- if section.settings.title_font == 'body' %}font-family: var(--text-font-family);{% else %}font-family: var(--heading-font-family);{% endif %}
+    font-weight: {{ section.settings.title_weight }};
+    font-size: {{ section.settings.title_size_mobile | divided_by: 16.0 }}rem;
+    text-align: {{ section.settings.title_alignment }};
+    text-transform: {% if section.settings.title_uppercase %}uppercase{% else %}none{% endif %};
+    letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}em;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="description"] {
+    {%- if section.settings.text_font == 'heading' %}font-family: var(--heading-font-family);{% endif %}
+    font-size: {{ section.settings.text_size | divided_by: 16.0 }}rem;
+    line-height: 1.5;
+  }
+
+  {%- if section.settings.link_button_as_link -%}
+    /* Render the "button" block as an underlined link with an arrow, like the client design */
+    #shopify-section-{{ section.id }} [data-block-type="button"] {
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} [data-block-type="button"] .button {
+      background: none !important;
+      color: {{ section.settings.link_button_color }} !important;
+      border: 0;
+      padding: 0;
+      min-height: 0;
+      width: auto;
+      font-family: var(--heading-font-family);
+      font-weight: 700;
+      font-size: {{ section.settings.link_button_size | divided_by: 16.0 }}rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+    }
+
+    #shopify-section-{{ section.id }} [data-block-type="button"] .button::after {
+      content: " \2192";
+      text-decoration: none;
+      display: inline-block;
+      margin-inline-start: 0.4em;
+    }
+  {%- endif -%}
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} .product-title {
+      font-size: {{ section.settings.title_size | divided_by: 16.0 }}rem;
+    }
+  }
 </style>
 
 <div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
@@ -39,8 +105,13 @@
   "class": "shopify-section--featured-product",
   "tag": "section",
   "disabled_on": {
-    "templates": ["password"],
-    "groups": ["header", "custom.overlay"]
+    "templates": [
+      "password"
+    ],
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "settings": [
     {
@@ -190,6 +261,196 @@
       "step": 0.5,
       "label": "t:sections.main_product.image_zoom_max_level",
       "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "media_background",
+      "label": "Image area background",
+      "default": "#e6e3df"
+    },
+    {
+      "type": "range",
+      "id": "media_padding",
+      "label": "Image area padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "info_background",
+      "label": "Info panel background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "info_padding",
+      "label": "Info panel padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between image and info",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_font",
+      "label": "Title font",
+      "options": [
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        },
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        }
+      ],
+      "default": "heading"
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size (desktop)",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title size (mobile)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_uppercase",
+      "label": "Uppercase title",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "label": "Title letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "select",
+      "id": "text_font",
+      "label": "Description font",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        },
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        }
+      ],
+      "default": "heading"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Link button"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_button_as_link",
+      "label": "Show the Button block as an underlined link with arrow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "link_button_size",
+      "label": "Link size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "link_button_color",
+      "label": "Link color",
+      "default": "#000000"
     },
     {
       "type": "header",
