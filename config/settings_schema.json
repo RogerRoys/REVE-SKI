@@ -430,6 +430,12 @@
     "settings": [
       {
         "type": "checkbox",
+        "id": "show_selected_option_value",
+        "label": "Show selected value next to every option label (e.g. Size: M)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
         "id": "round_color_swatches",
         "label": "t:theme_settings.color_swatch.round_color_swatches",
         "default": false

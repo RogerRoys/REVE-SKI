@@ -49,7 +49,7 @@ Supported variables
           <div class="h-stack gap-1">
             <legend>{{ option.name }}:</legend>
 
-            {%- if option_selector_type == 'color' or option_selector_type == 'variant' -%}
+            {%- if option_selector_type == 'color' or option_selector_type == 'variant' or settings.show_selected_option_value -%}
               <variant-option-value form="{{ form_id }}" for="option{{ option.position }}">{{ option.selected_value }}</variant-option-value>
             {%- endif -%}
           </div>

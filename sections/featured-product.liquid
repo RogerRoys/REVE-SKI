@@ -158,6 +158,18 @@
     color: rgb(var(--text-color) / .35);
   }
 
+  {%- if section.settings.sold_out_style == 'line_through' -%}
+    #shopify-section-{{ section.id }} .block-swatch.is-disabled:before,
+    #shopify-section-{{ section.id }} :disabled + .block-swatch:before {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .block-swatch.is-disabled,
+    #shopify-section-{{ section.id }} :disabled + .block-swatch {
+      text-decoration: line-through;
+    }
+  {%- endif -%}
+
   /* Color swatches: small circles, dark border on the selected one, strike on sold out */
   #shopify-section-{{ section.id }} .color-swatch {
     --swatch-offset: 2px;
@@ -732,6 +744,22 @@
       "step": 1,
       "unit": "px",
       "default": 6
+    },
+    {
+      "type": "select",
+      "id": "sold_out_style",
+      "label": "Sold out size style",
+      "options": [
+        {
+          "value": "diagonal",
+          "label": "Diagonal strike"
+        },
+        {
+          "value": "line_through",
+          "label": "Text line-through"
+        }
+      ],
+      "default": "line_through"
     },
     {
       "type": "range",
