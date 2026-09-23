@@ -119,14 +119,30 @@
     grid-auto-columns: 1fr;
   }
 
+  #shopify-section-{{ section.id }} .variant-picker__option-values:not(.color__swatch--items *) {
+    gap: {{ section.settings.size_gap }}px;
+  }
+
   #shopify-section-{{ section.id }} .block-swatch {
-    border-color: transparent;
+    border: 1px solid {% if section.settings.size_border == 'none' %}transparent{% else %}{{ section.settings.size_border_color }}{% endif %};
     border-radius: 0;
     min-width: 0;
     padding: 0.7em 0.25em;
     font-size: {{ section.settings.option_text_size | divided_by: 16.0 }}rem;
     color: rgb(var(--text-color) / .75);
   }
+
+  {%- if section.settings.size_border == 'joined' -%}
+    /* Joined cells: neighbouring borders overlap so the row reads as one grid */
+    #shopify-section-{{ section.id }} .variant-picker__option-values:not(.color__swatch--items *) {
+      gap: 0;
+    }
+
+    #shopify-section-{{ section.id }} .variant-picker__option-values:not(.color__swatch--items *) > * + * .block-swatch,
+    #shopify-section-{{ section.id }} .variant-picker__option-values:not(.color__swatch--items *) > * + .block-swatch {
+      margin-inline-start: -1px;
+    }
+  {%- endif -%}
 
   #shopify-section-{{ section.id }} :checked + .block-swatch,
   #shopify-section-{{ section.id }} .block-swatch.is-selected {
@@ -680,6 +696,42 @@
       "step": 1,
       "unit": "px",
       "default": 9
+    },
+    {
+      "type": "select",
+      "id": "size_border",
+      "label": "Size buttons border",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "each",
+          "label": "Border on each size"
+        },
+        {
+          "value": "joined",
+          "label": "Joined grid (shared borders)"
+        }
+      ],
+      "default": "each"
+    },
+    {
+      "type": "color",
+      "id": "size_border_color",
+      "label": "Size border color",
+      "default": "#e3e3e3"
+    },
+    {
+      "type": "range",
+      "id": "size_gap",
+      "label": "Space between sizes",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 6
     },
     {
       "type": "range",

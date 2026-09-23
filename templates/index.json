@@ -250,7 +250,10 @@
         "button_height": 46,
         "button_text_size": 12,
         "button_background": "#000000",
-        "button_text_color": "#ffffff"
+        "button_text_color": "#ffffff",
+        "size_border": "each",
+        "size_border_color": "#e3e3e3",
+        "size_gap": 6
       }
     },
     "new_arrivals_carousel": {
