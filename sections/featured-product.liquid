@@ -249,30 +249,6 @@
   }
 </style>
 
-<script>
-  // Wishlist: saved per product handle in the browser (no app needed). Heart fills and the label changes on tap.
-  (function () {
-    if (window.__reveWishlistReady) return;
-    window.__reveWishlistReady = true;
-    var KEY = 'reve_wishlist';
-    function read() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
-    function write(list) { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} }
-    function sync(btn) { btn.classList.toggle('is-active', read().indexOf(btn.dataset.handle) !== -1); }
-    function init(root) {
-      (root || document).querySelectorAll('.reve-wishlist[data-handle]').forEach(function (btn) {
-        if (btn.__wl) return; btn.__wl = true; sync(btn);
-        btn.addEventListener('click', function () {
-          var list = read(), h = btn.dataset.handle, i = list.indexOf(h);
-          i === -1 ? list.push(h) : list.splice(i, 1);
-          write(list); sync(btn);
-          document.dispatchEvent(new CustomEvent('reve:wishlist:change', { detail: { handles: list } }));
-        });
-      });
-    }
-    init();
-    document.addEventListener('shopify:section:load', function (e) { init(e.target); });
-  })();
-</script>
 
 <div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">

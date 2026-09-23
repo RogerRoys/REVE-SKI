@@ -83,9 +83,8 @@
   }
 
   /* Search / account / cart hidden per client design; re-enable in Header > Utility icons */
-  #shopify-section-{{ section.id }} .header__secondary-nav--hidden {
-    visibility: hidden;
-    pointer-events: none;
+  #shopify-section-{{ section.id }} .header__secondary-nav--hidden > :not(.header__wishlist) {
+    display: none;
   }
 </style>
 
@@ -279,6 +278,14 @@
             <span class="h6 link-faded md-max:hidden">{{ 'header.general.search' | t }}</span>
           {%- endif -%}
         </a>
+      {%- endif -%}
+
+      {%- if section.settings.show_wishlist_icon -%}
+        <button type="button" class="header__wishlist" aria-controls="wishlist-drawer" aria-expanded="false">
+          <span class="sr-only">Wishlist</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>
+          <span class="header__wishlist-count" data-wishlist-count><span>0</span></span>
+        </button>
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="relative" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
@@ -601,6 +608,13 @@
       "label": "Show search, account and cart",
       "info": "Hidden in the client design. Turn on to show them on the right of the header.",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_icon",
+      "label": "Show wishlist heart",
+      "info": "Opens the wishlist drawer. Shown even when the other icons are hidden.",
+      "default": true
     },
     {
       "type": "checkbox",

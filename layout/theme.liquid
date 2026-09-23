@@ -54,6 +54,7 @@
 
     <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
     <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
 
@@ -86,6 +87,7 @@
     {%- if request.page_type != 'password' -%}
       {%- sections 'header-group' -%}
       {%- sections 'overlay-group' -%}
+      {%- render 'wishlist-drawer' -%}
     {%- endif -%}
 
     <main id="main" class="anchor">

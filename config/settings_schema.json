@@ -429,6 +429,22 @@
     "name": "t:theme_settings.color_swatch.name",
     "settings": [
       {
+        "type": "header",
+        "content": "Wishlist"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_title",
+        "label": "Wishlist drawer title",
+        "default": "Wishlist"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_empty_text",
+        "label": "Empty wishlist text",
+        "default": "Your wishlist is empty."
+      },
+      {
         "type": "checkbox",
         "id": "show_selected_option_value",
         "label": "Show selected value next to every option label (e.g. Size: M)",

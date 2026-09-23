@@ -1,0 +1,108 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+WISHLIST DRAWER
+----------------------------------------------------------------------------------------------------------------------
+
+Opened from the header heart (any element with aria-controls="wishlist-drawer"). Items are rendered by
+assets/wishlist.js from the handles saved in the browser.
+{%- endcomment -%}
+
+<x-drawer id="wishlist-drawer" class="wishlist-drawer drawer" initial-focus="false">
+  <p class="h4" slot="header">{{ settings.wishlist_title | default: 'Wishlist' }}</p>
+
+  <div class="wishlist-drawer__body">
+    <p id="wishlist-drawer-empty" class="wishlist-drawer__empty text-subdued">{{ settings.wishlist_empty_text | default: 'Your wishlist is empty.' }}</p>
+    <ul id="wishlist-drawer-items" class="wishlist-drawer__items unstyled-list" role="list"></ul>
+  </div>
+</x-drawer>
+
+<style>
+  .wishlist-drawer__items {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .wishlist-drawer__item {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .wishlist-drawer__media img {
+    display: block;
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    background: rgb(var(--border-color) / .3);
+  }
+
+  .wishlist-drawer__info {
+    display: grid;
+    gap: .25rem;
+    font-size: var(--text-sm);
+  }
+
+  .wishlist-drawer__title {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+  }
+
+  .wishlist-drawer__link {
+    text-decoration: underline;
+    text-underline-offset: .2em;
+    font-size: var(--text-xs);
+  }
+
+  .wishlist-drawer__remove {
+    background: none;
+    border: 0;
+    padding: 0 .25rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    color: rgb(var(--text-color) / .6);
+  }
+
+  .wishlist-drawer__remove:hover {
+    color: rgb(var(--text-color));
+  }
+
+  /* Header heart */
+  .header__wishlist {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header__wishlist svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .header__wishlist-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: currentColor;
+    font-size: 10px;
+    line-height: 16px;
+    text-align: center;
+    display: none;
+  }
+
+  .header__wishlist-count span {
+    color: rgb(var(--background));
+  }
+
+  .header__wishlist-count.is-visible {
+    display: block;
+  }
+</style>
