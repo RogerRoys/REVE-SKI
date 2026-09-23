@@ -73,32 +73,10 @@
     "two_tiles_video_image": {
       "type": "media-grid",
       "blocks": {
-        "tile_new_arrivals_video": {
-          "type": "video",
-          "settings": {
-            "video_asset": "",
-            "autoplay": true,
-            "show_controls": false,
-            "column_count": "6",
-            "row_count": 2,
-            "title": "New Arrivals",
-            "heading_tag": "h3",
-            "content": "",
-            "link_text": "Shop now",
-            "link_url": "shopify://collections/new-arrivals",
-            "link_style": "link",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 10
-          }
-        },
         "tile_phoenix_image": {
           "type": "image",
           "settings": {
-            "image_asset": "",
+            "image_asset": "tile-phoenix-ski-pant.jpg",
             "column_count": "6",
             "row_count": 2,
             "title": "Phoenix Ski Pant",
@@ -114,10 +92,30 @@
             "overlay_color": "#000000",
             "overlay_opacity": 10
           }
+        },
+        "tile_new_arrivals": {
+          "type": "image",
+          "settings": {
+            "image_asset": "tile-new-arrivals.jpg",
+            "column_count": "6",
+            "row_count": 2,
+            "title": "New Arrivals",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/new-arrivals",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
         }
       },
       "block_order": [
-        "tile_new_arrivals_video",
+        "tile_new_arrivals",
         "tile_phoenix_image"
       ],
       "settings": {
