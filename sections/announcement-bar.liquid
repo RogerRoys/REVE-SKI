@@ -28,30 +28,146 @@
   </style>
 
   <height-observer variable="announcement-bar">
-    <div class="announcement-bar" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
+    <div class="announcement-bar {% if section.blocks.size > 1 %}announcement-bar--multiple{% endif %}" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
       {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-      {%- if section.blocks.size > 1 -%}
-        <button type="button" is="carousel-prev-button" class="tap-area" aria-controls="{{ carousel_id }}">
-          <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-          {%- render 'icon' with 'arrow-left', width: 12, direction_aware: true -%}
-        </button>
+      {%- comment -%} Left: one dot per message (Perfect Moment style) {%- endcomment -%}
+      {%- if section.blocks.size > 1 and section.settings.show_dots -%}
+        <carousel-navigation aria-controls="{{ carousel_id }}" class="announcement-bar__dots">
+          {%- for i in (1..section.blocks.size) -%}
+            <button type="button" class="announcement-bar__dot tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+              <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+            </button>
+          {%- endfor -%}
+        </carousel-navigation>
       {%- endif -%}
 
       <announcement-bar-carousel allow-swipe {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} id="{{ carousel_id }}" class="announcement-bar__carousel">
         {%- for block in section.blocks -%}
-          <p class="prose heading {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>{{- block.settings.text -}}</p>
+          <p class="prose {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>{{- block.settings.text -}}</p>
         {%- endfor -%}
       </announcement-bar-carousel>
 
-      {%- if section.blocks.size > 1 -%}
-        <button type="button" is="carousel-next-button" class="tap-area" aria-controls="{{ carousel_id }}">
-          <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-          {%- render 'icon' with 'arrow-right', width: 12, direction_aware: true -%}
-        </button>
+      {%- comment -%} Right: pause / play toggle for the auto rotation {%- endcomment -%}
+      {%- if section.blocks.size > 1 and section.settings.autoplay and section.settings.show_pause_button -%}
+        <announcement-bar-toggle aria-controls="{{ carousel_id }}" class="announcement-bar__toggle">
+          <button type="button" class="tap-area" aria-pressed="false">
+            <span class="sr-only">Pause / play</span>
+            <svg class="announcement-bar__icon-pause" width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><rect x="1" y="0" width="2.5" height="10"/><rect x="6.5" y="0" width="2.5" height="10"/></svg>
+            <svg class="announcement-bar__icon-play" width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M1.5 0.5 L9 5 L1.5 9.5 Z"/></svg>
+          </button>
+        </announcement-bar-toggle>
       {%- endif -%}
     </div>
   </height-observer>
+
+  <style>
+    #shopify-section-{{ section.id }} .announcement-bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: 1rem;
+      padding-block: 0.65em;
+      letter-spacing: 0.01em;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar:not(.announcement-bar--multiple) {
+      grid-template-columns: 1fr;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__carousel {
+      grid-column: 2;
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__carousel .prose a {
+      text-underline-offset: 0.2em;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__dots {
+      grid-column: 1;
+      justify-self: start;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.35;
+      transition: opacity 0.2s ease;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__dot[aria-current="true"] {
+      opacity: 1;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__toggle {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__toggle button {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__toggle button:hover {
+      opacity: 1;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__icon-play,
+    #shopify-section-{{ section.id }} .announcement-bar__toggle button[aria-pressed="true"] .announcement-bar__icon-pause {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .announcement-bar__toggle button[aria-pressed="true"] .announcement-bar__icon-play {
+      display: block;
+    }
+
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .announcement-bar {
+        column-gap: 0.5rem;
+      }
+
+      #shopify-section-{{ section.id }} .announcement-bar__carousel .prose {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  </style>
+
+  <script>
+    // Pause / play toggle for the announcement bar auto rotation.
+    if (!window.customElements.get('announcement-bar-toggle')) {
+      class AnnouncementBarToggle extends HTMLElement {
+        connectedCallback() {
+          this._button = this.querySelector('button');
+          this._button.addEventListener('click', () => this.toggle());
+        }
+
+        get carousel() {
+          return document.getElementById(this.getAttribute('aria-controls'));
+        }
+
+        toggle() {
+          const player = this.carousel && this.carousel.player;
+          if (!player) return;
+          const paused = this._button.getAttribute('aria-pressed') === 'true';
+          paused ? player.resume(true) : player.pause();
+          this._button.setAttribute('aria-pressed', paused ? 'false' : 'true');
+        }
+      }
+      window.customElements.define('announcement-bar-toggle', AnnouncementBarToggle);
+    }
+  </script>
 
   <script>
     document.documentElement.style.setProperty('--announcement-bar-height', `${Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight)}px`);
@@ -83,6 +199,18 @@
       "type": "checkbox",
       "id": "enable_sticky",
       "label": "t:sections.announcement_bar.enable_sticky_bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show message dots (left)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pause_button",
+      "label": "Show pause / play button (right)",
+      "default": true
     },
     {
       "type": "checkbox",

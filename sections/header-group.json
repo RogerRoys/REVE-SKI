@@ -10,19 +10,35 @@
           "settings": {
             "text": "The new season starts here. <a href=\"/collections/new-arrivals\">Shop new arrivals</a>"
           }
+        },
+        "message_shipping": {
+          "type": "message",
+          "settings": {
+            "text": "Free FedEx® delivery on orders over $800"
+          }
+        },
+        "message_returns": {
+          "type": "message",
+          "settings": {
+            "text": "Free & easy returns within 14 days of delivery"
+          }
         }
       },
       "block_order": [
-        "message_new_season"
+        "message_new_season",
+        "message_shipping",
+        "message_returns"
       ],
       "settings": {
         "enable_sticky": false,
-        "autoplay": false,
+        "autoplay": true,
         "cycle_speed": 5,
-        "desktop_font_size": 10,
-        "mobile_font_size": 9,
-        "background": "#f4f2ee",
-        "text_color": "#1b1b1b"
+        "desktop_font_size": 11,
+        "mobile_font_size": 10,
+        "background": "#000000",
+        "text_color": "#ffffff",
+        "show_dots": true,
+        "show_pause_button": true
       }
     },
     "header": {
