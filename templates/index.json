@@ -89,7 +89,8 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "overlay_color": "#000000",
-            "overlay_opacity": 10
+            "overlay_opacity": 0,
+            "video_asset": ""
           }
         },
         "tile_phoenix_image": {
@@ -108,7 +109,8 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "overlay_color": "#000000",
-            "overlay_opacity": 10
+            "overlay_opacity": 0,
+            "image_asset": ""
           }
         }
       },
@@ -118,15 +120,22 @@
       ],
       "settings": {
         "separate_section_with_border": false,
-        "desktop_row_height": 300,
-        "mobile_row_height": 220,
+        "desktop_row_height": 385,
+        "mobile_row_height": 240,
         "section_width": "lg",
-        "spacing": "md",
+        "spacing": "lg",
         "subheading": "",
         "title": "",
         "content": "",
         "background": "",
-        "text_color": ""
+        "text_color": "",
+        "tile_title_font": "body",
+        "tile_title_weight": "400",
+        "tile_title_uppercase": false,
+        "tile_title_size": 24,
+        "tile_title_size_mobile": 18,
+        "tile_link_size": 20,
+        "tile_link_size_mobile": 15
       }
     },
     "featured_phoenix_pants": {

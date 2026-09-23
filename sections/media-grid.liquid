@@ -19,6 +19,39 @@
       }
     }
 
+    /* Tile text — Theme editor > Media grid > Text */
+    #shopify-section-{{ section.id }} .media-grid__video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #shopify-section-{{ section.id }} .content-over-media .prose > p:first-child {
+      {%- if section.settings.tile_title_font == 'body' %}font-family: var(--text-font-family);{% endif %}
+      font-weight: {{ section.settings.tile_title_weight }};
+      font-size: {{ section.settings.tile_title_size_mobile | divided_by: 16.0 }}rem;
+      line-height: 1.2;
+      text-transform: {% if section.settings.tile_title_uppercase %}uppercase{% else %}none{% endif %};
+      margin-block-end: 0.25em;
+    }
+
+    #shopify-section-{{ section.id }} .content-over-media .prose .link,
+    #shopify-section-{{ section.id }} .content-over-media .prose .button {
+      {%- if section.settings.tile_title_font == 'body' %}font-family: var(--text-font-family); font-weight: 400;{% endif %}
+      font-size: {{ section.settings.tile_link_size_mobile | divided_by: 16.0 }}rem;
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content-over-media .prose > p:first-child {
+        font-size: {{ section.settings.tile_title_size | divided_by: 16.0 }}rem;
+      }
+
+      #shopify-section-{{ section.id }} .content-over-media .prose .link,
+      #shopify-section-{{ section.id }} .content-over-media .prose .button {
+        font-size: {{ section.settings.tile_link_size | divided_by: 16.0 }}rem;
+      }
+    }
+
     @media screen and (min-width: 1150px) {
       #shopify-section-{{ section.id }} {
         --media-grid-gap: {% if section.settings.spacing == 'xs' %}0.75rem{% elsif section.settings.spacing == 'sm' %}1.25rem{% elsif section.settings.spacing == 'md' %}1.875rem{% elsif section.settings.spacing == 'lg' %}2.5rem{% else %}0rem{% endif %};
@@ -39,6 +72,9 @@
                   {%- if block.settings.image -%}
                     {%- capture sizes_attribute -%}(max-width: 699px) 100vw, {{ 100.0 | divided_by: 12.0 | times: block.settings.column_count | round }}vw{%- endcapture -%}
                     {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: sizes_attribute, widths: '200,300,400,500,600,800,1000,1200,1400,1600', class: 'zoom-image group-hover:zoom' -}}
+                  {%- elsif block.settings.image_asset != blank -%}
+                    {%- comment -%} Image shipped in the theme assets folder (used until an image is picked) {%- endcomment -%}
+                    <img src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | strip_html | escape }}" width="1200" height="1500" loading="lazy" class="zoom-image group-hover:zoom">
                   {%- else -%}
                     {%- capture collection_image -%}collection-{% cycle '1', '2', '3', '4' %}{%- endcapture -%}
                     {{- collection_image | placeholder_svg_tag: 'placeholder placeholder--invert zoom-image group-hover:zoom' -}}
@@ -46,6 +82,9 @@
                 {%- else -%}
                   {%- if block.settings.video -%}
                     {%- render 'media', media: block.settings.video, autoplay: block.settings.autoplay, loop: true, controls: block.settings.show_controls -%}
+                  {%- elsif block.settings.video_asset != blank -%}
+                    {%- comment -%} Video file shipped in the theme assets folder (used until a video is picked) {%- endcomment -%}
+                    <video src="{{ block.settings.video_asset | asset_url }}" {% if block.settings.autoplay %}autoplay muted{% endif %} loop playsinline {% if block.settings.show_controls %}controls{% endif %} preload="metadata" class="media-grid__video"></video>
                   {%- else -%}
                     {%- capture collection_image -%}collection-{% cycle '1', '2', '3', '4' %}{%- endcapture -%}
                     {{- collection_image | placeholder_svg_tag: 'placeholder placeholder--invert zoom-image group-hover:zoom' -}}
@@ -88,7 +127,10 @@
   "class": "shopify-section--media-grid",
   "tag": "section",
   "disabled_on": {
-    "groups": ["header", "custom.overlay"]
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "settings": [
     {
@@ -175,6 +217,88 @@
     },
     {
       "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "tile_title_font",
+      "label": "Title font",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        },
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        }
+      ],
+      "default": "body"
+    },
+    {
+      "type": "select",
+      "id": "tile_title_weight",
+      "label": "Title weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "tile_title_uppercase",
+      "label": "Uppercase title",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "tile_title_size",
+      "label": "Title size (desktop)",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tile_title_size_mobile",
+      "label": "Title size (mobile)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tile_link_size",
+      "label": "Link size (desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tile_link_size_mobile",
+      "label": "Link size (mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
       "content": "t:global.section.header_category"
     },
     {
@@ -218,6 +342,12 @@
           "id": "image",
           "label": "t:global.image.image",
           "info": "t:sections.media_grid.blocks.image.image_recommendation"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback image file (theme assets)",
+          "info": "Used only when no image is picked above"
         },
         {
           "type": "select",
@@ -423,6 +553,12 @@
           "type": "video",
           "id": "video",
           "label": "t:global.video.video"
+        },
+        {
+          "type": "text",
+          "id": "video_asset",
+          "label": "Fallback video file (theme assets)",
+          "info": "An .mp4 in the assets folder, used only when no video is picked above"
         },
         {
           "type": "checkbox",
