@@ -223,8 +223,8 @@
         "subheading": "",
         "title": "",
         "content": "",
-        "media_background": "#e6e3df",
-        "media_padding": 40,
+        "media_background": "#e6e4e2",
+        "media_padding": 0,
         "info_background": "#ffffff",
         "info_padding": 40,
         "column_gap": 0,
@@ -239,7 +239,8 @@
         "text_size": 12,
         "link_button_as_link": true,
         "link_button_size": 13,
-        "link_button_color": "#000000"
+        "link_button_color": "#000000",
+        "image_asset": "featured-phoenix-ski-pants.jpg"
       }
     },
     "new_arrivals_carousel": {

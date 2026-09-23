@@ -82,7 +82,12 @@
       {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: 'center' -%}
 
       <div class="product">
-        {%- if product.media.size > 0 or product == blank -%}
+        {%- if section.settings.image_asset != blank -%}
+          {%- comment -%} Image from the theme assets folder shown instead of the product media (Style > Override image) {%- endcomment -%}
+          <div class="product-gallery product-gallery--asset">
+            <img src="{{ section.settings.image_asset | asset_url }}" alt="{{ product.title | escape }}" width="2000" height="1600" loading="lazy" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          </div>
+        {%- elsif product.media.size > 0 or product == blank -%}
           {%- render 'product-gallery',
               product: section.settings.product,
               desktop_layout: section.settings.desktop_media_layout,
@@ -265,6 +270,12 @@
     {
       "type": "header",
       "content": "Style"
+    },
+    {
+      "type": "text",
+      "id": "image_asset",
+      "label": "Override image file (theme assets)",
+      "info": "Shows this file instead of the product's media. Clear it to use the product images from Shopify."
     },
     {
       "type": "color",
