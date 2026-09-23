@@ -82,7 +82,8 @@
         "link_3_url": "",
         "link_4_text": "",
         "link_4_url": "",
-        "show_utility_nav": false
+        "show_utility_nav": false,
+        "nav_font_weight": "400"
       }
     }
   },

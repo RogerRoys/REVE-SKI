@@ -75,6 +75,7 @@
     letter-spacing: {{ section.settings.nav_letter_spacing | divided_by: 100.0 }}em;
     {%- if section.settings.nav_uppercase %}text-transform: uppercase;{% endif %}
     {%- if section.settings.nav_font == 'body' %}font-family: var(--text-font-family);{% endif %}
+    font-weight: {{ section.settings.nav_font_weight }};
   }
 
   #shopify-section-{{ section.id }} .header__primary-nav ul {
@@ -507,6 +508,22 @@
         }
       ],
       "default": "body"
+    },
+    {
+      "type": "select",
+      "id": "nav_font_weight",
+      "label": "Weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
     },
     {
       "type": "checkbox",
