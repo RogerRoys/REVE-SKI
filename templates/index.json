@@ -135,7 +135,8 @@
         "title": "",
         "content": "",
         "background": "",
-        "text_color": ""
+        "text_color": "",
+        "tile_text_gap": 4
       }
     },
     "featured_phoenix_pants": {

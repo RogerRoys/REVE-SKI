@@ -32,7 +32,10 @@
       font-size: {{ section.settings.tile_title_size_mobile | divided_by: 16.0 }}rem;
       line-height: 1.2;
       text-transform: {% if section.settings.tile_title_uppercase %}uppercase{% else %}none{% endif %};
-      margin-block-end: 0.25em;
+    }
+
+    #shopify-section-{{ section.id }} .content-over-media .prose > * + * {
+      margin-block-start: {{ section.settings.tile_text_gap }}px;
     }
 
     #shopify-section-{{ section.id }} .content-over-media .prose .link,
@@ -296,6 +299,16 @@
       "step": 1,
       "unit": "px",
       "default": 15
+    },
+    {
+      "type": "range",
+      "id": "tile_text_gap",
+      "label": "Space between title and link",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 4
     },
     {
       "type": "header",
