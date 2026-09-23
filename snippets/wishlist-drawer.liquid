@@ -85,19 +85,25 @@ assets/wishlist.js from the handles saved in the browser.
 
   .header__wishlist-count {
     position: absolute;
-    top: -7px;
-    right: -9px;
-    min-width: 16px;
-    height: 16px;
-    padding: 0 3px;
+    top: -8px;
+    right: -10px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
     border-radius: 999px;
-    border: 1.5px solid currentColor;
+    background: rgb(var(--text-color));
     font-family: var(--heading-font-family);
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
-    line-height: 13px;
+    line-height: 17px;
     text-align: center;
     display: none;
+  }
+
+  /* Number stays readable on both header states: white on black, black on white */
+  .header__wishlist-count span {
+    color: #fff;
+    mix-blend-mode: difference;
   }
 
   .header__wishlist-count.is-visible {

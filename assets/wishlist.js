@@ -59,7 +59,8 @@
   function syncCount() {
     var n = read().length;
     document.querySelectorAll('[data-wishlist-count]').forEach(function (el) {
-      el.textContent = n;
+      var span = el.querySelector('span');
+      span ? span.textContent = n : el.textContent = n;
       el.classList.toggle('is-visible', n > 0);
     });
   }
