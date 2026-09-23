@@ -19,6 +19,23 @@
       }
     }
 
+    /* Mobile layout — Theme editor > Media grid > Mobile */
+    @media screen and (max-width: 699px) {
+      {%- if section.settings.mobile_layout == 'side_by_side' -%}
+        #shopify-section-{{ section.id }} .media-grid {
+          --media-grid-gap: {{ section.settings.mobile_gap }}px;
+        }
+
+        #shopify-section-{{ section.id }} .media-grid__item {
+          grid-area: span min(2, var(--media-grid-item-row-span)) / span 1;
+        }
+
+        #shopify-section-{{ section.id }} .content-over-media .prose {
+          padding: 0.75rem;
+        }
+      {%- endif -%}
+    }
+
     /* Tile text — Theme editor > Media grid > Text */
     #shopify-section-{{ section.id }} .media-grid__video {
       width: 100%;
@@ -161,6 +178,36 @@
       "unit": "px",
       "label": "t:sections.media_grid.mobile_row_height",
       "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile layout",
+      "options": [
+        {
+          "value": "stack",
+          "label": "Stack (one per row)"
+        },
+        {
+          "value": "side_by_side",
+          "label": "Side by side (two per row)"
+        }
+      ],
+      "default": "side_by_side"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile gap (side by side)",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
     },
     {
       "type": "select",
