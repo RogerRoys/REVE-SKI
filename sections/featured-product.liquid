@@ -69,12 +69,175 @@
     }
   {%- endif -%}
 
+  /* ---- Info panel details (client design) ---- */
+  #shopify-section-{{ section.id }} .product-info__block-list {
+    --product-info-gap: {{ section.settings.block_gap | divided_by: 2 }}px;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="title"] {
+    margin-block-end: {{ section.settings.title_gap | divided_by: 2 }}px;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="description"] {
+    margin-block-end: {{ section.settings.description_gap | divided_by: 2 }}px;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="description"] p:first-child strong,
+  #shopify-section-{{ section.id }} [data-block-type="description"] > .prose > *:first-child {
+    font-weight: 700;
+  }
+
+  /* Option labels: "Color: Alabaster", "Size: M" */
+  #shopify-section-{{ section.id }} .variant-picker {
+    --swatch-size: {{ section.settings.swatch_size }}px;
+    gap: {{ section.settings.option_gap }}px;
+    font-family: var(--heading-font-family);
+    font-size: {{ section.settings.option_text_size | divided_by: 16.0 }}rem;
+  }
+
+  #shopify-section-{{ section.id }} .variant-picker__option-info legend {
+    color: rgb(var(--text-color) / .6);
+  }
+
+  #shopify-section-{{ section.id }} .variant-picker__option-info variant-option-value {
+    color: rgb(var(--text-color));
+  }
+
+  #shopify-section-{{ section.id }} .variant-picker__option-info .link {
+    font-size: {{ section.settings.size_chart_size | divided_by: 16.0 }}rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  /* Size buttons: flat row, no borders, selected = black block (design) */
+  #shopify-section-{{ section.id }} .variant-picker__option-values:not(.color__swatch--items *) {
+    gap: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .block-swatch {
+    border-color: transparent;
+    border-radius: 0;
+    min-width: 0;
+    padding: 0.7em 0.25em;
+    font-size: {{ section.settings.option_text_size | divided_by: 16.0 }}rem;
+    color: rgb(var(--text-color) / .75);
+  }
+
+  #shopify-section-{{ section.id }} :checked + .block-swatch,
+  #shopify-section-{{ section.id }} .block-swatch.is-selected {
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-color: {{ section.settings.button_background }};
+  }
+
+  /* Color swatches: small circles, dark border on the selected one, strike on sold out */
+  #shopify-section-{{ section.id }} .color-swatch {
+    --swatch-offset: 2px;
+    border-radius: 9999px;
+  }
+
+  #shopify-section-{{ section.id }} .color-swatch.is-disabled,
+  #shopify-section-{{ section.id }} :disabled + .color-swatch {
+    --swatch-disabled-strike-color: rgb(var(--text-color));
+  }
+
+  /* Add to cart */
+  #shopify-section-{{ section.id }} .buy-buttons .button,
+  #shopify-section-{{ section.id }} [data-block-type="buy-buttons"] .button {
+    min-height: {{ section.settings.button_height }}px;
+    border-radius: 0;
+    font-family: var(--heading-font-family);
+    font-size: {{ section.settings.button_text_size | divided_by: 16.0 }}rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  /* Wishlist */
+  #shopify-section-{{ section.id }} .reve-wishlist {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--heading-font-family);
+    font-size: {{ section.settings.option_text_size | divided_by: 16.0 }}rem;
+    color: rgb(var(--text-color));
+  }
+
+  #shopify-section-{{ section.id }} .reve-wishlist svg {
+    width: 1.1em;
+    height: 1.1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: fill 0.15s ease;
+  }
+
+  #shopify-section-{{ section.id }} .reve-wishlist.is-active svg {
+    fill: currentColor;
+  }
+
+  #shopify-section-{{ section.id }} .reve-wishlist .reve-wishlist__added,
+  #shopify-section-{{ section.id }} .reve-wishlist.is-active .reve-wishlist__add {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .reve-wishlist.is-active .reve-wishlist__added {
+    display: inline;
+  }
+
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} .product-title {
       font-size: {{ section.settings.title_size | divided_by: 16.0 }}rem;
     }
+
+    #shopify-section-{{ section.id }} .product-info__block-list {
+      --product-info-gap: {{ section.settings.block_gap }}px;
+    }
+
+    #shopify-section-{{ section.id }} [data-block-type="title"] {
+      margin-block-end: {{ section.settings.title_gap }}px;
+    }
+
+    #shopify-section-{{ section.id }} [data-block-type="description"] {
+      margin-block-end: {{ section.settings.description_gap }}px;
+    }
   }
 </style>
+
+<script>
+  // Wishlist: saved per product handle in the browser (no app needed). Heart fills and the label changes on tap.
+  (function () {
+    if (window.__reveWishlistReady) return;
+    window.__reveWishlistReady = true;
+    var KEY = 'reve_wishlist';
+    function read() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+    function write(list) { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} }
+    function sync(btn) { btn.classList.toggle('is-active', read().indexOf(btn.dataset.handle) !== -1); }
+    function init(root) {
+      (root || document).querySelectorAll('.reve-wishlist[data-handle]').forEach(function (btn) {
+        if (btn.__wl) return; btn.__wl = true; sync(btn);
+        btn.addEventListener('click', function () {
+          var list = read(), h = btn.dataset.handle, i = list.indexOf(h);
+          i === -1 ? list.push(h) : list.splice(i, 1);
+          write(list); sync(btn);
+          document.dispatchEvent(new CustomEvent('reve:wishlist:change', { detail: { handles: list } }));
+        });
+      });
+    }
+    init();
+    document.addEventListener('shopify:section:load', function (e) { init(e.target); });
+  })();
+</script>
 
 <div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   <div class="container {% unless section.settings.container_size == 'full' %}container--{{ section.settings.container_size }}{% endunless %}">
@@ -436,6 +599,112 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Info panel details"
+    },
+    {
+      "type": "range",
+      "id": "block_gap",
+      "label": "Space between blocks",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "title_gap",
+      "label": "Extra space below title",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "description_gap",
+      "label": "Extra space below description",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "option_text_size",
+      "label": "Option / size / wishlist text size",
+      "min": 9,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "option_gap",
+      "label": "Space between options",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "swatch_size",
+      "label": "Color swatch size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "size_chart_size",
+      "label": "Size chart link size",
+      "min": 8,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "range",
+      "id": "button_height",
+      "label": "Add to cart height",
+      "min": 36,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Add to cart text size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button / selected size background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button / selected size text",
+      "default": "#ffffff"
     },
     {
       "type": "header",

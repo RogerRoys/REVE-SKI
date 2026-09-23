@@ -183,9 +183,8 @@
         },
         "wishlist": {
           "type": "liquid",
-          "disabled": true,
           "settings": {
-            "liquid": "<a href=\"#\" style=\"display:flex;gap:.5rem;align-items:center;justify-content:center;font-size:.8rem;\">{% render 'icon' with 'picto-love', width: 16 %} Add to Wishlist</a>"
+            "liquid": "<button type=\"button\" class=\"reve-wishlist\" data-handle=\"{{ product.handle }}\" aria-label=\"Add to wishlist\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z\"/></svg><span class=\"reve-wishlist__add\">Add to Wishlist</span><span class=\"reve-wishlist__added\">Added to Wishlist</span></button>"
           }
         },
         "more_details": {
@@ -226,21 +225,32 @@
         "media_background": "#e6e4e2",
         "media_padding": 0,
         "info_background": "#ffffff",
-        "info_padding": 40,
+        "info_padding": 44,
         "column_gap": 0,
         "title_font": "heading",
         "title_weight": "700",
-        "title_size": 36,
+        "title_size": 34,
         "title_size_mobile": 26,
         "title_alignment": "center",
         "title_uppercase": false,
         "title_letter_spacing": 0,
         "text_font": "heading",
-        "text_size": 12,
+        "text_size": 11,
         "link_button_as_link": true,
         "link_button_size": 13,
         "link_button_color": "#000000",
-        "image_asset": "featured-phoenix-ski-pants.jpg"
+        "image_asset": "featured-phoenix-ski-pants.jpg",
+        "block_gap": 14,
+        "title_gap": 24,
+        "description_gap": 96,
+        "option_text_size": 11,
+        "option_gap": 20,
+        "swatch_size": 24,
+        "size_chart_size": 9,
+        "button_height": 46,
+        "button_text_size": 12,
+        "button_background": "#000000",
+        "button_text_color": "#ffffff"
       }
     },
     "new_arrivals_carousel": {
