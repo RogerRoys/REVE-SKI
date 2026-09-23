@@ -231,7 +231,7 @@
         "title_font": "heading",
         "title_weight": "700",
         "title_size": 34,
-        "title_size_mobile": 26,
+        "title_size_mobile": 28,
         "title_alignment": "center",
         "title_uppercase": false,
         "title_letter_spacing": 0,
@@ -255,7 +255,14 @@
         "size_border": "each",
         "size_border_color": "#e3e3e3",
         "size_gap": 6,
-        "sold_out_style": "line_through"
+        "sold_out_style": "line_through",
+        "media_padding_mobile": 24,
+        "info_padding_mobile": 24,
+        "mobile_stack_gap": 0,
+        "title_alignment_mobile": "start",
+        "title_gap_mobile": 16,
+        "description_gap_mobile": 40,
+        "block_gap_mobile": 12
       }
     },
     "new_arrivals_carousel": {

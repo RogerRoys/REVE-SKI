@@ -16,19 +16,23 @@
 
   #shopify-section-{{ section.id }} .product-gallery {
     {%- if section.settings.media_background != blank and section.settings.media_background != 'rgba(0,0,0,0)' %}background: {{ section.settings.media_background }};{% endif %}
-    padding: {{ section.settings.media_padding }}px;
+    padding: {{ section.settings.media_padding_mobile }}px;
   }
 
   #shopify-section-{{ section.id }} .product-info {
     {%- if section.settings.info_background != blank and section.settings.info_background != 'rgba(0,0,0,0)' %}background: {{ section.settings.info_background }};{% endif %}
-    padding: {{ section.settings.info_padding }}px;
+    padding: {{ section.settings.info_padding_mobile }}px;
+  }
+
+  #shopify-section-{{ section.id }} .product {
+    row-gap: {{ section.settings.mobile_stack_gap }}px;
   }
 
   #shopify-section-{{ section.id }} .product-title {
     {%- if section.settings.title_font == 'body' %}font-family: var(--text-font-family);{% else %}font-family: var(--heading-font-family);{% endif %}
     font-weight: {{ section.settings.title_weight }};
     font-size: {{ section.settings.title_size_mobile | divided_by: 16.0 }}rem;
-    text-align: {{ section.settings.title_alignment }};
+    text-align: {{ section.settings.title_alignment_mobile }};
     text-transform: {% if section.settings.title_uppercase %}uppercase{% else %}none{% endif %};
     letter-spacing: {{ section.settings.title_letter_spacing | divided_by: 100.0 }}em;
   }
@@ -71,15 +75,19 @@
 
   /* ---- Info panel details (client design) ---- */
   #shopify-section-{{ section.id }} .product-info__block-list {
-    --product-info-gap: {{ section.settings.block_gap | divided_by: 2 }}px;
+    --product-info-gap: {{ section.settings.block_gap_mobile }}px;
   }
 
   #shopify-section-{{ section.id }} [data-block-type="title"] {
-    margin-block-end: {{ section.settings.title_gap | divided_by: 2 }}px;
+    margin-block-end: {{ section.settings.title_gap_mobile }}px;
   }
 
   #shopify-section-{{ section.id }} [data-block-type="description"] {
-    margin-block-end: {{ section.settings.description_gap | divided_by: 2 }}px;
+    margin-block-end: {{ section.settings.description_gap_mobile }}px;
+  }
+
+  #shopify-section-{{ section.id }} [data-block-type="button"] {
+    text-align: {{ section.settings.title_alignment_mobile }};
   }
 
   #shopify-section-{{ section.id }} [data-block-type="description"] p:first-child strong,
@@ -195,6 +203,23 @@
   @media screen and (min-width: 700px) {
     #shopify-section-{{ section.id }} .product-title {
       font-size: {{ section.settings.title_size | divided_by: 16.0 }}rem;
+      text-align: {{ section.settings.title_alignment }};
+    }
+
+    #shopify-section-{{ section.id }} [data-block-type="button"] {
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .product-gallery {
+      padding: {{ section.settings.media_padding }}px;
+    }
+
+    #shopify-section-{{ section.id }} .product-info {
+      padding: {{ section.settings.info_padding }}px;
+    }
+
+    #shopify-section-{{ section.id }} .product {
+      row-gap: 0;
     }
 
     #shopify-section-{{ section.id }} .product-info__block-list {
@@ -730,6 +755,86 @@
       "id": "button_text_color",
       "label": "Button / selected size text",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "media_padding_mobile",
+      "label": "Image area padding (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "info_padding_mobile",
+      "label": "Info panel padding (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_stack_gap",
+      "label": "Gap between image and info (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "title_alignment_mobile",
+      "label": "Text alignment (mobile)",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "range",
+      "id": "title_gap_mobile",
+      "label": "Space below title (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_gap_mobile",
+      "label": "Space below description (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "block_gap_mobile",
+      "label": "Space between blocks (mobile)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
     },
     {
       "type": "header",
