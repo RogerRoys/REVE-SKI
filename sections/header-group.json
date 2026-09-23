@@ -38,7 +38,13 @@
         "background": "#000000",
         "text_color": "#ffffff",
         "show_dots": true,
-        "show_pause_button": true
+        "show_pause_button": true,
+        "text_font": "body",
+        "uppercase": false,
+        "letter_spacing": 1,
+        "vertical_padding": 9,
+        "dot_size": 4,
+        "controls_color": "#ffffff"
       }
     },
     "header": {

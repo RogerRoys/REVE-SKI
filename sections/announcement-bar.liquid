@@ -67,8 +67,10 @@
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       column-gap: 1rem;
-      padding-block: 0.65em;
-      letter-spacing: 0.01em;
+      padding-block: {{ section.settings.vertical_padding }}px;
+      letter-spacing: {{ section.settings.letter_spacing | divided_by: 100.0 }}em;
+      {%- if section.settings.uppercase %}text-transform: uppercase;{% endif %}
+      {%- if section.settings.text_font == 'heading' %}font-family: var(--heading-font-family);{% endif %}
     }
 
     #shopify-section-{{ section.id }} .announcement-bar:not(.announcement-bar--multiple) {
@@ -92,9 +94,14 @@
       gap: 0.5rem;
     }
 
+    #shopify-section-{{ section.id }} .announcement-bar__dots,
+    #shopify-section-{{ section.id }} .announcement-bar__toggle {
+      color: {{ section.settings.controls_color | default: section.settings.text_color }};
+    }
+
     #shopify-section-{{ section.id }} .announcement-bar__dot {
-      width: 4px;
-      height: 4px;
+      width: {{ section.settings.dot_size }}px;
+      height: {{ section.settings.dot_size }}px;
       border-radius: 50%;
       background: currentColor;
       opacity: 0.35;
@@ -245,6 +252,76 @@
       "unit": "px",
       "label": "t:sections.announcement_bar.mobile_text_size",
       "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_font",
+      "label": "Font",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        },
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        }
+      ],
+      "default": "body"
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "Uppercase text",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "Bar height (vertical padding)",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Controls"
+    },
+    {
+      "type": "range",
+      "id": "dot_size",
+      "label": "Dot size",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "controls_color",
+      "label": "Dots and pause button color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
