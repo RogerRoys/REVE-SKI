@@ -49,30 +49,32 @@
     },
     "header": {
       "type": "header",
-      "custom_css": [
-        ".header {padding-block-end: 10px; padding-block-start: 10px;}"
-      ],
       "settings": {
         "enable_sticky": true,
         "show_separation_border": false,
-        "reduce_padding": false,
-        "logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT.png",
-        "logo_max_width": 150,
-        "logo_mobile_max_width": 100,
+        "reduce_padding": true,
+        "logo": "",
+        "logo_max_width": 110,
+        "logo_mobile_max_width": 80,
         "menu": "main-menu",
         "sidebar_menu": "",
         "menu_open_trigger": "hover",
         "enable_search": true,
         "sidebar_text_font": "heading",
         "sidebar_show_dividers": true,
-        "layout": "drawer",
+        "layout": "logo_center_navigation_inline",
         "show_icons": true,
-        "show_country_selector": true,
+        "show_country_selector": false,
         "show_country_name": false,
-        "show_country_flag": true,
+        "show_country_flag": false,
         "show_locale_selector": false,
         "transparent_header_text_color": "#ffffff",
-        "transparent_logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT_1d365d7b-4789-444d-98ad-a51a02e53bc8.png"
+        "transparent_logo": "",
+        "nav_font": "heading",
+        "nav_uppercase": true,
+        "nav_font_size": 13,
+        "nav_letter_spacing": 6,
+        "nav_gap": 32
       }
     }
   },

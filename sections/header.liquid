@@ -48,19 +48,38 @@
     }
   {%- endif -%}
 
-  {%- if section.settings.logo != blank -%}
-    #shopify-section-{{ section.id }} {
-      --header-logo-width: {{ section.settings.logo_mobile_max_width }}px;
-      --header-logo-height: {{ section.settings.logo_mobile_max_width | divided_by: section.settings.logo.aspect_ratio | round }}px;
-    }
+  {%- liquid
+    if section.settings.logo != blank
+      assign logo_ratio = section.settings.logo.aspect_ratio
+    else
+      assign logo_ratio = 3.738
+    endif
+  -%}
 
-    @media screen and (min-width: 700px) {
-      #shopify-section-{{ section.id }} {
-        --header-logo-width: {{ section.settings.logo_max_width }}px;
-        --header-logo-height: {{ section.settings.logo_max_width | divided_by: section.settings.logo.aspect_ratio | round }}px;
-      }
+  #shopify-section-{{ section.id }} {
+    --header-logo-width: {{ section.settings.logo_mobile_max_width }}px;
+    --header-logo-height: {{ section.settings.logo_mobile_max_width | divided_by: logo_ratio | round }}px;
+  }
+
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} {
+      --header-logo-width: {{ section.settings.logo_max_width }}px;
+      --header-logo-height: {{ section.settings.logo_max_width | divided_by: logo_ratio | round }}px;
     }
-  {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav .h6,
+  #shopify-section-{{ section.id }} .header__primary-nav-item > a,
+  #shopify-section-{{ section.id }} .header__primary-nav-item > button {
+    font-size: {{ section.settings.nav_font_size | divided_by: 16.0 }}rem;
+    letter-spacing: {{ section.settings.nav_letter_spacing | divided_by: 100.0 }}em;
+    {%- if section.settings.nav_uppercase %}text-transform: uppercase;{% endif %}
+    {%- if section.settings.nav_font == 'body' %}font-family: var(--text-font-family);{% endif %}
+  }
+
+  #shopify-section-{{ section.id }} .header__primary-nav ul {
+    column-gap: {{ section.settings.nav_gap }}px;
+  }
 </style>
 
 <height-observer variable="header">
@@ -83,7 +102,10 @@
           {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
         {%- endif -%}
       {%- else -%}
-        <span class="header__logo-text h5">{{ shop.name }}</span>
+        {%- comment -%} Brand logos shipped with the theme (assets/) — pick images above to override {%- endcomment -%}
+        <span class="sr-only">{{ shop.name }}</span>
+        <img src="{{ 'reve-ski-logo-black.png' | asset_url }}" alt="{{ shop.name | escape }}" width="2000" height="535" class="header__logo-image" loading="eager">
+        <img src="{{ 'reve-ski-logo-white.png' | asset_url }}" alt="" width="2000" height="535" class="header__logo-image header__logo-image--transparent" loading="eager">
       {%- endif -%}
     {%- endcapture -%}
 
@@ -386,6 +408,62 @@
       "id": "sidebar_show_dividers",
       "label": "t:sections.header.sidebar_show_dividers",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Navigation text"
+    },
+    {
+      "type": "select",
+      "id": "nav_font",
+      "label": "Font",
+      "options": [
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        },
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        }
+      ],
+      "default": "heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_uppercase",
+      "label": "Uppercase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "nav_font_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "nav_letter_spacing",
+      "label": "Letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "nav_gap",
+      "label": "Space between links",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
     },
     {
       "type": "header",
