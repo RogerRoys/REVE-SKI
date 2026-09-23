@@ -9,50 +9,6 @@
  */
 {
   "sections": {
-    "slideshow": {
-      "type": "slideshow",
-      "blocks": {
-        "slide-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/banner_web_166daf88-20a8-4091-ab9f-9a749007ca3a.jpg",
-            "subheading": "",
-            "title": "",
-            "mobile_text_position": "place-self-end text-end",
-            "desktop_text_position": "sm:place-self-end sm:text-end",
-            "content_max_width": 400,
-            "button_1_text": "Shop All",
-            "button_1_link": "shopify://collections/all",
-            "button_1_style": "solid",
-            "button_1_background": "#fafafa",
-            "button_1_text_color": "#1b1b1b",
-            "button_2_text": "",
-            "button_2_link": "",
-            "button_2_style": "outline",
-            "button_2_background": "#ffffff",
-            "button_2_text_color": "#000000",
-            "background": "",
-            "background_opacity": 50,
-            "text_color": "#ffffff",
-            "border_color": "",
-            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.08), rgba(4, 4, 4, 0.36) 100%)"
-          }
-        }
-      },
-      "block_order": [
-        "slide-1"
-      ],
-      "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": false,
-        "media_size": "auto",
-        "autoplay": true,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "background": "#fafafa",
-        "controls_color": "#ffffff"
-      }
-    },
     "e42b11e1-9072-43af-b085-f6d03849afd2": {
       "type": "video",
       "blocks": {
@@ -75,7 +31,6 @@
         "template--21115847082279__e42b11e1-9072-43af-b085-f6d03849afd2-play-1",
         "template--21115847082279__e42b11e1-9072-43af-b085-f6d03849afd2-heading-1"
       ],
-      "disabled": true,
       "settings": {
         "autoplay": false,
         "show_controls": true,
@@ -355,7 +310,6 @@
     }
   },
   "order": [
-    "slideshow",
     "e42b11e1-9072-43af-b085-f6d03849afd2",
     "336be5df-505f-46fb-af44-00bd74934385",
     "3319a9d4-721c-4659-83f7-84809ccb63cf",
