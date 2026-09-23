@@ -70,11 +70,11 @@
         "show_locale_selector": false,
         "transparent_header_text_color": "#ffffff",
         "transparent_logo": "",
-        "nav_font": "heading",
+        "nav_font": "body",
         "nav_uppercase": true,
         "nav_font_size": 13,
-        "nav_letter_spacing": 6,
-        "nav_gap": 32
+        "nav_letter_spacing": 3,
+        "nav_gap": 36
       }
     }
   },
