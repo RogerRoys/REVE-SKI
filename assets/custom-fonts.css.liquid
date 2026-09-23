@@ -1,0 +1,45 @@
+/* Reve Ski brand fonts (client supplied)
+   Headings: JetBrains Mono  |  Body: News Gothic */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('{{ 'jetbrains-mono-thin.woff2' | asset_url }}') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('{{ 'jetbrains-mono-bold.woff2' | asset_url }}') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url('{{ 'news-gothic-medium.woff2' | asset_url }}') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url('{{ 'news-gothic-bold.woff2' | asset_url }}') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Override the theme font variables set in snippets/css-variables.liquid */
+:root {
+  --heading-font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --heading-font-weight: 700;
+  --heading-font-style: normal;
+
+  --text-font-family: 'News Gothic', 'Helvetica Neue', Arial, sans-serif;
+  --text-font-weight: 400;
+  --text-font-style: normal;
+}
