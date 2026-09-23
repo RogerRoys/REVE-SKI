@@ -15,7 +15,7 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Desktop_hero.jpg",
+            "image": "shopify://shop_images/15021.jpg",
             "mobile_image": "shopify://shop_images/Mobile_hero.jpg",
             "image_asset": "",
             "mobile_image_asset": "",
@@ -24,7 +24,7 @@
             "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 350,
+            "content_max_width": 400,
             "button_1_text": "Shop Now",
             "button_1_link": "shopify://collections/all",
             "button_1_style": "link",
@@ -56,16 +56,16 @@
         "heading_font": "body",
         "heading_weight": "400",
         "heading_uppercase": false,
-        "heading_size": 56,
-        "heading_size_mobile": 36,
+        "heading_size": 44,
+        "heading_size_mobile": 32,
         "heading_letter_spacing": 0,
-        "text_size": 25,
-        "text_size_mobile": 17,
+        "text_size": 22,
+        "text_size_mobile": 16,
         "text_line_height": 1.4,
         "text_justify": true,
         "link_font": "body",
-        "link_size": 24,
-        "link_size_mobile": 17,
+        "link_size": 22,
+        "link_size_mobile": 16,
         "background": "#fafafa",
         "controls_color": "#ffffff"
       }
@@ -76,6 +76,7 @@
         "tile_new_arrivals_video": {
           "type": "video",
           "settings": {
+            "video_asset": "",
             "autoplay": true,
             "show_controls": false,
             "column_count": "6",
@@ -91,13 +92,13 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "overlay_color": "#000000",
-            "overlay_opacity": 0,
-            "video_asset": ""
+            "overlay_opacity": 10
           }
         },
         "tile_phoenix_image": {
           "type": "image",
           "settings": {
+            "image_asset": "",
             "column_count": "6",
             "row_count": 2,
             "title": "Phoenix Ski Pant",
@@ -111,8 +112,7 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "overlay_color": "#000000",
-            "overlay_opacity": 0,
-            "image_asset": ""
+            "overlay_opacity": 10
           }
         }
       },
@@ -122,22 +122,22 @@
       ],
       "settings": {
         "separate_section_with_border": false,
-        "desktop_row_height": 385,
-        "mobile_row_height": 240,
+        "desktop_row_height": 300,
+        "mobile_row_height": 220,
         "section_width": "lg",
-        "spacing": "lg",
-        "subheading": "",
-        "title": "",
-        "content": "",
-        "background": "",
-        "text_color": "",
+        "spacing": "md",
         "tile_title_font": "body",
         "tile_title_weight": "400",
         "tile_title_uppercase": false,
         "tile_title_size": 24,
         "tile_title_size_mobile": 18,
         "tile_link_size": 20,
-        "tile_link_size_mobile": 15
+        "tile_link_size_mobile": 15,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "text_color": ""
       }
     },
     "featured_phoenix_pants": {
