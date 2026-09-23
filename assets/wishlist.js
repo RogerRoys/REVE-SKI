@@ -10,7 +10,7 @@
   var KEY = 'reve_wishlist';
 
   function read() {
-    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]').filter(Boolean); } catch (e) { return []; }
   }
 
   function write(list) {
@@ -49,7 +49,7 @@
 
   document.addEventListener('click', function (event) {
     var btn = event.target.closest('.reve-wishlist[data-handle]');
-    if (btn) { event.preventDefault(); toggle(btn.dataset.handle); return; }
+    if (btn) { event.preventDefault(); if (btn.dataset.handle) toggle(btn.dataset.handle); return; }
 
     var rm = event.target.closest('[data-wishlist-remove]');
     if (rm) { event.preventDefault(); remove(rm.dataset.wishlistRemove); }
@@ -100,13 +100,15 @@
         var img = p.featured_image ? p.featured_image.replace(/(\.[a-z]+)(\?.*)?$/i, '_400x$1$2') : '';
         return '' +
           '<li class="wishlist-drawer__item">' +
-            '<a href="/products/' + p.handle + '" class="wishlist-drawer__media">' + (img ? '<img src="' + img + '" alt="" loading="lazy" width="200" height="250">' : '') + '</a>' +
+            '<a href="' + root() + 'products/' + p.handle + '" class="wishlist-drawer__media">' + (img ? '<img src="' + img + '" alt="" loading="lazy" width="200" height="200">' : '') + '</a>' +
             '<div class="wishlist-drawer__info">' +
-              '<a href="/products/' + p.handle + '" class="wishlist-drawer__title">' + p.title + '</a>' +
+              '<a href="' + root() + 'products/' + p.handle + '" class="wishlist-drawer__title">' + p.title + '</a>' +
               (p.price != null ? '<span class="wishlist-drawer__price">' + formatMoney(p.price) + '</span>' : '') +
-              '<a href="/products/' + p.handle + '" class="wishlist-drawer__link">View product</a>' +
+              '<div class="wishlist-drawer__actions">' +
+                '<a href="' + root() + 'products/' + p.handle + '" class="wishlist-drawer__link">View product</a>' +
+                '<button type="button" class="wishlist-drawer__remove" data-wishlist-remove="' + handles[i] + '">Remove</button>' +
+              '</div>' +
             '</div>' +
-            '<button type="button" class="wishlist-drawer__remove" data-wishlist-remove="' + handles[i] + '" aria-label="Remove">&times;</button>' +
           '</li>';
       }).join('');
     });

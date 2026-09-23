@@ -481,6 +481,13 @@ Supported variables
               {%- render 'button', href: block.settings.link, content: block.settings.text, stretch: block.settings.stretch, background: block.settings.background, text_color: block.settings.text_color -%}
             {%- endif -%}
 
+          {%- when 'wishlist' -%}
+            <button type="button" class="reve-wishlist" data-handle="{{ product.handle }}" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>
+              <span class="reve-wishlist__add">{{ block.settings.add_text | default: 'Add To Wishlist' }}</span>
+              <span class="reve-wishlist__added">{{ block.settings.added_text | default: 'Added to Wishlist' }}</span>
+            </button>
+
           {%- when 'share_buttons' -%}
             <button class="share-buttons share-buttons--native link-faded" is="share-button" hidden>
               <span class="smallcaps text-xxs">{{- 'general.social.share' | t -}}</span>

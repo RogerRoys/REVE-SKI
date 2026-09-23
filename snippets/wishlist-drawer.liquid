@@ -19,53 +19,99 @@ assets/wishlist.js from the handles saved in the browser.
 <style>
   .wishlist-drawer__items {
     display: grid;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 
   .wishlist-drawer__item {
     display: grid;
-    grid-template-columns: 80px minmax(0, 1fr) auto;
-    gap: 1rem;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 1.25rem;
     align-items: start;
   }
 
   .wishlist-drawer__media img {
     display: block;
-    width: 80px;
-    height: 100px;
-    object-fit: cover;
-    background: rgb(var(--border-color) / .3);
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    background: #e6e4e2;
   }
 
   .wishlist-drawer__info {
     display: grid;
-    gap: .25rem;
-    font-size: var(--text-sm);
-  }
-
-  .wishlist-drawer__title {
+    gap: .4rem;
+    padding-block-start: .25rem;
     font-family: var(--heading-font-family);
-    font-weight: 700;
-  }
-
-  .wishlist-drawer__link {
-    text-decoration: underline;
-    text-underline-offset: .2em;
     font-size: var(--text-xs);
   }
 
+  .wishlist-drawer__title {
+    font-weight: 700;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+
+  .wishlist-drawer__price {
+    color: rgb(var(--text-color) / .7);
+  }
+
+  .wishlist-drawer__actions {
+    display: flex;
+    gap: 1.25rem;
+    margin-block-start: .5rem;
+  }
+
+  .wishlist-drawer__link,
   .wishlist-drawer__remove {
     background: none;
     border: 0;
-    padding: 0 .25rem;
-    font-size: 1.25rem;
-    line-height: 1;
+    padding: 0;
     cursor: pointer;
-    color: rgb(var(--text-color) / .6);
+    font: inherit;
+    font-family: var(--text-font-family);
+    font-size: var(--text-sm);
+    color: rgb(var(--text-color));
+    text-decoration: underline;
+    text-underline-offset: .2em;
   }
 
-  .wishlist-drawer__remove:hover {
+  /* Wishlist button (product info block) */
+  .reve-wishlist {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--heading-font-family);
+    font-size: var(--text-xs);
     color: rgb(var(--text-color));
+  }
+
+  .reve-wishlist svg {
+    width: 1.1em;
+    height: 1.1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: fill 0.15s ease;
+  }
+
+  .reve-wishlist.is-active svg {
+    fill: currentColor;
+  }
+
+  .reve-wishlist .reve-wishlist__added,
+  .reve-wishlist.is-active .reve-wishlist__add {
+    display: none;
+  }
+
+  .reve-wishlist.is-active .reve-wishlist__added {
+    display: inline;
   }
 
   /* Header heart */

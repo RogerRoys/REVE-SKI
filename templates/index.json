@@ -182,9 +182,10 @@
           }
         },
         "wishlist": {
-          "type": "liquid",
+          "type": "wishlist",
           "settings": {
-            "liquid": "<button type=\"button\" class=\"reve-wishlist\" data-handle=\"{{ product.handle }}\" aria-label=\"Add to wishlist\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3.2 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3 3.6 0 5.6 3.6 4.3 6.8C19.5 16.4 12 21 12 21z\"/></svg><span class=\"reve-wishlist__add\">Add To Wishlist</span><span class=\"reve-wishlist__added\">Added to Wishlist</span></button>"
+            "add_text": "Add To Wishlist",
+            "added_text": "Added to Wishlist"
           }
         },
         "more_details": {
