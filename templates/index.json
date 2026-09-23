@@ -21,7 +21,7 @@
             "title": "The Western Edit",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 420,
+            "content_max_width": 400,
             "button_1_text": "Shop Now",
             "button_1_link": "shopify://collections/all",
             "button_1_style": "link",
@@ -36,7 +36,8 @@
             "background_opacity": 50,
             "text_color": "#ffffff",
             "border_color": "",
-            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.08), rgba(4, 4, 4, 0.36) 100%)"
+            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35) 100%)",
+            "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>"
           }
         }
       },
@@ -46,12 +47,25 @@
       "settings": {
         "allow_transparent_header": true,
         "show_next_section_button": false,
-        "media_size": "auto",
+        "media_size": "lg",
         "autoplay": false,
         "autoplay_pause_on_video": true,
         "cycle_speed": 5,
         "background": "#fafafa",
-        "controls_color": "#ffffff"
+        "controls_color": "#ffffff",
+        "heading_font": "body",
+        "heading_weight": "400",
+        "heading_uppercase": false,
+        "heading_size": 44,
+        "heading_size_mobile": 32,
+        "heading_letter_spacing": 0,
+        "text_size": 22,
+        "text_size_mobile": 16,
+        "text_line_height": 1.4,
+        "text_justify": true,
+        "link_font": "body",
+        "link_size": 22,
+        "link_size_mobile": 16
       }
     },
     "two_tiles_video_image": {

@@ -9,6 +9,45 @@ may have important consequence on the section itself.
 {%- if section.blocks.size > 0 -%}
   {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
+  <style>
+    /* Text styling — Theme editor > Slideshow > Text */
+    #shopify-section-{{ section.id }} .slideshow__heading {
+      {%- if section.settings.heading_font == 'body' %}font-family: var(--text-font-family);{% endif %}
+      font-weight: {{ section.settings.heading_weight }};
+      font-size: {{ section.settings.heading_size_mobile | divided_by: 16.0 }}rem;
+      line-height: 1.1;
+      letter-spacing: {{ section.settings.heading_letter_spacing | divided_by: 100.0 }}em;
+      text-transform: {% if section.settings.heading_uppercase %}uppercase{% else %}none{% endif %};
+    }
+
+    #shopify-section-{{ section.id }} .slideshow__text {
+      font-size: {{ section.settings.text_size_mobile | divided_by: 16.0 }}rem;
+      line-height: {{ section.settings.text_line_height }};
+      {%- if section.settings.text_justify %}text-align: justify;{% endif %}
+    }
+
+    #shopify-section-{{ section.id }} .prose .link,
+    #shopify-section-{{ section.id }} .prose .button-group a {
+      font-size: {{ section.settings.link_size_mobile | divided_by: 16.0 }}rem;
+      {%- if section.settings.link_font == 'body' %}font-family: var(--text-font-family); font-weight: 400;{% endif %}
+    }
+
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .slideshow__heading {
+        font-size: {{ section.settings.heading_size | divided_by: 16.0 }}rem;
+      }
+
+      #shopify-section-{{ section.id }} .slideshow__text {
+        font-size: {{ section.settings.text_size | divided_by: 16.0 }}rem;
+      }
+
+      #shopify-section-{{ section.id }} .prose .link,
+      #shopify-section-{{ section.id }} .prose .button-group a {
+        font-size: {{ section.settings.link_size | divided_by: 16.0 }}rem;
+      }
+    }
+  </style>
+
   <slideshow-carousel id="{{ carousel_id }}" class="slideshow" allow-swipe {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %} cell-selector=".slideshow__slide" {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} {% if section.settings.autoplay_pause_on_video %}autoplay-pause-on-video{% endif %} role="region" style="{% render 'surface', background: section.settings.background %}">
     {%- for block in section.blocks -%}
       {%- capture slide -%}
@@ -85,7 +124,11 @@ may have important consequence on the section itself.
               {%- endif -%}
 
               {%- if block.settings.title != blank -%}
-                <p class="h1">{{ block.settings.title }}</p>
+                <p class="h1 slideshow__heading">{{ block.settings.title }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.content != blank -%}
+                <div class="slideshow__text">{{ block.settings.content }}</div>
               {%- endif -%}
 
               {%- if block.settings.button_1_text != blank or block.settings.button_2_text != blank -%}
@@ -171,7 +214,10 @@ may have important consequence on the section itself.
   "tag": "section",
   "max_blocks": 6,
   "disabled_on": {
-    "groups": ["header", "custom.overlay"]
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "settings": [
     {
@@ -244,6 +290,149 @@ may have important consequence on the section itself.
     },
     {
       "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "heading_font",
+      "label": "Heading font",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        },
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        }
+      ],
+      "default": "body"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_uppercase",
+      "label": "Uppercase heading",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "label": "Heading letter spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Paragraph size (desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Paragraph size (mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "label": "Paragraph line height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.4
+    },
+    {
+      "type": "checkbox",
+      "id": "text_justify",
+      "label": "Justify paragraph text",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "link_font",
+      "label": "Button / link font",
+      "options": [
+        {
+          "value": "body",
+          "label": "Body font (News Gothic)"
+        },
+        {
+          "value": "heading",
+          "label": "Heading font (JetBrains Mono)"
+        }
+      ],
+      "default": "body"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Button / link size (desktop)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "link_size_mobile",
+      "label": "Button / link size (mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
       "content": "t:global.colors.category"
     },
     {
@@ -293,6 +482,11 @@ may have important consequence on the section itself.
           "id": "title",
           "label": "t:global.text.heading",
           "default": "Image slide"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Paragraph"
         },
         {
           "type": "select",
@@ -558,6 +752,11 @@ may have important consequence on the section itself.
           "id": "title",
           "label": "t:global.text.heading",
           "default": "Video slide"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Paragraph"
         },
         {
           "type": "select",
