@@ -75,17 +75,10 @@
     letter-spacing: {{ section.settings.nav_letter_spacing | divided_by: 100.0 }}em;
     {%- if section.settings.nav_uppercase %}text-transform: uppercase;{% endif %}
     {%- if section.settings.nav_font == 'body' %}font-family: var(--text-font-family);{% endif %}
-    font-weight: {{ section.settings.nav_font_weight }};
   }
 
   #shopify-section-{{ section.id }} .header__primary-nav ul {
     column-gap: {{ section.settings.nav_gap }}px;
-  }
-
-  /* Search / account / cart hidden per client design; re-enable in Header > Utility icons */
-  #shopify-section-{{ section.id }} .header__secondary-nav--hidden {
-    visibility: hidden;
-    pointer-events: none;
   }
 </style>
 
@@ -133,27 +126,14 @@
     {%- assign menu = section.settings.menu -%}
     {%- assign sidebar_menu = section.settings.sidebar_menu -%}
 
-    {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 or section.settings.use_custom_links -%}
+    {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 -%}
       <nav class="header__primary-nav {% if section.settings.layout == 'logo_center_navigation_below' or section.settings.layout == 'logo_left_navigation_center' %}header__primary-nav--center{% endif %}" aria-label="{{ 'header.general.primary_navigation' | t | escape }}">
         <button type="button" aria-controls="sidebar-menu" {% unless section.settings.layout == 'drawer' %}class="md:hidden"{% endunless %}>
           <span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
           {%- render 'icon' with 'hamburger', class: 'header__nav-icon' -%}
         </button>
 
-        {%- if section.settings.use_custom_links and section.settings.layout != 'drawer' -%}
-          {%- comment -%} Links defined in the theme editor (Header > Menu links) instead of a Shopify navigation menu {%- endcomment -%}
-          <ul class="contents unstyled-list md-max:hidden">
-            {%- for i in (1..4) -%}
-              {%- assign text_key = 'link_' | append: i | append: '_text' -%}
-              {%- assign url_key = 'link_' | append: i | append: '_url' -%}
-              {%- if section.settings[text_key] != blank -%}
-                <li class="header__primary-nav-item" data-title="{{ section.settings[text_key] | escape }}">
-                  <a href="{{ section.settings[url_key] | default: '#' }}" class="block h6" {% if section.settings[url_key] == request.path %}aria-current="page"{% endif %}>{{ section.settings[text_key] }}</a>
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        {%- elsif menu.links.size > 0 and section.settings.layout != 'drawer' -%}
+        {%- if menu.links.size > 0 and section.settings.layout != 'drawer' -%}
           <ul class="contents unstyled-list md-max:hidden">
             {%- for link in menu.links -%}
               {% liquid
@@ -225,7 +205,7 @@
     --------------------------------------------------------------------------------------------------------------------
     {%- endcomment -%}
 
-    <nav class="header__secondary-nav {% unless section.settings.show_utility_nav %}header__secondary-nav--hidden{% endunless %}" aria-label="{{ 'header.general.secondary_navigation' | t | escape }}">
+    <nav class="header__secondary-nav" aria-label="{{ 'header.general.secondary_navigation' | t | escape }}">
       {%- liquid
         if section.settings.show_country_selector and localization.available_countries.size > 1
           assign show_country_selector = true
@@ -301,9 +281,7 @@
 
     {%- assign sidebar_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 
-    {%- if section.settings.use_custom_links -%}
-      {%- render 'header-sidebar-custom', show_dividers: section.settings.sidebar_show_dividers -%}
-    {%- elsif sidebar_menu.links.size > 0 -%}
+    {%- if sidebar_menu.links.size > 0 -%}
       {%- render 'header-sidebar', menu: sidebar_menu, show_dividers: section.settings.sidebar_show_dividers -%}
     {%- endif -%}
   </x-header>
@@ -366,64 +344,6 @@
       "unit": "px",
       "label": "t:global.image.mobile_width",
       "default": 100
-    },
-    {
-      "type": "header",
-      "content": "Menu links"
-    },
-    {
-      "type": "paragraph",
-      "content": "Turn this on to manage the header links here instead of a Shopify navigation menu."
-    },
-    {
-      "type": "checkbox",
-      "id": "use_custom_links",
-      "label": "Use the links below",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "link_1_text",
-      "label": "Link 1 text",
-      "default": "Shop"
-    },
-    {
-      "type": "url",
-      "id": "link_1_url",
-      "label": "Link 1 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_2_text",
-      "label": "Link 2 text",
-      "default": "About"
-    },
-    {
-      "type": "url",
-      "id": "link_2_url",
-      "label": "Link 2 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_3_text",
-      "label": "Link 3 text",
-      "default": ""
-    },
-    {
-      "type": "url",
-      "id": "link_3_url",
-      "label": "Link 3 URL"
-    },
-    {
-      "type": "text",
-      "id": "link_4_text",
-      "label": "Link 4 text",
-      "default": ""
-    },
-    {
-      "type": "url",
-      "id": "link_4_url",
-      "label": "Link 4 URL"
     },
     {
       "type": "header",
@@ -510,22 +430,6 @@
       "default": "body"
     },
     {
-      "type": "select",
-      "id": "nav_font_weight",
-      "label": "Weight",
-      "options": [
-        {
-          "value": "400",
-          "label": "Regular"
-        },
-        {
-          "value": "700",
-          "label": "Bold"
-        }
-      ],
-      "default": "400"
-    },
-    {
       "type": "checkbox",
       "id": "nav_uppercase",
       "label": "Uppercase",
@@ -536,10 +440,10 @@
       "id": "nav_font_size",
       "label": "Text size",
       "min": 10,
-      "max": 26,
+      "max": 18,
       "step": 1,
       "unit": "px",
-      "default": 20
+      "default": 13
     },
     {
       "type": "range",
@@ -549,17 +453,17 @@
       "max": 20,
       "step": 1,
       "unit": "%",
-      "default": 4
+      "default": 3
     },
     {
       "type": "range",
       "id": "nav_gap",
       "label": "Space between links",
       "min": 12,
-      "max": 80,
+      "max": 60,
       "step": 2,
       "unit": "px",
-      "default": 56
+      "default": 32
     },
     {
       "type": "header",
@@ -592,17 +496,6 @@
         }
       ],
       "default": "logo_left_navigation_inline"
-    },
-    {
-      "type": "header",
-      "content": "Utility icons"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_utility_nav",
-      "label": "Show search, account and cart",
-      "info": "Hidden in the client design. Turn on to show them on the right of the header.",
-      "default": false
     },
     {
       "type": "checkbox",

@@ -15,11 +15,16 @@
         "slide-1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Desktop_hero.jpg",
+            "mobile_image": "shopify://shop_images/Mobile_hero.jpg",
+            "image_asset": "",
+            "mobile_image_asset": "",
             "subheading": "",
             "title": "The Western Edit",
+            "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 430,
+            "content_max_width": 400,
             "button_1_text": "Shop Now",
             "button_1_link": "shopify://collections/all",
             "button_1_style": "link",
@@ -31,13 +36,10 @@
             "button_2_background": "#ffffff",
             "button_2_text_color": "#000000",
             "background": "",
-            "background_opacity": 50,
+            "background_opacity": 94,
             "text_color": "#ffffff",
             "border_color": "",
-            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35) 100%)",
-            "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
-            "image_asset": "hero-western-edit-desktop.jpg",
-            "mobile_image_asset": "hero-western-edit-mobile.jpg"
+            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35) 100%)"
           }
         }
       },
@@ -47,25 +49,25 @@
       "settings": {
         "allow_transparent_header": true,
         "show_next_section_button": false,
-        "media_size": "lg",
+        "media_size": "fill",
         "autoplay": false,
         "autoplay_pause_on_video": true,
         "cycle_speed": 5,
-        "background": "#fafafa",
-        "controls_color": "#ffffff",
         "heading_font": "body",
         "heading_weight": "400",
         "heading_uppercase": false,
-        "heading_size": 48,
+        "heading_size": 44,
         "heading_size_mobile": 32,
         "heading_letter_spacing": 0,
-        "text_size": 24,
+        "text_size": 22,
         "text_size_mobile": 16,
         "text_line_height": 1.4,
         "text_justify": true,
         "link_font": "body",
-        "link_size": 24,
-        "link_size_mobile": 16
+        "link_size": 22,
+        "link_size_mobile": 16,
+        "background": "#fafafa",
+        "controls_color": "#ffffff"
       }
     },
     "two_tiles_video_image": {

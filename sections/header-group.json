@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
@@ -31,20 +40,20 @@
       ],
       "settings": {
         "enable_sticky": false,
+        "show_dots": true,
+        "show_pause_button": true,
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 11,
         "mobile_font_size": 10,
-        "background": "#000000",
-        "text_color": "#ffffff",
-        "show_dots": true,
-        "show_pause_button": true,
         "text_font": "body",
         "uppercase": false,
         "letter_spacing": 1,
         "vertical_padding": 9,
         "dot_size": 4,
-        "controls_color": "#ffffff"
+        "controls_color": "#ffffff",
+        "background": "#000000",
+        "text_color": "#ffffff"
       }
     },
     "header": {
@@ -61,29 +70,18 @@
         "enable_search": true,
         "sidebar_text_font": "body",
         "sidebar_show_dividers": false,
+        "nav_font": "body",
+        "nav_uppercase": true,
+        "nav_font_size": 13,
+        "nav_letter_spacing": 3,
+        "nav_gap": 36,
         "layout": "logo_center_navigation_inline",
         "show_icons": true,
         "show_country_selector": false,
         "show_country_name": false,
         "show_country_flag": false,
         "show_locale_selector": false,
-        "transparent_header_text_color": "#ffffff",
-        "nav_font": "body",
-        "nav_uppercase": true,
-        "nav_font_size": 20,
-        "nav_letter_spacing": 4,
-        "nav_gap": 56,
-        "use_custom_links": true,
-        "link_1_text": "Shop",
-        "link_1_url": "shopify://collections/all",
-        "link_2_text": "About",
-        "link_2_url": "shopify://pages/about-us",
-        "link_3_text": "",
-        "link_3_url": "",
-        "link_4_text": "",
-        "link_4_url": "",
-        "show_utility_nav": false,
-        "nav_font_weight": "400"
+        "transparent_header_text_color": "#ffffff"
       }
     }
   },
