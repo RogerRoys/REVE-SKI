@@ -21,6 +21,13 @@
 
     /* Mobile layout — Theme editor > Media grid > Mobile */
     @media screen and (max-width: 699px) {
+      {%- if section.settings.section_width == 'full' -%}
+        /* Match the page gutter used by the header and hero text on phones */
+        #shopify-section-{{ section.id }} {
+          --container-gutter: {{ section.settings.mobile_gutter }}px;
+        }
+      {%- endif -%}
+
       {%- if section.settings.mobile_layout == 'side_by_side' -%}
         #shopify-section-{{ section.id }} .media-grid {
           --media-grid-gap: {{ section.settings.mobile_gap }}px;
@@ -197,7 +204,18 @@
           "label": "Side by side (two per row)"
         }
       ],
-      "default": "side_by_side"
+      "default": "stack"
+    },
+    {
+      "type": "range",
+      "id": "mobile_gutter",
+      "label": "Mobile side margin",
+      "info": "Applies when section width is Full. 20px matches the header and hero text.",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
     },
     {
       "type": "range",
