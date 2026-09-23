@@ -185,7 +185,7 @@
           "type": "liquid",
           "disabled": true,
           "settings": {
-            "liquid": "<a href=\"#\" class=\"text-with-icon justify-center text-xs\" style=\"display:flex;gap:.5rem;align-items:center;justify-content:center;\">{% render 'icon' with 'heart', width: 16 %} Add to Wishlist</a>"
+            "liquid": "<a href=\"#\" style=\"display:flex;gap:.5rem;align-items:center;justify-content:center;font-size:.8rem;\">{% render 'icon' with 'picto-love', width: 16 %} Add to Wishlist</a>"
           }
         },
         "more_details": {
