@@ -16,7 +16,6 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/banner_web_166daf88-20a8-4091-ab9f-9a749007ca3a.jpg",
-            "mobile_image": "shopify://shop_images/banner_mobile_4eb31e4b-2414-4691-acf1-651490bc2a27.jpg",
             "subheading": "",
             "title": "",
             "mobile_text_position": "place-self-end text-end",
@@ -42,10 +41,6 @@
       },
       "block_order": [
         "slide-1"
-      ],
-      "custom_css": [
-        ".content-over-media {min-width: 90px;}",
-        ".img {max-width: 90px;}"
       ],
       "settings": {
         "allow_transparent_header": true,
