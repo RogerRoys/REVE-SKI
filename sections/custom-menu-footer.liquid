@@ -1,0 +1,86 @@
+<section id="custom__menu--{{ section.id }}">
+  <div class="container">
+    <div class="v-stack gap-4 sm:gap-5 custom__newsletter--container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {%- when 'links' -%}
+            <div class="custom__newsletter--menu">
+              {%- assign menu = block.settings.menu -%}
+              {%- if menu != blank and menu.links.size > 0 -%}
+                <div class="v-stack gap-2 sm:gap-5">
+                  {%- if block.settings.show_menu_title != blank -%}
+                    <p class="h6">{{ menu.title }}</p>
+                  {%- endif -%}
+
+                  <ul class="v-stack unstyled-list" role="list">
+                    {%- for link in menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+  #custom__menu--{{ section.id }} {
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+  }
+  #custom__menu--{{ section.id }} .custom__newsletter--menu p.h6,
+  #custom__menu--{{ section.id }} .custom__newsletter--menu a {
+    font-size: 12px !important;
+    color: #000;
+  }
+  #custom__menu--{{ section.id }} .custom__newsletter--menu {
+    min-width: 300px;
+  }
+  #custom__menu--{{ section.id }} .custom__newsletter--container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  @media (max-width: 960px) {
+    #custom__menu--{{ section.id }} .custom__newsletter--container {
+      flex-direction: column;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Custom Footer Menu",
+    "settings": [],
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "links",
+        "name": "t:sections.footer.blocks.links.name",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "t:sections.footer.blocks.links.menu",
+            "info": "t:sections.footer.blocks.links.menu_info",
+            "default": "footer"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_menu_title",
+            "label": "t:sections.footer.blocks.links.show_menu_title",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Footer Menu"
+      }
+    ]
+  }
+{% endschema %}

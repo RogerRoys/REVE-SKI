@@ -1,0 +1,81 @@
+<div class="section-spacing {% if section.settings.background != blank and section.settings.background != 'rgba(0,0,0,0)' and section.settings.background != settings.background %}section-spacing--padded{% endif %} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
+  <div class="container container--lg">
+    <div class="section-stack">
+      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title -%}
+
+      <div class="prev-next-blog-posts">
+        {%- capture sizes -%}(max-width: 699px) 95vw, 500px{%- endcapture -%}
+
+        {%- if blog.previous_article -%}
+          {%- render 'blog-post-card', article: blog.previous_article, blog: blog, show_category: section.settings.show_category, show_excerpt: section.settings.show_excerpt, show_read_more: section.settings.show_read_more, sizes: sizes -%}
+        {%- endif -%}
+
+        {%- if blog.next_article -%}
+          {%- render 'blog-post-card', article: blog.next_article, blog: blog, show_category: section.settings.show_category, show_excerpt: section.settings.show_excerpt, show_read_more: section.settings.show_read_more, sizes: sizes -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.prev_next_blog_posts.name",
+    "class": "shopify-section--prev-next-blog-posts",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "separate_section_with_border",
+        "label": "t:global.section.separate_section_with_border",
+        "default": false
+      },
+      {
+        "type": "inline_richtext",
+        "id": "subheading",
+        "label": "t:global.text.subheading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "t:global.text.title",
+        "default": "Read more"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_category",
+        "label": "t:global.blog.show_category",
+        "info": "t:global.blog.show_category_info",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_excerpt",
+        "label": "t:global.blog.show_excerpt",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_read_more",
+        "label": "t:global.blog.show_read_more",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:global.colors.category"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "t:global.colors.background",
+        "default": "#1c1c1c"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "t:global.colors.text",
+        "default": "#ffffff"
+      }
+    ]
+  }
+{% endschema %}

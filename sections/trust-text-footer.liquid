@@ -1,0 +1,74 @@
+<section id="footer__trust--{{ section.id }}">
+  <div class="container">
+    <div class="footer__trust--container">
+      {% for block in section.blocks %}
+        <div class="footer__trust--item">
+          {% if block.settings.block_title != blank %}<h3 class="footer__trust--title">{{ block.settings.block_title }}</h3>{% endif %}
+          {% if block.settings.block_text != blank %}<div class="footer__trust--text">{{ block.settings.block_text }}</div>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+#footer__trust--{{ section.id }} {
+  padding: 40px 0;
+  background-color: #F1F1F1;
+  border-top: 1px solid #ddd;
+}
+.footer__trust--container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.footer__trust--title {
+  min-width: 300px;
+}
+h3.footer__trust--title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+
+.footer__trust--text * {
+  font-size: 12px;
+}
+@media (max-width: 960px) {
+  .footer__trust--container {
+    flex-direction: column;
+  }
+}
+</style>
+{% schema %}
+  {
+    "name": "Footer (Trust Blocks)",
+    "settings": [],
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "trust_block",
+        "name": "Trust Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "block_title",
+            "label": "Block Title",
+            "default": "Block Title"
+          },
+          {
+            "type": "richtext",
+            "id": "block_text",
+            "label": "Block Text",
+            "default": "<p>Block Text</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Footer (Trust Blocks)"
+      }
+    ]
+  }
+{% endschema %}

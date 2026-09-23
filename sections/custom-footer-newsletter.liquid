@@ -1,0 +1,222 @@
+<section id="custom__newsletter--{{ section.id }}">
+  <div class="container">
+    <div class="v-stack gap-4 sm:gap-5 custom__newsletter--container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' %}
+            <div class="custom__newsletter--heading">
+              {%- if block.settings.title != blank -%}
+                <p class="h6">{{ block.settings.title }}</p>
+              {%- endif -%}
+        
+              {%- if block.settings.content != blank -%}
+                <div class="prose text-subdued">
+                  {{- block.settings.content -}}
+                </div>
+              {%- endif -%}
+            </div>
+            {% when 'newsletter' %}
+              <div class="custom__newsletter--form">
+              {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
+        
+              {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
+                {%- if form.posted_successfully? -%}
+                  {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
+                  {%- render 'banner', content: success_message, status: 'success' -%}
+                {%- else -%}
+                  {%- if form.errors -%}
+                    {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
+                    {%- render 'banner', content: error_message, status: 'error' -%}
+                  {%- endif -%}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  {%- assign input_label = 'general.newsletter.email' | t -%}
+                  {%- render 'input', name: 'contact[email]', label: input_label, type: 'email', required: true, autocomplete: 'email', enterkeyhint: 'send' -%}
+        
+                  <div class="align-self-start">
+                    {%- assign button_label = 'general.newsletter.subscribe' | t -%}
+                    {%- render 'button', type: 'submit', content: button_label, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
+                  </div>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+            {% when 'logo' %}
+              <div class="custom__newsletter--logo">
+                {% if block.settings.logo != blank %}
+                  <img src="{{ block.settings.logo | img_url: 'master' }}">
+                {% endif %}
+              </div>
+            {% when 'menu' %}
+              <div class="custom__newsletter--menu">
+                {%- assign menu = block.settings.menu -%}
+                {%- if menu != blank and menu.links.size > 0 -%}
+                  <div class="v-stack gap-2 sm:gap-5">
+                    {%- if block.settings.show_menu_title != blank -%}
+                      <p class="h6">{{ menu.title }}</p>
+                    {%- endif -%}
+        
+                    <ul class="v-stack unstyled-list" role="list">
+                      {%- for link in menu.links -%}
+                        <li>
+                          <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </div>
+          {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+  #custom__newsletter--{{ section.id }} {
+    padding: 40px 0;
+    background-color: #F1F1F1;
+    border-top: 1px solid #ddd;
+  }
+  #custom__newsletter--{{ section.id }} .custom__newsletter--menu p.h6,
+  #custom__newsletter--{{ section.id }} .custom__newsletter--menu a,
+  #custom__newsletter--{{ section.id }} .custom__newsletter--heading p {
+    font-size: 12px !important;
+    color: #000;
+  }
+  #custom__newsletter--{{ section.id }} .custom__newsletter--container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  #custom__newsletter--{{ section.id }} .form-control input {
+    font-size: 12px;
+  }
+  #custom__newsletter--{{ section.id }} .custom__newsletter--heading,
+  #custom__newsletter--{{ section.id }} .custom__newsletter--form,
+  #custom__newsletter--{{ section.id }} .custom__newsletter--logo {
+    min-width: 300px;
+  }
+  #custom__newsletter--{{ section.id }} button.button {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px 8px;
+  }
+  .custom__newsletter--logo img {
+    max-width: {{section.settings.logo_width_d}}px;
+    width: 100%;
+  }
+  @media (max-width: 960px) {
+    #custom__newsletter--{{ section.id }} .custom__newsletter--container {
+      flex-direction: column;
+    }
+    #custom__newsletter--{{ section.id }} .custom__newsletter--heading {
+      order: 2;
+    }
+    #custom__newsletter--{{ section.id }} .custom__newsletter--form {
+      order: 3;
+    }
+    #custom__newsletter--{{ section.id }} .custom__newsletter--logo {
+      order: 1;
+    }
+  }
+  @media (max-width: 576px) {
+    .custom__newsletter--logo img {
+      max-width: {{section.settings.logo_width_m}}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Footer Newsletter",
+    "settings": [
+      {
+        "type": "color",
+        "id": "button_background",
+        "label": "t:global.colors.button_background"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "t:global.colors.button_text"
+      },
+      {
+        "type": "range",
+        "id": "logo_width_d",
+        "label": "Logo width (Desktop)",
+        "min": 40,
+        "max": 220,
+        "step": 2,
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "logo_width_m",
+        "label": "Logo width (Mobile)",
+        "min": 20,
+        "max": 200,
+        "step": 2,
+        "default": 120
+      }
+    ],
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "newsletter",
+        "name": "Newsletter"
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "t:global.text.heading",
+            "default": "Newsletter"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "t:global.text.content",
+            "default": "<p>Sign up to our newsletter to receive exclusive offers.</p>"
+          }
+        ]
+      },
+      {
+        "type": "logo",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+          }
+        ]
+      },
+      {
+        "type": "menu",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "t:sections.footer.blocks.links.menu",
+            "info": "t:sections.footer.blocks.links.menu_info",
+            "default": "footer"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_menu_title",
+            "label": "t:sections.footer.blocks.links.show_menu_title",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Footer Newsletter"
+      }
+    ]
+  }
+{% endschema %}

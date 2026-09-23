@@ -1,0 +1,68 @@
+<section id="custom-logo--{{ section.id }}">
+  <div class="custom__logo--container">
+    {% if section.settings.logo != blank %}
+      <img src="{{ section.settings.logo | img_url: 'master' }}">
+    {% endif %}
+  </div>
+</section>
+<style>
+  #custom-logo--{{ section.id }} {
+    padding: 40px 0;
+    background-color: #F1F1F1;
+    border-top: 1px solid #ddd;
+  }
+  #custom-logo--{{ section.id }} .custom__logo--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #custom-logo--{{ section.id }} img {
+    max-width: {{section.settings.logo_width_d}}px;
+    width: 100%;
+  }
+  @media (max-width: 960px) {
+    #custom-logo--{{ section.id }} .custom__logo--container {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 576px) {
+    #custom-logo--{{ section.id }} img {
+      max-width: {{section.settings.logo_width_m}}px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "range",
+        "id": "logo_width_d",
+        "label": "Logo width (Desktop)",
+        "min": 40,
+        "max": 220,
+        "step": 2,
+        "default": 120
+      },
+      {
+        "type": "range",
+        "id": "logo_width_m",
+        "label": "Logo width (Mobile)",
+        "min": 20,
+        "max": 200,
+        "step": 2,
+        "default": 120
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo"
+      }
+    ]
+  }
+{% endschema %}
