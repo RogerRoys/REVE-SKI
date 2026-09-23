@@ -1,1 +1,61 @@
-{"type":"header","name":"Header group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message_EpFLq6":{"type":"message","settings":{"text":"Just arrived! Fall\/winter 2025"}}},"block_order":["message_EpFLq6"],"disabled":true,"settings":{"enable_sticky":false,"autoplay":true,"cycle_speed":5,"desktop_font_size":11,"mobile_font_size":10,"background":"#1c1c1c","text_color":"#ffffff"}},"header":{"type":"header","custom_css":[".header {padding-block-end: 10px; padding-block-start: 10px;}"],"settings":{"enable_sticky":true,"show_separation_border":false,"reduce_padding":false,"logo":"shopify:\/\/shop_images\/REVE_SKI_WHITE_TEXT.png","logo_max_width":150,"logo_mobile_max_width":100,"menu":"main-menu","sidebar_menu":"","menu_open_trigger":"hover","enable_search":true,"sidebar_text_font":"heading","sidebar_show_dividers":true,"layout":"drawer","show_icons":true,"show_country_selector":true,"show_country_name":false,"show_country_flag":true,"show_locale_selector":false,"transparent_header_text_color":"#ffffff","transparent_logo":"shopify:\/\/shop_images\/REVE_SKI_WHITE_TEXT_1d365d7b-4789-444d-98ad-a51a02e53bc8.png"}}},"order":["announcement-bar","header"]}
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_new_season": {
+          "type": "message",
+          "settings": {
+            "text": "The new season starts here. <a href=\"/collections/new-arrivals\">Shop new arrivals</a>"
+          }
+        }
+      },
+      "block_order": [
+        "message_new_season"
+      ],
+      "settings": {
+        "enable_sticky": false,
+        "autoplay": false,
+        "cycle_speed": 5,
+        "desktop_font_size": 10,
+        "mobile_font_size": 9,
+        "background": "#f4f2ee",
+        "text_color": "#1b1b1b"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        ".header {padding-block-end: 10px; padding-block-start: 10px;}"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "show_separation_border": false,
+        "reduce_padding": false,
+        "logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT.png",
+        "logo_max_width": 150,
+        "logo_mobile_max_width": 100,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "menu_open_trigger": "hover",
+        "enable_search": true,
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": true,
+        "layout": "drawer",
+        "show_icons": true,
+        "show_country_selector": true,
+        "show_country_name": false,
+        "show_country_flag": true,
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff",
+        "transparent_logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT_1d365d7b-4789-444d-98ad-a51a02e53bc8.png"
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
