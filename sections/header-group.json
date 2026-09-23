@@ -60,8 +60,8 @@
         "sidebar_menu": "",
         "menu_open_trigger": "hover",
         "enable_search": true,
-        "sidebar_text_font": "heading",
-        "sidebar_show_dividers": true,
+        "sidebar_text_font": "body",
+        "sidebar_show_dividers": false,
         "layout": "logo_center_navigation_inline",
         "show_icons": true,
         "show_country_selector": false,
@@ -74,7 +74,17 @@
         "nav_uppercase": true,
         "nav_font_size": 13,
         "nav_letter_spacing": 3,
-        "nav_gap": 36
+        "nav_gap": 36,
+        "use_custom_links": true,
+        "link_1_text": "Shop",
+        "link_1_url": "shopify://collections/all",
+        "link_2_text": "About",
+        "link_2_url": "shopify://pages/about-us",
+        "link_3_text": "",
+        "link_3_url": "",
+        "link_4_text": "",
+        "link_4_url": "",
+        "show_utility_nav": false
       }
     }
   },

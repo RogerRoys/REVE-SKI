@@ -1,0 +1,57 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+HEADER SIDEBAR (CUSTOM LINKS)
+----------------------------------------------------------------------------------------------------------------------
+
+Mobile menu rendered from the header section's "Menu links" settings (link_1..link_4) instead of a Shopify
+navigation menu. Mirrors the structure of header-sidebar.liquid for a flat, single level list.
+
+* show_dividers: whether dividers are shown between links
+{%- endcomment -%}
+
+<template id="header-sidebar-template">
+  <div part="base">
+    <div part="overlay"></div>
+
+    <div part="content">
+      <header part="header">
+        <button type="button" is="dialog-close-button" part="close-button tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon' with 'close', width: 16 -%}
+        </button>
+      </header>
+
+      <div part="panel-list">
+        <slot name="main-panel"></slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<header-sidebar id="sidebar-menu" class="header-sidebar drawer drawer--sm" template="header-sidebar-template" open-from="left">
+  <div class="header-sidebar__main-panel" slot="main-panel">
+    <div class="header-sidebar__scroller">
+      <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+        {%- for i in (1..4) -%}
+          {%- assign text_key = 'link_' | append: i | append: '_text' -%}
+          {%- assign url_key = 'link_' | append: i | append: '_url' -%}
+          {%- if section.settings[text_key] != blank -%}
+            <li>
+              <a href="{{ section.settings[url_key] | default: '#' }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
+                {{- section.settings[text_key] -}}
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {%- if shop.customer_accounts_enabled and section.settings.show_utility_nav -%}
+      <div class="header-sidebar__footer">
+        <a href="{{ routes.account_url }}" class="text-with-icon smallcaps sm:hidden">
+          {%- render 'icon' with 'account', width: 20 -%}
+          {{- 'header.general.account' | t -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</header-sidebar>
