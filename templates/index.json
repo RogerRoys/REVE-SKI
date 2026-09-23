@@ -24,7 +24,7 @@
             "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 400,
+            "content_max_width": 350,
             "button_1_text": "Shop Now",
             "button_1_link": "shopify://collections/all",
             "button_1_style": "link",
@@ -56,16 +56,16 @@
         "heading_font": "body",
         "heading_weight": "400",
         "heading_uppercase": false,
-        "heading_size": 44,
-        "heading_size_mobile": 32,
+        "heading_size": 56,
+        "heading_size_mobile": 36,
         "heading_letter_spacing": 0,
-        "text_size": 22,
-        "text_size_mobile": 16,
+        "text_size": 25,
+        "text_size_mobile": 17,
         "text_line_height": 1.4,
         "text_justify": true,
         "link_font": "body",
-        "link_size": 22,
-        "link_size_mobile": 16,
+        "link_size": 24,
+        "link_size_mobile": 17,
         "background": "#fafafa",
         "controls_color": "#ffffff"
       }
@@ -90,7 +90,7 @@
             "button_background": "#ffffff",
             "button_text_color": "#000000",
             "overlay_color": "#000000",
-            "overlay_opacity": 10
+            "overlay_opacity": 0
           }
         },
         "tile_new_arrivals": {
