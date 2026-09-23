@@ -122,7 +122,7 @@
         "separate_section_with_border": false,
         "desktop_row_height": 395,
         "mobile_row_height": 250,
-        "section_width": "lg",
+        "section_width": "full",
         "spacing": "lg",
         "tile_title_font": "body",
         "tile_title_weight": "400",
