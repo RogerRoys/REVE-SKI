@@ -133,6 +133,13 @@
     background: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
     border-color: {{ section.settings.button_background }};
+    outline: 0;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ section.id }} .block-swatch.is-disabled,
+  #shopify-section-{{ section.id }} :disabled + .block-swatch {
+    color: rgb(var(--text-color) / .35);
   }
 
   /* Color swatches: small circles, dark border on the selected one, strike on sold out */
