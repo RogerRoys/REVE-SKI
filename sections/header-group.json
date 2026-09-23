@@ -78,7 +78,7 @@
         "link_1_url": "shopify://collections/all",
         "link_2_text": "About",
         "link_2_url": "shopify://pages/about-us",
-        "show_utility_nav": false,
+        "show_utility_nav": true,
         "nav_font_weight": "400",
         "show_wishlist_icon": true
       }
