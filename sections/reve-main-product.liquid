@@ -1,7 +1,7 @@
 {%- liquid
   assign s = section.settings
   assign current = product.selected_or_first_available_variant
-  assign form_id = 'rv-form-' | append: section.id
+  assign form_id = 'product-form-' | append: product.id | append: '-' | append: section.id
   assign chart_id = ''
   if s.show_chart
     assign chart_id = 'rv-chart-' | append: section.id
@@ -9,30 +9,16 @@
 -%}
 <section class="rv rv-main-product" data-rv-product="{{ section.id }}" data-rv-main>
   <div class="rv-wrap rv-pdp">
-    <div class="rv-pdp__gallery">
-      {%- for media in product.media -%}
-        {%- liquid
-          assign ld = 'lazy'
-          if forloop.index <= 2
-            assign ld = 'eager'
-          endif
-          assign alt = media.alt | default: product.title
-        -%}
-        <figure class="rv-pdp__media">
-          {%- case media.media_type -%}
-            {%- when 'image' -%}
-              <img src="{{ media | image_url: width: 1400 }}" srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1200 }} 1200w, {{ media | image_url: width: 1400 }} 1400w" sizes="(min-width: 990px) 32vw, (min-width: 750px) 50vw, 86vw" width="{{ media.width }}" height="{{ media.height }}" alt="{{ alt | escape }}" loading="{{ ld }}">
-            {%- when 'video' -%}
-              {{ media | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
-            {%- when 'external_video' -%}
-              {{ media | external_video_tag }}
-            {%- else -%}
-              {{ media | media_tag }}
-          {%- endcase -%}
-        </figure>
-      {%- else -%}
-        {%- for i in (1..4) -%}<figure class="rv-pdp__media">{{ 'product-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}</figure>{%- endfor -%}
-      {%- endfor -%}
+    <div class="rv-pdp__gallery rv-pdp__gallery--theme">
+      {%- comment -%} Theme product gallery: variant images switch, thumbnails, zoom (Prestige) {%- endcomment -%}
+      {%- render 'product-gallery',
+          product: product,
+          desktop_layout: s.gallery_layout,
+          mobile_controls: s.gallery_mobile_controls,
+          enable_media_autoplay: false,
+          enable_video_looping: true,
+          enable_image_zoom: s.gallery_zoom,
+          max_image_zoom_level: 3 -%}
     </div>
 
     <div class="rv-pdp__info">
@@ -140,20 +126,170 @@
   {%- endif -%}
 </section>
 {% schema %}
-{"name":"Reve · Product","tag":"div","class":"rv-sec-product","enabled_on":{"templates":["product"]},
-"settings":[
- {"type":"checkbox","id":"show_wishlist","label":"Show wishlist button","default":true},
- {"type":"checkbox","id":"sticky","label":"Sticky add to cart bar","default":true},
- {"type":"header","content":"Size chart"},
- {"type":"checkbox","id":"show_chart","label":"Show size chart link","default":true},
- {"type":"page","id":"chart_page","label":"Size chart page","info":"Create a page with a table. Leave empty to use the built-in placeholder table."},
- {"type":"text","id":"chart_note","label":"Size chart note","default":"Measurements in inches. Between sizes? Size up for layering."},
- {"type":"header","content":"Pairs well with"},
- {"type":"text","id":"pairs_heading","label":"Heading","default":"Pairs well with"},
- {"type":"product_list","id":"pairs","label":"Products","limit":4}
-],
-"blocks":[
- {"type":"accordion","name":"Collapsible tab","settings":[{"type":"text","id":"title","label":"Title","default":"Details"},{"type":"richtext","id":"content","label":"Content","info":"Connect a product metafield with the dynamic source icon to make this product-specific."},{"type":"checkbox","id":"open","label":"Open by default","default":false}]},
- {"type":"perk","name":"Service line","settings":[{"type":"text","id":"text","label":"Text","default":"Free & Easy Returns within 14 days"}]}
-]}
+{
+ "name": "Reve · Product",
+ "tag": "div",
+ "class": "rv-sec-product",
+ "enabled_on": {
+  "templates": [
+   "product"
+  ]
+ },
+ "settings": [
+  {
+   "type": "header",
+   "content": "Gallery"
+  },
+  {
+   "type": "select",
+   "id": "gallery_layout",
+   "label": "Desktop layout",
+   "options": [
+    {
+     "value": "carousel_thumbnails_left",
+     "label": "Carousel, thumbnails left"
+    },
+    {
+     "value": "carousel_thumbnails_bottom",
+     "label": "Carousel, thumbnails bottom"
+    },
+    {
+     "value": "carousel_dots",
+     "label": "Carousel, dots"
+    },
+    {
+     "value": "grid",
+     "label": "Grid"
+    },
+    {
+     "value": "grid_2x",
+     "label": "Grid 2 columns"
+    },
+    {
+     "value": "grid_2x_highlighted",
+     "label": "Grid 2 columns, first highlighted"
+    }
+   ],
+   "default": "carousel_thumbnails_left"
+  },
+  {
+   "type": "select",
+   "id": "gallery_mobile_controls",
+   "label": "Mobile controls",
+   "options": [
+    {
+     "value": "thumbnails",
+     "label": "Thumbnails"
+    },
+    {
+     "value": "dots",
+     "label": "Dots"
+    },
+    {
+     "value": "arrows",
+     "label": "Arrows"
+    },
+    {
+     "value": "free_scroll",
+     "label": "Free scroll"
+    }
+   ],
+   "default": "free_scroll"
+  },
+  {
+   "type": "checkbox",
+   "id": "gallery_zoom",
+   "label": "Enable image zoom",
+   "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "show_wishlist",
+   "label": "Show wishlist button",
+   "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "sticky",
+   "label": "Sticky add to cart bar",
+   "default": true
+  },
+  {
+   "type": "header",
+   "content": "Size chart"
+  },
+  {
+   "type": "checkbox",
+   "id": "show_chart",
+   "label": "Show size chart link",
+   "default": true
+  },
+  {
+   "type": "page",
+   "id": "chart_page",
+   "label": "Size chart page",
+   "info": "Create a page with a table. Leave empty to use the built-in placeholder table."
+  },
+  {
+   "type": "text",
+   "id": "chart_note",
+   "label": "Size chart note",
+   "default": "Measurements in inches. Between sizes? Size up for layering."
+  },
+  {
+   "type": "header",
+   "content": "Pairs well with"
+  },
+  {
+   "type": "text",
+   "id": "pairs_heading",
+   "label": "Heading",
+   "default": "Pairs well with"
+  },
+  {
+   "type": "product_list",
+   "id": "pairs",
+   "label": "Products",
+   "limit": 4
+  }
+ ],
+ "blocks": [
+  {
+   "type": "accordion",
+   "name": "Collapsible tab",
+   "settings": [
+    {
+     "type": "text",
+     "id": "title",
+     "label": "Title",
+     "default": "Details"
+    },
+    {
+     "type": "richtext",
+     "id": "content",
+     "label": "Content",
+     "info": "Connect a product metafield with the dynamic source icon to make this product-specific."
+    },
+    {
+     "type": "checkbox",
+     "id": "open",
+     "label": "Open by default",
+     "default": false
+    }
+   ]
+  },
+  {
+   "type": "perk",
+   "name": "Service line",
+   "settings": [
+    {
+     "type": "text",
+     "id": "text",
+     "label": "Text",
+     "default": "Free & Easy Returns within 14 days"
+    }
+   ]
+  }
+ ]
+}
 {% endschema %}
