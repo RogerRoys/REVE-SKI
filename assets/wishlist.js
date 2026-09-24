@@ -7,7 +7,7 @@
  * - The drawer lists saved products (fetched from /products/{handle}.js) with remove links
  */
 (function () {
-  var KEY = 'reve_wishlist';
+  var KEY = 'rv-wishlist';
 
   function read() {
     try { return JSON.parse(localStorage.getItem(KEY) || '[]').filter(Boolean); } catch (e) { return []; }

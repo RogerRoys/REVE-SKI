@@ -1,0 +1,71 @@
+{%- assign s = section.settings -%}
+<section class="rv rv-banner"{% if s.anchor != blank %} id="{{ s.anchor | handleize }}"{% endif %} style="--rv-banner-pos:{{ s.focal | default: '50% 30%' }}">
+  <div class="rv-banner__media">
+    {%- if s.image != blank -%}
+      <img src="{{ s.image | image_url: width: 1920 }}" srcset="{{ s.image | image_url: width: 750 }} 750w, {{ s.image | image_url: width: 1200 }} 1200w, {{ s.image | image_url: width: 1920 }} 1920w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | escape }}" loading="lazy">
+    {%- elsif s.image_asset != blank -%}
+      <img src="{{ s.image_asset | asset_url }}" sizes="100vw" width="1200" height="1920" alt="{{ s.heading | escape }}" loading="lazy">
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'rv-placeholder' }}
+    {%- endif -%}
+  </div>
+  <div class="rv-banner__shade"></div>
+  <div class="rv-wrap rv-banner__content">
+    {%- if s.heading != blank -%}<h2 class="rv-banner__title">{{ s.heading | escape }}</h2>{%- endif -%}
+    {%- if s.button_label != blank -%}<a href="{{ s.button_link | default: '#' }}" class="rv-btn rv-btn--outline">{{ s.button_label | escape }}</a>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+ "name": "Reve · Image banner",
+ "tag": "div",
+ "class": "rv-sec-banner",
+ "settings": [
+  {
+   "type": "image_picker",
+   "id": "image",
+   "label": "Image"
+  },
+  {
+   "type": "text",
+   "id": "image_asset",
+   "label": "Fallback image file (assets)",
+   "info": "File name in the theme assets folder, used only when no image is picked above"
+  },
+  {
+   "type": "text",
+   "id": "focal",
+   "label": "Image position",
+   "default": "50% 30%"
+  },
+  {
+   "type": "text",
+   "id": "heading",
+   "label": "Heading",
+   "default": "Designed in the city. Made for the mountains."
+  },
+  {
+   "type": "text",
+   "id": "button_label",
+   "label": "Button label",
+   "default": "About us"
+  },
+  {
+   "type": "url",
+   "id": "button_link",
+   "label": "Button link"
+  },
+  {
+   "type": "text",
+   "id": "anchor",
+   "label": "Anchor id",
+   "default": "about"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image banner"
+  }
+ ]
+}
+{% endschema %}

@@ -1,0 +1,88 @@
+{%- liquid
+  assign s = section.settings
+  assign product = s.product
+  assign current = product.selected_or_first_available_variant
+  assign form_id = 'rv-feat-form-' | append: section.id
+  assign img = current.featured_media | default: product.featured_media
+-%}
+<section class="rv rv-wrap rv-feat" data-rv-product="{{ section.id }}">
+  <div class="rv-feat__grid">
+    <div class="rv-feat__media">
+      {%- if s.image != blank -%}
+        <img src="{{ s.image | image_url: width: 1800 }}" srcset="{{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1400 }} 1400w, {{ s.image | image_url: width: 1800 }} 1800w" sizes="(min-width: 990px) 58vw, 100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ product.title | escape }}" loading="lazy">
+      {%- elsif s.image_asset != blank -%}
+        <img src="{{ s.image_asset | asset_url }}" sizes="(min-width: 990px) 58vw, 100vw" width="1600" height="1317" alt="{{ product.title | escape }}" loading="lazy">
+      {%- elsif img -%}
+        <img src="{{ img | image_url: width: 1600 }}" srcset="{{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w, {{ img | image_url: width: 1600 }} 1600w" sizes="(min-width: 990px) 58vw, 100vw" width="{{ img.preview_image.width }}" height="{{ img.preview_image.height }}" alt="{{ product.title | escape }}" loading="lazy" data-rv-variant-img>
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'rv-placeholder' }}
+      {%- endif -%}
+    </div>
+    <div class="rv-feat__info">
+      <div class="rv-feat__top">
+        {%- if s.eyebrow != blank -%}<span class="rv-eyebrow rv-muted">{{ s.eyebrow | escape }}</span>{%- endif -%}
+        <h2 class="rv-feat__title">{{ product.title | default: 'Your featured product' | escape }}</h2>
+        {%- if product and s.show_price -%}<p class="rv-feat__price" data-rv-price>{{ current.price | money }}</p>{%- endif -%}
+        {%- if product.description != blank -%}<div class="rv-feat__desc">{{ product.description }}</div>{%- endif -%}
+      </div>
+      {%- if product -%}
+        <div class="rv-feat__buy">
+          {%- form 'product', product, id: form_id, novalidate: 'novalidate' -%}
+            <input type="hidden" name="id" value="{{ current.id }}">
+            <input type="hidden" name="quantity" value="1">
+            {%- render 'reve-variant-picker', product: product, form_key: form_id -%}
+            {%- render 'reve-atc', current: current, block_btn: true -%}
+          {%- endform -%}
+          <div class="rv-feat__links">
+            <button type="button" class="rv-wish-link" data-rv-wish="{{ product.handle }}" data-rv-keep-label="1" aria-pressed="false">{% render 'reve-icon', icon: 'heart' %}Add to wishlist</button>
+            <a href="{{ product.url }}" class="rv-link">More details →</a>
+          </div>
+        </div>
+        <script type="application/json" data-rv-variants>{%- render 'reve-variants-json', product: product -%}</script>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+ "name": "Reve · Featured product",
+ "tag": "div",
+ "class": "rv-sec-feat",
+ "settings": [
+  {
+   "type": "product",
+   "id": "product",
+   "label": "Product"
+  },
+  {
+   "type": "image_picker",
+   "id": "image",
+   "label": "Image override",
+   "info": "Leave empty to use the product / variant image"
+  },
+  {
+   "type": "text",
+   "id": "image_asset",
+   "label": "Fallback image file (assets)",
+   "info": "File name in the theme assets folder, used only when no image is picked above"
+  },
+  {
+   "type": "text",
+   "id": "eyebrow",
+   "label": "Eyebrow",
+   "default": "Featured piece"
+  },
+  {
+   "type": "checkbox",
+   "id": "show_price",
+   "label": "Show price",
+   "default": false
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Featured product"
+  }
+ ]
+}
+{% endschema %}

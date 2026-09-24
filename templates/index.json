@@ -1,404 +1,137 @@
 /*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
+ * Reve Ski — editorial home page (option-01)
  */
 {
   "sections": {
-    "hero_western_edit": {
-      "type": "slideshow",
-      "blocks": {
-        "slide-1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Desktop_hero.jpg",
-            "mobile_image": "shopify://shop_images/Mobile_hero.jpg",
-            "image_asset": "",
-            "mobile_image_asset": "",
-            "subheading": "",
-            "title": "The Western Edit",
-            "content": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
-            "mobile_text_position": "place-self-end-start text-start",
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "content_max_width": 360,
-            "button_1_text": "Shop Now",
-            "button_1_link": "shopify://collections/all",
-            "button_1_style": "link",
-            "button_1_background": "#fafafa",
-            "button_1_text_color": "#ffffff",
-            "button_2_text": "",
-            "button_2_link": "",
-            "button_2_style": "outline",
-            "button_2_background": "#ffffff",
-            "button_2_text_color": "#000000",
-            "background": "",
-            "background_opacity": 94,
-            "text_color": "#ffffff",
-            "border_color": "",
-            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.35) 100%)"
-          }
-        }
-      },
-      "block_order": [
-        "slide-1"
-      ],
+    "hero": {
+      "type": "reve-hero",
       "settings": {
-        "allow_transparent_header": true,
-        "show_next_section_button": false,
-        "media_size": "fill",
-        "autoplay": false,
-        "autoplay_pause_on_video": true,
-        "cycle_speed": 5,
-        "heading_font": "body",
-        "heading_weight": "400",
-        "heading_uppercase": false,
-        "heading_size": 44,
-        "heading_size_mobile": 32,
-        "heading_letter_spacing": 0,
-        "text_size": 22,
-        "text_size_mobile": 16,
-        "text_line_height": 1.4,
-        "text_justify": true,
-        "link_font": "body",
-        "link_size": 22,
-        "link_size_mobile": 16,
-        "background": "#fafafa",
-        "controls_color": "#ffffff",
-        "heading_gap": 24,
-        "link_gap": 28,
-        "link_indent": 44,
-        "heading_nowrap": true
+        "heading": "The Western Edit",
+        "text": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
+        "button_label": "Shop Now",
+        "focal": "50% 45%",
+        "image_asset": "rv-hero-western.jpg",
+        "button_link": "shopify://collections/all"
       }
     },
-    "two_tiles_video_image": {
-      "type": "media-grid",
+    "tiles": {
+      "type": "reve-tiles",
+      "settings": {
+        "numbers": true
+      },
       "blocks": {
-        "tile_phoenix_image": {
-          "type": "image",
+        "t1": {
+          "type": "tile",
           "settings": {
-            "image_asset": "tile-phoenix-ski-pant.jpg",
-            "column_count": "6",
-            "row_count": 2,
+            "title": "New Arrivals",
+            "cta": "Shop now",
+            "focal": "50% 22%",
+            "image_asset": "rv-tile-new-arrivals-1.jpg",
+            "image_asset_2": "rv-tile-new-arrivals-2.jpg",
+            "image_asset_3": "rv-tile-new-arrivals-3.jpg",
+            "link": "shopify://collections/new-arrivals"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
             "title": "Phoenix Ski Pant",
-            "heading_tag": "h3",
-            "content": "",
-            "link_text": "Shop now",
-            "link_url": "shopify://products/phoenix-ski-pants",
-            "link_style": "link",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "tile_new_arrivals": {
-          "type": "image",
-          "settings": {
-            "image_asset": "tile-new-arrivals.jpg",
-            "column_count": "6",
-            "row_count": 2,
-            "title": "New Arrivals",
-            "heading_tag": "h3",
-            "content": "",
-            "link_text": "Shop now",
-            "link_url": "shopify://collections/new-arrivals",
-            "link_style": "link",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "cta": "Shop now",
+            "focal": "50% 30%",
+            "image_asset": "tile-phoenix-ski-pant.jpg",
+            "link": "shopify://products/phoenix-ski-pants"
           }
         }
       },
       "block_order": [
-        "tile_new_arrivals",
-        "tile_phoenix_image"
-      ],
-      "settings": {
-        "separate_section_with_border": false,
-        "desktop_row_height": 400,
-        "mobile_row_height": 220,
-        "section_width": "full",
-        "spacing": "lg",
-        "tile_title_font": "body",
-        "tile_title_weight": "400",
-        "tile_title_uppercase": false,
-        "tile_title_size": 32,
-        "tile_title_size_mobile": 22,
-        "tile_link_size": 26,
-        "tile_link_size_mobile": 17,
-        "subheading": "",
-        "title": "",
-        "content": "",
-        "background": "",
-        "text_color": "",
-        "tile_text_gap": 4,
-        "mobile_layout": "stack",
-        "mobile_gap": 12,
-        "mobile_gutter": 20
-      }
+        "t1",
+        "t2"
+      ]
     },
-    "featured_phoenix_pants": {
-      "type": "featured-product",
-      "blocks": {
-        "title": {
-          "type": "title",
-          "settings": {
-            "heading_tag": "h2"
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {
-            "collapse_content": false
-          }
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "hide_sold_out_variants": false,
-            "selector_type": "block",
-            "color_selector_type": "color",
-            "size_chart_page": "size-chart"
-          }
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": false,
-            "show_gift_card_recipient": false,
-            "atc_button_background": "#000000",
-            "atc_button_text_color": "#ffffff",
-            "payment_button_background": "",
-            "payment_button_text_color": ""
-          }
-        },
-        "wishlist": {
-          "type": "wishlist",
-          "settings": {
-            "add_text": "Add To Wishlist",
-            "added_text": "Added to Wishlist"
-          }
-        },
-        "more_details": {
-          "type": "button",
-          "settings": {
-            "link": "shopify://products/phoenix-ski-pants",
-            "text": "More details",
-            "stretch": false,
-            "background": "",
-            "text_color": ""
-          }
-        }
-      },
-      "block_order": [
-        "title",
-        "description",
-        "variant_picker",
-        "buy_buttons",
-        "wishlist",
-        "more_details"
-      ],
+    "featured": {
+      "type": "reve-featured-product",
       "settings": {
+        "eyebrow": "Featured piece",
+        "show_price": false,
         "product": "phoenix-ski-pants",
-        "separate_section_with_border": false,
-        "container_size": "full",
-        "product_info_size": 38,
-        "center_basic_info": true,
-        "desktop_media_layout": "carousel_dots",
-        "desktop_media_grid_gap": 0,
-        "mobile_controls": "dots",
-        "enable_media_autoplay": false,
-        "enable_video_looping": true,
-        "enable_image_zoom": false,
-        "max_image_zoom_level": 3,
-        "subheading": "",
-        "title": "",
-        "content": "",
-        "media_background": "#e6e4e2",
-        "media_padding": 40,
-        "info_background": "#ffffff",
-        "info_padding": 44,
-        "column_gap": 0,
-        "title_font": "heading",
-        "title_weight": "700",
-        "title_size": 34,
-        "title_size_mobile": 28,
-        "title_alignment": "center",
-        "title_uppercase": false,
-        "title_letter_spacing": 0,
-        "text_font": "heading",
-        "text_size": 11,
-        "link_button_as_link": true,
-        "link_button_size": 13,
-        "link_button_color": "#000000",
-        "image_asset": "",
-        "block_gap": 14,
-        "title_gap": 24,
-        "description_gap": 96,
-        "option_text_size": 11,
-        "option_gap": 20,
-        "swatch_size": 24,
-        "size_chart_size": 9,
-        "button_height": 46,
-        "button_text_size": 12,
-        "button_background": "#000000",
-        "button_text_color": "#ffffff",
-        "size_border": "each",
-        "size_border_color": "#e3e3e3",
-        "size_gap": 6,
-        "sold_out_style": "line_through",
-        "media_padding_mobile": 24,
-        "info_padding_mobile": 24,
-        "mobile_stack_gap": 0,
-        "title_alignment_mobile": "start",
-        "title_gap_mobile": 16,
-        "description_gap_mobile": 40,
-        "block_gap_mobile": 12
+        "image_asset": "rv-featured-phoenix-packshot.jpg"
       }
     },
-    "new_arrivals_carousel": {
-      "type": "featured-collections",
-      "blocks": {
-        "new_arrivals": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-arrivals",
-            "products_count": 8,
-            "title": "New Arrivals",
-            "link_url": "shopify://collections/new-arrivals",
-            "link_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "new_arrivals"
-      ],
+    "arrivals": {
+      "type": "reve-product-carousel",
       "settings": {
-        "separate_section_with_border": false,
-        "hide_product_information": false,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 0.6,
-        "vertical_spacing_factor": 0.6,
-        "subheading": ""
+        "heading": "New Arrivals",
+        "source": "collection",
+        "limit": 8,
+        "show_count": true,
+        "anchor": "arrivals",
+        "collection": "new-arrivals"
       }
     },
-    "about_banner": {
-      "type": "image-with-text-overlay",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "text": "Designed in the city. Made for the mountains.",
-            "heading_tag": "h2"
-          }
-        },
-        "about_link": {
-          "type": "link",
-          "settings": {
-            "text": "About us",
-            "url": "shopify://pages/about-us"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "about_link"
-      ],
+    "about": {
+      "type": "reve-banner",
       "settings": {
-        "image_size": "md",
-        "allow_transparent_header": false,
-        "reveal_on_scroll": false,
-        "remove_vertical_spacing": false,
-        "content_width": "md",
-        "mobile_text_position": "place-self-center text-center",
-        "desktop_text_position": "sm:place-self-center sm:text-center",
-        "text_color": "#1b1b1b",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
+        "heading": "Designed in the city. Made for the mountains.",
+        "button_label": "About us",
+        "focal": "50% 30%",
+        "anchor": "about",
+        "image_asset": "rv-about-banner-mountain.jpg",
+        "button_link": "shopify://pages/about-us"
       }
     },
-    "trust_icons": {
-      "type": "text-with-icons",
+    "services": {
+      "type": "reve-services",
+      "settings": {
+        "numbers": true
+      },
       "blocks": {
-        "help": {
-          "type": "item",
+        "s1": {
+          "type": "service",
           "settings": {
-            "icon": "picto-chat",
-            "icon_width": 24,
-            "mobile_icon_width": 20,
             "title": "Get Help Buying",
-            "content": "<p>If you have any questions about our gear, get in touch.<br><a href=\"/pages/contact\">Chat with us</a></p>"
+            "text": "If you have any questions about our gear, get in touch.",
+            "link_label": "Chat with us"
           }
         },
-        "delivery": {
-          "type": "item",
+        "s2": {
+          "type": "service",
           "settings": {
-            "icon": "picto-box",
-            "icon_width": 24,
-            "mobile_icon_width": 20,
             "title": "Free FedEx® Delivery",
-            "content": "<p>All prices include customs delivery and import taxes. Orders above $800 ship for free.<br><a href=\"/pages/delivery\">Learn more</a></p>"
+            "text": "All prices include customs delivery and import taxes. Orders above 2000 HKD ship for free.",
+            "link_label": "Learn more"
           }
         },
-        "returns": {
-          "type": "item",
+        "s3": {
+          "type": "service",
           "settings": {
-            "icon": "picto-return",
-            "icon_width": 24,
-            "mobile_icon_width": 20,
             "title": "Free & Easy Returns",
-            "content": "<p>Returns are accepted within 14 days of delivery. Returns are free across all products.<br><a href=\"/pages/returns\">Learn more</a></p>"
+            "text": "Returns are accepted within 14 days of delivery. Returns are free across all Reve Ski products, with the exception of collaborations, special projects, and Reve Ski Archive.",
+            "link_label": "Learn more"
           }
         }
       },
       "block_order": [
-        "help",
-        "delivery",
-        "returns"
-      ],
-      "settings": {
-        "separate_section_with_border": true,
-        "stack_on_mobile": true,
-        "icon_color": "",
-        "text_color": "",
-        "text_alignment": "start"
-      }
+        "s1",
+        "s2",
+        "s3"
+      ]
     },
-    "newsletter_new_drops": {
-      "type": "newsletter",
+    "newsletter": {
+      "type": "reve-newsletter",
       "settings": {
-        "separate_section_with_border": true,
-        "image_size": "sm",
-        "subheading": "",
-        "title": "New drops",
-        "content": "<p>Sign up for early access to exclusive launches.</p>",
-        "button_text": "Subscribe",
-        "text_color": "",
-        "button_background": "#000000",
-        "button_text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
+        "heading": "New drops",
+        "text": "Sign up for early access to exclusive launches.",
+        "button_label": "Subscribe"
       }
     }
   },
   "order": [
-    "hero_western_edit",
-    "two_tiles_video_image",
-    "featured_phoenix_pants",
-    "new_arrivals_carousel",
-    "about_banner",
-    "trust_icons",
-    "newsletter_new_drops"
+    "hero",
+    "tiles",
+    "featured",
+    "arrivals",
+    "about",
+    "services",
+    "newsletter"
   ]
 }

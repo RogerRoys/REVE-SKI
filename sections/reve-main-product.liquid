@@ -1,0 +1,160 @@
+{%- liquid
+  assign s = section.settings
+  assign current = product.selected_or_first_available_variant
+  assign form_id = 'rv-form-' | append: section.id
+  assign chart_id = ''
+  if s.show_chart
+    assign chart_id = 'rv-chart-' | append: section.id
+  endif
+-%}
+<section class="rv rv-main-product" data-rv-product="{{ section.id }}" data-rv-main>
+  <div class="rv-wrap rv-pdp">
+    <div class="rv-pdp__gallery">
+      {%- for media in product.media -%}
+        {%- liquid
+          assign ld = 'lazy'
+          if forloop.index <= 2
+            assign ld = 'eager'
+          endif
+          assign alt = media.alt | default: product.title
+        -%}
+        <figure class="rv-pdp__media">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              <img src="{{ media | image_url: width: 1400 }}" srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1200 }} 1200w, {{ media | image_url: width: 1400 }} 1400w" sizes="(min-width: 990px) 32vw, (min-width: 750px) 50vw, 86vw" width="{{ media.width }}" height="{{ media.height }}" alt="{{ alt | escape }}" loading="{{ ld }}">
+            {%- when 'video' -%}
+              {{ media | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+            {%- when 'external_video' -%}
+              {{ media | external_video_tag }}
+            {%- else -%}
+              {{ media | media_tag }}
+          {%- endcase -%}
+        </figure>
+      {%- else -%}
+        {%- for i in (1..4) -%}<figure class="rv-pdp__media">{{ 'product-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}</figure>{%- endfor -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="rv-pdp__info">
+      <div class="rv-pdp__head">
+        <h1 class="rv-pdp__title">{{ product.title | escape }}</h1>
+        <p class="rv-pdp__price" data-rv-price>{{ current.price | money }}{% if current.compare_at_price > current.price %} <s>{{ current.compare_at_price | money }}</s>{% endif %}</p>
+      </div>
+      {%- if product.description != blank -%}<div class="rv-pdp__desc">{{ product.description }}</div>{%- endif -%}
+
+      {%- form 'product', product, id: form_id, class: 'rv-pdp__form', novalidate: 'novalidate' -%}
+        <input type="hidden" name="id" value="{{ current.id }}">
+        {%- render 'reve-variant-picker', product: product, form_key: form_id, chart_id: chart_id -%}
+        <div class="rv-pdp__buy">
+          <div class="rv-buy-row">
+            <div class="rv-qty">
+              <button type="button" data-rv-qty="-1" aria-label="Decrease quantity">−</button>
+              <input type="number" name="quantity" value="1" min="1" max="99" inputmode="numeric" aria-label="Quantity">
+              <button type="button" data-rv-qty="1" aria-label="Increase quantity">+</button>
+            </div>
+            {%- render 'reve-atc', current: current -%}
+          </div>
+          {%- if s.show_wishlist -%}
+            <button type="button" class="rv-wish-link" data-rv-wish="{{ product.handle }}" data-rv-keep-label="1" aria-pressed="false">{% render 'reve-icon', icon: 'heart' %}Add to wishlist</button>
+          {%- endif -%}
+        </div>
+      {%- endform -%}
+
+      {%- if s.pairs != blank -%}
+        <div class="rv-pairs">
+          <span class="rv-eyebrow rv-pairs__title">{{ s.pairs_heading | escape }}</span>
+          <div class="rv-pairs__grid">
+            {%- for p in s.pairs limit: 4 -%}
+              <a href="{{ p.url }}" class="rv-pair">
+                <div class="rv-pair__media">{%- if p.featured_media -%}<img src="{{ p.featured_media | image_url: width: 500 }}" width="{{ p.featured_media.preview_image.width }}" height="{{ p.featured_media.preview_image.height }}" alt="{{ p.title | escape }}" loading="lazy">{%- endif -%}</div>
+                <span class="rv-pair__name">{{ p.title | escape }}</span>
+                <span class="rv-pair__price">{{ p.price | money }}</span>
+                <span class="rv-pair__cta">Choose options</span>
+              </a>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign has_acc = false -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'accordion' -%}{%- assign has_acc = true -%}{%- endif -%}{%- endfor -%}
+      {%- if has_acc -%}
+        <div class="rv-acc">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'accordion' and block.settings.content != blank -%}
+              <details {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+                <summary>{{ block.settings.title | escape }}</summary>
+                <div class="rv-acc__body">{{ block.settings.content }}</div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="rv-perks">
+        {%- for block in section.blocks -%}{%- if block.type == 'perk' -%}<span {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>{%- endif -%}{%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-rv-variants>{%- render 'reve-variants-json', product: product -%}</script>
+
+  {%- if s.sticky -%}
+    <div class="rv rv-sticky" data-rv-sticky="{{ section.id }}">
+      {%- if product.featured_media -%}<img class="rv-sticky__img" src="{{ product.featured_media | image_url: width: 120 }}" width="52" height="64" alt="" loading="lazy">{%- endif -%}
+      <div class="rv-sticky__info">
+        <span class="rv-sticky__name">{{ product.title | escape }}</span>
+        {%- unless product.has_only_default_variant -%}<span class="rv-sticky__variant" data-rv-sticky-variant>{{ current.title | escape }}</span>{%- endunless -%}
+      </div>
+      <button type="button" class="rv-btn" data-rv-atc>Add to cart</button>
+    </div>
+  {%- endif -%}
+
+  {%- if s.show_chart -%}
+    <div class="rv rv-drawer" id="{{ chart_id }}" role="dialog" aria-modal="true" aria-labelledby="{{ chart_id }}-title" aria-hidden="true">
+      <div class="rv-drawer__overlay" data-rv-close></div>
+      <div class="rv-drawer__panel">
+        <div class="rv-drawer__head">
+          <h2 id="{{ chart_id }}-title">Size chart</h2>
+          <button type="button" class="rv-drawer__close" data-rv-close aria-label="Close">×</button>
+        </div>
+        <div class="rv-drawer__rte">
+          {%- if s.chart_page != blank -%}
+            {{ s.chart_page.content }}
+          {%- else -%}
+            <table>
+              <thead><tr><th>Size</th><th>US</th><th>Waist</th><th>Hips</th><th>Inseam</th></tr></thead>
+              <tbody>
+                <tr><td>P</td><td>00</td><td>23–24</td><td>33–34</td><td>31</td></tr>
+                <tr><td>XS</td><td>0–2</td><td>24–25</td><td>34–35</td><td>31.5</td></tr>
+                <tr><td>S</td><td>4–6</td><td>26–27</td><td>36–37</td><td>32</td></tr>
+                <tr><td>M</td><td>8–10</td><td>28–29</td><td>38–39</td><td>32</td></tr>
+                <tr><td>L</td><td>12–14</td><td>30–32</td><td>40–42</td><td>32.5</td></tr>
+                <tr><td>XL</td><td>16</td><td>33–34</td><td>43–44</td><td>32.5</td></tr>
+              </tbody>
+            </table>
+          {%- endif -%}
+        </div>
+        {%- if s.chart_note != blank -%}<p class="rv-drawer__note">{{ s.chart_note | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{"name":"Reve · Product","tag":"div","class":"rv-sec-product","enabled_on":{"templates":["product"]},
+"settings":[
+ {"type":"checkbox","id":"show_wishlist","label":"Show wishlist button","default":true},
+ {"type":"checkbox","id":"sticky","label":"Sticky add to cart bar","default":true},
+ {"type":"header","content":"Size chart"},
+ {"type":"checkbox","id":"show_chart","label":"Show size chart link","default":true},
+ {"type":"page","id":"chart_page","label":"Size chart page","info":"Create a page with a table. Leave empty to use the built-in placeholder table."},
+ {"type":"text","id":"chart_note","label":"Size chart note","default":"Measurements in inches. Between sizes? Size up for layering."},
+ {"type":"header","content":"Pairs well with"},
+ {"type":"text","id":"pairs_heading","label":"Heading","default":"Pairs well with"},
+ {"type":"product_list","id":"pairs","label":"Products","limit":4}
+],
+"blocks":[
+ {"type":"accordion","name":"Collapsible tab","settings":[{"type":"text","id":"title","label":"Title","default":"Details"},{"type":"richtext","id":"content","label":"Content","info":"Connect a product metafield with the dynamic source icon to make this product-specific."},{"type":"checkbox","id":"open","label":"Open by default","default":false}]},
+ {"type":"perk","name":"Service line","settings":[{"type":"text","id":"text","label":"Text","default":"Free & Easy Returns within 14 days"}]}
+]}
+{% endschema %}

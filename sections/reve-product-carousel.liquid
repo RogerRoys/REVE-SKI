@@ -1,0 +1,48 @@
+{%- liquid
+  assign s = section.settings
+  assign use_recs = false
+  assign need_fetch = false
+  if s.source == 'recommendations' and product
+    assign use_recs = true
+    if recommendations.performed?
+      assign items = recommendations.products
+    else
+      assign need_fetch = true
+    endif
+  else
+    assign items = s.collection.products
+  endif
+  assign total = items.size
+  if total > s.limit
+    assign total = s.limit
+  endif
+-%}
+<section class="rv rv-wrap rv-carousel"{% if s.anchor != blank %} id="{{ s.anchor | handleize }}"{% endif %} data-rv-carousel data-rv-recs-body{% if need_fetch %} data-rv-recs="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ s.limit }}&intent=related"{% endif %}>
+  {%- if total > 0 -%}
+    <div class="rv-carousel__head">
+      <h2 class="rv-h-xl rv-carousel__title">{{ s.heading | escape }}{%- if s.show_count -%}<span class="rv-count">({% if total < 10 %}0{% endif %}{{ total }})</span>{%- endif -%}</h2>
+      <div class="rv-arrows">
+        <button type="button" class="rv-arrow" data-rv-dir="-1" aria-label="Previous">{% render 'reve-icon', icon: 'prev' %}</button>
+        <button type="button" class="rv-arrow" data-rv-dir="1" aria-label="Next">{% render 'reve-icon', icon: 'next' %}</button>
+      </div>
+    </div>
+    <div class="rv-track" data-rv-track>
+      {%- for p in items limit: s.limit -%}{%- render 'reve-product-card', product: p -%}{%- endfor -%}
+    </div>
+  {%- elsif request.design_mode and use_recs == false -%}
+    <div class="rv-carousel__head"><h2 class="rv-h-xl rv-carousel__title">{{ s.heading | escape }}</h2></div>
+    <p class="rv-eyebrow rv-muted">Select a collection in the section settings.</p>
+  {%- endif -%}
+</section>
+{% schema %}
+{"name":"Reve · Product carousel","tag":"div","class":"rv-sec-carousel",
+"settings":[
+ {"type":"text","id":"heading","label":"Heading","default":"New Arrivals"},
+ {"type":"select","id":"source","label":"Products from","default":"collection","options":[{"value":"collection","label":"Collection"},{"value":"recommendations","label":"Related products (product pages only)"}]},
+ {"type":"collection","id":"collection","label":"Collection"},
+ {"type":"range","id":"limit","label":"Products to show","min":4,"max":16,"step":1,"default":8},
+ {"type":"checkbox","id":"show_count","label":"Show count (08)","default":true},
+ {"type":"text","id":"anchor","label":"Anchor id","default":"arrivals","info":"Used by links like /#arrivals"}
+],
+"presets":[{"name":"Reve · Product carousel"}]}
+{% endschema %}

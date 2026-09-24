@@ -1,0 +1,3 @@
+<button type="submit" name="add" class="rv-btn{% if block_btn %} rv-btn--block{% endif %}" data-rv-atc data-add="Add to cart" data-added="Added to cart" data-soldout="Sold out" data-unavailable="Unavailable"{% unless current.available %} disabled{% endunless %}>
+  {%- if current.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+</button>

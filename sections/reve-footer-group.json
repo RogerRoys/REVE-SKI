@@ -1,0 +1,44 @@
+{
+  "type": "footer",
+  "name": "Reve footer",
+  "sections": {
+    "footer": {
+      "type": "reve-footer",
+      "settings": {
+        "brand": "Reve Ski",
+        "copyright": "Reve Ski | Urban Elegance , Alpine Excellence",
+        "show_payments": true
+      },
+      "blocks": {
+        "shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "footer"
+          }
+        },
+        "help": {
+          "type": "menu",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer"
+          }
+        },
+        "ship": {
+          "type": "country",
+          "settings": {
+            "heading": "Shipping To"
+          }
+        }
+      },
+      "block_order": [
+        "shop",
+        "help",
+        "ship"
+      ]
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

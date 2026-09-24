@@ -60,6 +60,7 @@
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
     {{- 'custom-fonts.css' | asset_url | stylesheet_tag -}}
+    {%- render 'reve-head' -%}
   </head>
 
   {% liquid
@@ -85,7 +86,7 @@
     <a href="#main" allow-hash-change class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
     {%- if request.page_type != 'password' -%}
-      {%- sections 'header-group' -%}
+      {%- sections 'reve-header-group' -%}
       {%- sections 'overlay-group' -%}
       {%- render 'wishlist-drawer' -%}
     {%- endif -%}
@@ -95,7 +96,7 @@
     </main>
 
     {%- if request.page_type != 'password' -%}
-      {%- sections 'footer-group' -%}
+      {%- sections 'reve-footer-group' -%}
     {%- endif -%}<script defer src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js"></script>
   </body>
 </html>

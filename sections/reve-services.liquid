@@ -1,0 +1,21 @@
+<div class="rv rv-wrap rv-services">
+  {%- for block in section.blocks -%}
+    <div class="rv-service" {{ block.shopify_attributes }}>
+      {%- if section.settings.numbers -%}<span class="rv-service__num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{%- endif -%}
+      <span class="rv-service__title">{{ block.settings.title | escape }}</span>
+      {%- if block.settings.text != blank -%}<p class="rv-service__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+      {%- if block.settings.link_label != blank -%}<a href="{{ block.settings.link | default: '#' }}" class="rv-link">{{ block.settings.link_label | escape }}</a>{%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+{% schema %}
+{"name":"Reve · Services","tag":"section","class":"rv-sec-services","max_blocks":4,
+"settings":[{"type":"checkbox","id":"numbers","label":"Show numbers","default":true}],
+"blocks":[{"type":"service","name":"Service","settings":[
+ {"type":"text","id":"title","label":"Title","default":"Get Help Buying"},
+ {"type":"textarea","id":"text","label":"Text","default":"If you have any questions about our gear, get in touch."},
+ {"type":"text","id":"link_label","label":"Link label","default":"Learn more"},
+ {"type":"url","id":"link","label":"Link"}
+]}],
+"presets":[{"name":"Reve · Services","blocks":[{"type":"service"},{"type":"service"},{"type":"service"}]}]}
+{% endschema %}

@@ -1,0 +1,9 @@
+{%- comment -%} Reve Ski editorial theme layer. Rendered once inside <head> in layout/theme.liquid {%- endcomment -%}
+<style>
+  @font-face{font-family:"JB Mono";src:url("{{ 'jetbrains-mono-bold.woff2' | asset_url }}") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:"JB Mono";src:url("{{ 'jetbrains-mono-thin.woff2' | asset_url }}") format("woff2");font-weight:100;font-style:normal;font-display:swap}
+  @font-face{font-family:"News Gothic";src:url("{{ 'news-gothic-medium.woff2' | asset_url }}") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:"News Gothic";src:url("{{ 'news-gothic-bold.woff2' | asset_url }}") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+</style>
+{{ 'reve-editorial.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'reve-editorial.js' | asset_url }}" defer="defer"></script>

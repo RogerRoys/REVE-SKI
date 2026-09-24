@@ -1,0 +1,39 @@
+{%- liquid
+  assign color_opt = nil
+  for opt in product.options_with_values
+    assign on = opt.name | downcase
+    if on == 'color' or on == 'colour'
+      assign color_opt = opt
+      break
+    endif
+  endfor
+  assign main_media = product.featured_media
+  assign alt_media = product.media[1]
+-%}
+<div class="rv-card">
+  <div class="rv-card__media">
+    <a href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+      {%- if main_media -%}
+        <img src="{{ main_media | image_url: width: 900 }}" srcset="{{ main_media | image_url: width: 450 }} 450w, {{ main_media | image_url: width: 700 }} 700w, {{ main_media | image_url: width: 900 }} 900w" sizes="(min-width: 990px) 25vw, (min-width: 561px) 50vw, 78vw" width="{{ main_media.preview_image.width }}" height="{{ main_media.preview_image.height }}" alt="{{ product.title | escape }}" loading="lazy">
+        {%- if alt_media -%}
+          <img class="rv-card__alt" src="{{ alt_media | image_url: width: 900 }}" srcset="{{ alt_media | image_url: width: 450 }} 450w, {{ alt_media | image_url: width: 900 }} 900w" sizes="(min-width: 990px) 25vw, 50vw" width="{{ alt_media.preview_image.width }}" height="{{ alt_media.preview_image.height }}" alt="" loading="lazy">
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}
+      {%- endif -%}
+    </a>
+    <button type="button" class="rv-wish" data-rv-wish="{{ product.handle }}" aria-pressed="false" aria-label="Add to wishlist">{% render 'reve-icon', icon: 'heart' %}</button>
+  </div>
+  <a href="{{ product.url }}" class="rv-card__row">
+    <span class="rv-card__name">{{ product.title | default: 'Product name' | escape }}</span>
+    <span class="rv-card__price">{% if product.price_varies %}From {% endif %}{{ product.price | money }}</span>
+  </a>
+  {%- if color_opt -%}
+    <div class="rv-card__swatches">
+      {%- for value in color_opt.values -%}
+        {%- capture hex -%}{%- if value.swatch.color -%}{{ value.swatch.color }}{%- else -%}{%- render 'reve-color-hex', name: value -%}{%- endif -%}{%- endcapture -%}
+        <span title="{{ value | escape }}" style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 32 }});{% endif %}"></span>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>

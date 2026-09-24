@@ -1,0 +1,127 @@
+<div class="rv rv-wrap rv-tiles">
+  {%- for block in section.blocks -%}
+    {%- assign b = block.settings -%}
+    {%- capture slides -%}
+      {%- if b.image != blank -%}<div class="rv-tile__slide"><img src="{{ b.image | image_url: width: 1400 }}" srcset="{{ b.image | image_url: width: 700 }} 700w, {{ b.image | image_url: width: 1000 }} 1000w, {{ b.image | image_url: width: 1400 }} 1400w" sizes="(min-width: 800px) 50vw, 100vw" width="{{ b.image.width }}" height="{{ b.image.height }}" alt="{{ b.image.alt | escape }}" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+      {%- if b.image_2 != blank -%}<div class="rv-tile__slide"><img src="{{ b.image_2 | image_url: width: 1400 }}" srcset="{{ b.image_2 | image_url: width: 700 }} 700w, {{ b.image_2 | image_url: width: 1400 }} 1400w" sizes="(min-width: 800px) 50vw, 100vw" width="{{ b.image_2.width }}" height="{{ b.image_2.height }}" alt="" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+      {%- if b.image == blank and b.image_asset != blank -%}<div class="rv-tile__slide"><img src="{{ b.image_asset | asset_url }}" width="1200" height="1800" alt="{{ b.title | escape }}" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+      {%- if b.image_2 == blank and b.image_asset_2 != blank -%}<div class="rv-tile__slide"><img src="{{ b.image_asset_2 | asset_url }}" width="1200" height="1800" alt="" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+      {%- if b.image_3 == blank and b.image_asset_3 != blank -%}<div class="rv-tile__slide"><img src="{{ b.image_asset_3 | asset_url }}" width="1200" height="1800" alt="" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+      {%- if b.image_3 != blank -%}<div class="rv-tile__slide"><img src="{{ b.image_3 | image_url: width: 1400 }}" srcset="{{ b.image_3 | image_url: width: 700 }} 700w, {{ b.image_3 | image_url: width: 1400 }} 1400w" sizes="(min-width: 800px) 50vw, 100vw" width="{{ b.image_3.width }}" height="{{ b.image_3.height }}" alt="" loading="lazy" style="object-position:{{ b.focal | default: '50% 25%' }}"></div>{%- endif -%}
+    {%- endcapture -%}
+    {%- assign n = slides | split: 'rv-tile__slide' | size | minus: 1 -%}
+    <a href="{{ b.link | default: '#' }}" class="rv-tile" {{ block.shopify_attributes }}>
+      <div class="rv-tile__media{% if n > 1 %} rv-tile__media--fade rv-tile__media--{{ n }}{% endif %}">
+        {%- if b.video != blank -%}
+          {{ b.video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, image_size: '1200x' }}
+        {%- elsif n > 0 -%}
+          {{ slides }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'rv-placeholder' }}
+        {%- endif -%}
+      </div>
+      <div class="rv-tile__bar">
+        <span class="rv-tile__title">{% if section.settings.numbers %}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }} — {% endif %}{{ b.title | escape }}</span>
+        {%- if b.cta != blank -%}<span class="rv-tile__cta">{{ b.cta | escape }} →</span>{%- endif -%}
+      </div>
+    </a>
+  {%- endfor -%}
+</div>
+{% schema %}
+{
+ "name": "Reve · Image tiles",
+ "tag": "section",
+ "class": "rv-sec-tiles",
+ "max_blocks": 4,
+ "settings": [
+  {
+   "type": "checkbox",
+   "id": "numbers",
+   "label": "Show numbers (01 —)",
+   "default": true
+  }
+ ],
+ "blocks": [
+  {
+   "type": "tile",
+   "name": "Tile",
+   "settings": [
+    {
+     "type": "image_picker",
+     "id": "image",
+     "label": "Image"
+    },
+    {
+     "type": "image_picker",
+     "id": "image_2",
+     "label": "Image 2 (optional, crossfades)"
+    },
+    {
+     "type": "image_picker",
+     "id": "image_3",
+     "label": "Image 3 (optional, crossfades)"
+    },
+    {
+     "type": "text",
+     "id": "image_asset",
+     "label": "Fallback image file (assets)",
+     "info": "File name in the theme assets folder, used only when no image is picked above"
+    },
+    {
+     "type": "text",
+     "id": "image_asset_2",
+     "label": "Fallback image 2 file (assets)",
+     "info": "File name in the theme assets folder, used only when no image is picked above"
+    },
+    {
+     "type": "text",
+     "id": "image_asset_3",
+     "label": "Fallback image 3 file (assets)",
+     "info": "File name in the theme assets folder, used only when no image is picked above"
+    },
+    {
+     "type": "video",
+     "id": "video",
+     "label": "Video (optional, replaces images)"
+    },
+    {
+     "type": "text",
+     "id": "focal",
+     "label": "Image position",
+     "default": "50% 25%"
+    },
+    {
+     "type": "text",
+     "id": "title",
+     "label": "Title",
+     "default": "New Arrivals"
+    },
+    {
+     "type": "text",
+     "id": "cta",
+     "label": "Link label",
+     "default": "Shop now"
+    },
+    {
+     "type": "url",
+     "id": "link",
+     "label": "Link"
+    }
+   ]
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image tiles",
+   "blocks": [
+    {
+     "type": "tile"
+    },
+    {
+     "type": "tile"
+    }
+   ]
+  }
+ ]
+}
+{% endschema %}

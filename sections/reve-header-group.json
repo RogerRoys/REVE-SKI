@@ -1,0 +1,53 @@
+{
+  "type": "header",
+  "name": "Reve header",
+  "sections": {
+    "announcement": {
+      "type": "reve-announcement",
+      "settings": {
+        "speed": 5
+      },
+      "blocks": {
+        "m1": {
+          "type": "message",
+          "settings": {
+            "text": "Enjoy 10% off your first order when you sign up to our newsletter",
+            "link": "/#newsletter"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "text": "The new season starts here. Shop new arrivals",
+            "link": "/#arrivals"
+          }
+        },
+        "m3": {
+          "type": "message",
+          "settings": {
+            "text": "Free FedEx® delivery on orders above 2000 HKD"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ]
+    },
+    "header": {
+      "type": "reve-header",
+      "settings": {
+        "menu": "main-menu",
+        "overlay_home": true,
+        "show_currency": true,
+        "logo_width": 150,
+        "wishlist_url": ""
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "sections": {
+    "main": {
+      "type": "reve-main-product",
+      "settings": {
+        "show_wishlist": true,
+        "sticky": true,
+        "show_chart": true,
+        "pairs_heading": "Pairs well with",
+        "chart_note": "Measurements in inches. Between sizes? Size up for layering."
+      },
+      "blocks": {
+        "acc1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Details",
+            "content": "<ul><li>4-way stretch, fleece-lined 3L softshell fabric</li><li>Dramatic genuine leather fringe</li><li>Metal trims</li><li>Zippered hip pockets</li><li>Laser cut leather detailing</li><li>Adjustable waist</li><li>Back waist ribbing for snug fit</li><li>V-shaped yoke for flattering back</li><li>Bootcut silhouette</li><li>Pant leg extension zippers</li><li>Snow gaiters with gripper tape</li><li>Shifted sideseam for slimming effect</li></ul>",
+            "open": true
+          }
+        },
+        "acc2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Fabric & Care",
+            "content": "<ul><li>Shell: 46% recycled polyester, 41% nylon, 13% spandex</li><li>Contrast fabric: 97% polyester, 3% spandex</li><li>Lining: 92% polyester, 8% spandex</li><li>Trim: 100% cowhide leather</li><li>Fill: 90% duck down, 10% feather</li></ul>"
+          }
+        },
+        "acc3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Care Instructions",
+            "content": "<ul><li>Please entrust cleaning to a professional leather-care specialist.</li><li>Do not wash</li><li>Do not bleach</li><li>Do not tumble dry</li><li>Do not iron</li><li>Do not dry clean</li><li>Spot clean only</li><li>Avoid direct sunlight and high temperatures</li></ul>"
+          }
+        },
+        "acc4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Leather Note",
+            "content": "<p>The fringe is crafted from genuine cowhide leather. Natural variations in texture and color are part of its character. Genuine leather will naturally soften and develop character over time.</p>"
+          }
+        },
+        "p1": {
+          "type": "perk",
+          "settings": {
+            "text": "Free FedEx® Delivery — orders above 2000 HKD"
+          }
+        },
+        "p2": {
+          "type": "perk",
+          "settings": {
+            "text": "Free & Easy Returns within 14 days"
+          }
+        },
+        "p3": {
+          "type": "perk",
+          "settings": {
+            "text": "Get help buying — chat with us"
+          }
+        }
+      },
+      "block_order": [
+        "acc1",
+        "acc2",
+        "acc3",
+        "acc4",
+        "p1",
+        "p2",
+        "p3"
+      ]
+    },
+    "tech": {
+      "type": "reve-tech-features",
+      "settings": {
+        "heading": "Technical Features",
+        "text": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort."
+      },
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "name": "Waterproof Softshell",
+            "text": "10,000 mm H₂O waterproof rating"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "name": "4-way Stretch",
+            "text": "Stretchy fleece lined fabric"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "name": "Leather Fringe",
+            "text": "100% genuine leather"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "name": "Metal Trims",
+            "text": "Matte silver zippers and snaps"
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "name": "Snow Gaiters",
+            "text": "Interior leg opening to prevent snow entry"
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "name": "Breathability",
+            "text": "10,000 g/m²/24h"
+          }
+        },
+        "f7": {
+          "type": "feature",
+          "settings": {
+            "name": "Fully Seam-Sealed",
+            "text": "All seams are sealed for waterproof protection"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7"
+      ]
+    },
+    "more": {
+      "type": "reve-product-carousel",
+      "settings": {
+        "heading": "Explore More Styles",
+        "source": "recommendations",
+        "limit": 8,
+        "show_count": true,
+        "anchor": "more"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tech",
+    "more"
+  ]
+}

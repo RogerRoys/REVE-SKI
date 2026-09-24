@@ -1,0 +1,36 @@
+{%- comment -%}
+  Params: product, form_key (unique string), chart_id (optional drawer id for the size chart link)
+{%- endcomment -%}
+{%- unless product.has_only_default_variant -%}
+  {%- for option in product.options_with_values -%}
+    {%- liquid
+      assign oi = forloop.index0
+      assign oname = option.name | downcase
+      assign is_color = false
+      if oname == 'color' or oname == 'colour'
+        assign is_color = true
+      endif
+    -%}
+    <div class="rv-opt" role="radiogroup" aria-label="{{ option.name | escape }}" data-rv-option>
+      <div class="rv-opt__head">
+        <span class="rv-eyebrow">{{ option.name | escape }}: <span data-rv-selected>{{ option.selected_value | escape }}</span></span>
+        {%- if chart_id != blank and oname == 'size' -%}
+          <button type="button" class="rv-textbtn" data-rv-open="{{ chart_id }}">Size chart</button>
+        {%- endif -%}
+      </div>
+      <div class="{% if is_color %}rv-swatches{% else %}rv-sizes{% endif %}">
+        {%- for value in option.values -%}
+          {%- capture radio -%}<input type="radio" name="{{ form_key }}-option-{{ oi }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>{%- endcapture -%}
+          {%- if is_color -%}
+            {%- capture hex -%}{%- if value.swatch.color -%}{{ value.swatch.color }}{%- else -%}{%- render 'reve-color-hex', name: value -%}{%- endif -%}{%- endcapture -%}
+            <label class="rv-swatch" title="{{ value | escape }}">
+              {{ radio }}<span class="rv-swatch__dot" style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 72 }});{% endif %}"></span><span class="rv-sr">{{ value | escape }}</span>
+            </label>
+          {%- else -%}
+            <label class="rv-size">{{ radio }}<span class="rv-size__pill">{{ value | escape }}</span></label>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endfor -%}
+{%- endunless -%}
