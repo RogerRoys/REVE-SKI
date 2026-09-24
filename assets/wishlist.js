@@ -141,5 +141,32 @@
     });
   });
 
+  // Prestige variant picker inside the editorial product sections: mirror the theme behaviour
+  // (price, image, add-to-cart state, sticky bar) when the selected variant changes
+  document.addEventListener('variant:change', function (e) {
+    var v = e.detail && e.detail.variant, form = e.target;
+    var el = form && form.closest ? form.closest('[data-rv-product]') : null;
+    if (!el) return;
+    var price = el.querySelector('[data-rv-price]');
+    var img = el.querySelector('[data-rv-variant-img]');
+    var btn = form.querySelector('[data-rv-atc]');
+    var id = form.querySelector('input[name="id"]');
+    var sticky = document.querySelector('[data-rv-sticky="' + el.dataset.rvProduct + '"]');
+    if (!v) {
+      if (btn) { btn.disabled = true; btn.textContent = btn.dataset.unavailable || 'Unavailable'; }
+      return;
+    }
+    if (id) id.value = v.id;
+    if (price) price.innerHTML = formatMoney(v.price) + (v.compare_at_price > v.price ? ' <s>' + formatMoney(v.compare_at_price) + '</s>' : '');
+    if (img && v.featured_media && v.featured_media.preview_image) {
+      img.src = v.featured_media.preview_image.src.replace(/(\.[a-z]+)(\?.*)?$/i, '_1600x$1$2'); img.removeAttribute('srcset');
+    }
+    if (btn) { btn.disabled = !v.available; btn.textContent = v.available ? (btn.dataset.add || 'Add to cart') : (btn.dataset.soldout || 'Sold out'); }
+    if (sticky) {
+      var sv = sticky.querySelector('[data-rv-sticky-variant]'); if (sv) sv.textContent = v.title;
+      var sb = sticky.querySelector('[data-rv-atc]'); if (sb && btn) { sb.disabled = btn.disabled; sb.textContent = btn.textContent; }
+    }
+  });
+
   window.ReveWishlist = { read: read, has: has, toggle: toggle, remove: remove };
 })();
