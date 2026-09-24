@@ -70,9 +70,9 @@
         "transparent_header_text_color": "#ffffff",
         "nav_font": "body",
         "nav_uppercase": true,
-        "nav_font_size": 20,
-        "nav_letter_spacing": 4,
-        "nav_gap": 56,
+        "nav_font_size": 13,
+        "nav_letter_spacing": 16,
+        "nav_gap": 34,
         "use_custom_links": true,
         "link_1_text": "Shop",
         "link_1_url": "shopify://collections/all",
@@ -80,7 +80,8 @@
         "link_2_url": "shopify://pages/about-us",
         "show_utility_nav": true,
         "nav_font_weight": "400",
-        "show_wishlist_icon": true
+        "show_wishlist_icon": true,
+        "nav_underline": true
       }
     }
   },

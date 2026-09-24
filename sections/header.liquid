@@ -82,6 +82,14 @@
     column-gap: {{ section.settings.nav_gap }}px;
   }
 
+  {%- if section.settings.nav_underline -%}
+    #shopify-section-{{ section.id }} .header__primary-nav-item > a:hover,
+    #shopify-section-{{ section.id }} .header__primary-nav-item > a[aria-current="page"] {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  {%- endif -%}
+
   /* Search / account / cart hidden per client design; re-enable in Header > Utility icons */
   #shopify-section-{{ section.id }} .header__secondary-nav--hidden > :not(.header__wishlist) {
     display: none;
@@ -565,6 +573,12 @@
       "step": 2,
       "unit": "px",
       "default": 56
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_underline",
+      "label": "Underline link on hover / current page",
+      "default": true
     },
     {
       "type": "header",
