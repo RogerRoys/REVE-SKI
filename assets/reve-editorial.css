@@ -300,3 +300,6 @@
 /* Theme quick add "+" on editorial product cards (same look/behaviour as the theme's product cards) */
 .rv-card__media{position:relative}
 .rv-card .rv-card__quick-add{position:absolute;right:12px;bottom:12px;z-index:2}
+@media screen and (pointer:fine){
+  .rv-card:hover .rv-card__quick-add{opacity:1;transform:translateY(0)}
+}
