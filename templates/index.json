@@ -1,45 +1,50 @@
 /*
- * Reve Ski — editorial home page (option-01)
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
  */
 {
   "sections": {
     "hero": {
       "type": "reve-hero",
       "settings": {
+        "transparent_header": true,
+        "image_asset": "rv-hero-western.jpg",
+        "focal": "50% 45%",
         "heading": "The Western Edit",
         "text": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
         "button_label": "Shop Now",
-        "focal": "50% 45%",
-        "image_asset": "rv-hero-western.jpg",
-        "button_link": "shopify://collections/all",
-        "transparent_header": true
+        "button_link": "shopify://collections/all"
       }
     },
     "tiles": {
       "type": "reve-tiles",
-      "settings": {
-        "numbers": true
-      },
       "blocks": {
         "t1": {
           "type": "tile",
           "settings": {
-            "title": "New Arrivals",
-            "cta": "Shop now",
-            "focal": "50% 22%",
             "image_asset": "rv-tile-new-arrivals-1.jpg",
             "image_asset_2": "rv-tile-new-arrivals-2.jpg",
             "image_asset_3": "rv-tile-new-arrivals-3.jpg",
+            "focal": "50% 22%",
+            "title": "New Arrivals",
+            "cta": "Shop now",
             "link": "shopify://collections/new-arrivals"
           }
         },
         "t2": {
           "type": "tile",
           "settings": {
+            "image_asset": "tile-phoenix-ski-pant.jpg",
+            "image_asset_2": "",
+            "image_asset_3": "",
+            "focal": "50% 30%",
             "title": "Phoenix Ski Pant",
             "cta": "Shop now",
-            "focal": "50% 30%",
-            "image_asset": "tile-phoenix-ski-pant.jpg",
             "link": "shopify://products/phoenix-ski-pants"
           }
         }
@@ -47,15 +52,18 @@
       "block_order": [
         "t1",
         "t2"
-      ]
+      ],
+      "settings": {
+        "numbers": true
+      }
     },
     "featured": {
       "type": "reve-featured-product",
       "settings": {
+        "product": "cleo-jacket",
+        "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
-        "show_price": false,
-        "product": "phoenix-ski-pants",
-        "image_asset": "rv-featured-phoenix-packshot.jpg"
+        "show_price": false
       }
     },
     "arrivals": {
@@ -63,35 +71,33 @@
       "settings": {
         "heading": "New Arrivals",
         "source": "collection",
+        "collection": "new-arrivals",
         "limit": 8,
         "show_count": true,
-        "anchor": "arrivals",
-        "collection": "new-arrivals"
+        "anchor": "arrivals"
       }
     },
     "about": {
       "type": "reve-banner",
       "settings": {
+        "image_asset": "rv-about-banner-mountain.jpg",
+        "focal": "50% 30%",
         "heading": "Designed in the city. Made for the mountains.",
         "button_label": "About us",
-        "focal": "50% 30%",
-        "anchor": "about",
-        "image_asset": "rv-about-banner-mountain.jpg",
-        "button_link": "shopify://pages/about-us"
+        "button_link": "shopify://pages/about-us",
+        "anchor": "about"
       }
     },
     "services": {
       "type": "reve-services",
-      "settings": {
-        "numbers": true
-      },
       "blocks": {
         "s1": {
           "type": "service",
           "settings": {
             "title": "Get Help Buying",
             "text": "If you have any questions about our gear, get in touch.",
-            "link_label": "Chat with us"
+            "link_label": "Chat with us",
+            "link": ""
           }
         },
         "s2": {
@@ -99,7 +105,8 @@
           "settings": {
             "title": "Free FedEx® Delivery",
             "text": "All prices include customs delivery and import taxes. Orders above 2000 HKD ship for free.",
-            "link_label": "Learn more"
+            "link_label": "Learn more",
+            "link": ""
           }
         },
         "s3": {
@@ -107,7 +114,8 @@
           "settings": {
             "title": "Free & Easy Returns",
             "text": "Returns are accepted within 14 days of delivery. Returns are free across all Reve Ski products, with the exception of collaborations, special projects, and Reve Ski Archive.",
-            "link_label": "Learn more"
+            "link_label": "Learn more",
+            "link": ""
           }
         }
       },
@@ -115,14 +123,19 @@
         "s1",
         "s2",
         "s3"
-      ]
+      ],
+      "settings": {
+        "numbers": true
+      }
     },
     "newsletter": {
       "type": "reve-newsletter",
       "settings": {
         "heading": "New drops",
         "text": "Sign up for early access to exclusive launches.",
-        "button_label": "Subscribe"
+        "button_label": "Subscribe",
+        "legal": "<p>By registering, you accept the <a href=\"/policies/terms-of-service\">Terms of Use</a> and our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
+        "success": "Thanks for subscribing."
       }
     }
   },
