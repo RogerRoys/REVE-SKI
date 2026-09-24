@@ -9,16 +9,54 @@
 -%}
 <section class="rv rv-main-product" data-rv-product="{{ section.id }}" data-rv-main>
   <div class="rv-wrap rv-pdp">
-    <div class="rv-pdp__gallery rv-pdp__gallery--theme">
-      {%- comment -%} Theme product gallery: variant images switch, thumbnails, zoom (Prestige) {%- endcomment -%}
-      {%- render 'product-gallery',
-          product: product,
-          desktop_layout: s.gallery_layout,
-          mobile_controls: s.gallery_mobile_controls,
-          enable_media_autoplay: false,
-          enable_video_looping: true,
-          enable_image_zoom: s.gallery_zoom,
-          max_image_zoom_level: 3 -%}
+    {%- comment -%}
+      Editorial gallery with the theme's variant image sets: an image whose alt ends with "#Color_Black" only shows
+      when Color = Black is selected (same rule as the Prestige gallery). Images without a "#" tag always show.
+    {%- endcomment -%}
+    {%- liquid
+      assign current_variant = product.selected_or_first_available_variant
+      assign option_names = product.options | join: '|'
+    -%}
+    <div class="rv-pdp__gallery" data-rv-gallery data-rv-option-names="{{ option_names | escape }}">
+      {%- for media in product.media -%}
+        {%- liquid
+          assign ld = 'lazy'
+          if forloop.index <= 2
+            assign ld = 'eager'
+          endif
+          assign group_option = ''
+          assign group_value = ''
+          assign hidden = false
+          if media.alt contains '#' and media.alt != product.title
+            assign alt_parts = media.alt | split: '#'
+            assign group_parts = alt_parts.last | split: '_'
+            assign group_option = group_parts.first | strip
+            assign group_value = group_parts.last | strip | downcase
+            assign option = product.options_by_name[group_option]
+            assign selected_value = option.selected_value | downcase
+            if selected_value != group_value and media != current_variant.featured_media
+              assign hidden = true
+            endif
+            assign alt = alt_parts.first | strip | default: product.title
+          else
+            assign alt = media.alt | default: product.title
+          endif
+        -%}
+        <figure class="rv-pdp__media" data-rv-media-id="{{ media.id }}" {% if group_option != blank %}data-rv-group-option="{{ group_option | escape }}" data-rv-group-value="{{ group_value | escape }}"{% endif %} {% if hidden %}hidden{% endif %}>
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              <img src="{{ media | image_url: width: 1400 }}" srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 900 }} 900w, {{ media | image_url: width: 1200 }} 1200w, {{ media | image_url: width: 1400 }} 1400w" sizes="(min-width: 990px) 32vw, (min-width: 750px) 50vw, 86vw" width="{{ media.width }}" height="{{ media.height }}" alt="{{ alt | escape }}" loading="{{ ld }}">
+            {%- when 'video' -%}
+              {{ media | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+            {%- when 'external_video' -%}
+              {{ media | external_video_tag }}
+            {%- else -%}
+              {{ media | media_tag }}
+          {%- endcase -%}
+        </figure>
+      {%- else -%}
+        {%- for i in (1..4) -%}<figure class="rv-pdp__media">{{ 'product-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}</figure>{%- endfor -%}
+      {%- endfor -%}
     </div>
 
     <div class="rv-pdp__info">
@@ -137,70 +175,8 @@
  },
  "settings": [
   {
-   "type": "header",
-   "content": "Gallery"
-  },
-  {
-   "type": "select",
-   "id": "gallery_layout",
-   "label": "Desktop layout",
-   "options": [
-    {
-     "value": "carousel_thumbnails_left",
-     "label": "Carousel, thumbnails left"
-    },
-    {
-     "value": "carousel_thumbnails_bottom",
-     "label": "Carousel, thumbnails bottom"
-    },
-    {
-     "value": "carousel_dots",
-     "label": "Carousel, dots"
-    },
-    {
-     "value": "grid",
-     "label": "Grid"
-    },
-    {
-     "value": "grid_2x",
-     "label": "Grid 2 columns"
-    },
-    {
-     "value": "grid_2x_highlighted",
-     "label": "Grid 2 columns, first highlighted"
-    }
-   ],
-   "default": "carousel_thumbnails_left"
-  },
-  {
-   "type": "select",
-   "id": "gallery_mobile_controls",
-   "label": "Mobile controls",
-   "options": [
-    {
-     "value": "thumbnails",
-     "label": "Thumbnails"
-    },
-    {
-     "value": "dots",
-     "label": "Dots"
-    },
-    {
-     "value": "arrows",
-     "label": "Arrows"
-    },
-    {
-     "value": "free_scroll",
-     "label": "Free scroll"
-    }
-   ],
-   "default": "free_scroll"
-  },
-  {
-   "type": "checkbox",
-   "id": "gallery_zoom",
-   "label": "Enable image zoom",
-   "default": true
+   "type": "paragraph",
+   "content": "Variant image sets: add #Color_Black (option name _ value) at the end of an image's alt text and it only shows for that variant. Images without a tag show for every variant."
   },
   {
    "type": "checkbox",

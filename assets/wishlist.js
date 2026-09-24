@@ -162,6 +162,21 @@
       img.src = v.featured_media.preview_image.src.replace(/(\.[a-z]+)(\?.*)?$/i, '_1600x$1$2'); img.removeAttribute('srcset');
     }
     if (btn) { btn.disabled = !v.available; btn.textContent = v.available ? (btn.dataset.add || 'Add to cart') : (btn.dataset.soldout || 'Sold out'); }
+    var gallery = el.querySelector('[data-rv-gallery]');
+    if (gallery) {
+      var names = (gallery.dataset.rvOptionNames || '').split('|');
+      var values = {};
+      names.forEach(function (n, i) { values[n.toLowerCase()] = String(v.options[i] || '').toLowerCase(); });
+      gallery.querySelectorAll('[data-rv-group-option]').forEach(function (fig) {
+        var match = values[fig.dataset.rvGroupOption.toLowerCase()] === fig.dataset.rvGroupValue.toLowerCase();
+        var isVariantImage = v.featured_media && String(v.featured_media.id) === fig.dataset.rvMediaId;
+        fig.hidden = !(match || isVariantImage);
+      });
+      if (v.featured_media) {
+        var target = gallery.querySelector('[data-rv-media-id="' + v.featured_media.id + '"]');
+        if (target && window.innerWidth < 990) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
     if (sticky) {
       var sv = sticky.querySelector('[data-rv-sticky-variant]'); if (sv) sv.textContent = v.title;
       var sb = sticky.querySelector('[data-rv-atc]'); if (sb && btn) { sb.disabled = btn.disabled; sb.textContent = btn.textContent; }

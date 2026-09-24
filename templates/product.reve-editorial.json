@@ -7,10 +7,7 @@
         "sticky": true,
         "show_chart": true,
         "pairs_heading": "Pairs well with",
-        "chart_note": "Measurements in inches. Between sizes? Size up for layering.",
-        "gallery_layout": "carousel_thumbnails_left",
-        "gallery_mobile_controls": "free_scroll",
-        "gallery_zoom": true
+        "chart_note": "Measurements in inches. Between sizes? Size up for layering."
       },
       "blocks": {
         "acc1": {
