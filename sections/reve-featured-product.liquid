@@ -29,7 +29,8 @@
         <div class="rv-feat__buy">
           {%- form 'product', product, id: form_id, novalidate: 'novalidate' -%}
                         <input type="hidden" name="quantity" value="1">
-            {%- render 'variant-picker', product: product, form_id: form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+            <input type="hidden" name="id" value="{{ current.id }}">
+        {%- render 'variant-picker', product: product, form_id: form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
             {%- render 'reve-atc', current: current, block_btn: true -%}
           {%- endform -%}
           <div class="rv-feat__links">

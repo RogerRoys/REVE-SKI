@@ -67,7 +67,8 @@
       {%- if product.description != blank -%}<div class="rv-pdp__desc">{{ product.description }}</div>{%- endif -%}
 
       {%- form 'product', product, id: form_id, class: 'rv-pdp__form', novalidate: 'novalidate' -%}
-                {%- render 'variant-picker', product: product, form_id: form_id, update_url: true, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+                <input type="hidden" name="id" value="{{ current.id }}">
+        {%- render 'variant-picker', product: product, form_id: form_id, update_url: true, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
         <div class="rv-pdp__buy">
           <div class="rv-buy-row">
             <div class="rv-qty">
