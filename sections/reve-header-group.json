@@ -2,54 +2,90 @@
   "type": "header",
   "name": "Reve header",
   "sections": {
-    "announcement": {
-      "type": "reve-announcement",
-      "settings": {
-        "speed": 5
-      },
+    "announcement-bar": {
+      "type": "announcement-bar",
       "blocks": {
-        "m1": {
+        "message_new_season": {
           "type": "message",
           "settings": {
-            "text": "Enjoy 10% off your first order when you sign up to our newsletter",
-            "link": "/#newsletter"
+            "text": "The new season starts here. <a href=\"/collections/new-arrivals\">Shop new arrivals</a>"
           }
         },
-        "m2": {
+        "message_shipping": {
           "type": "message",
           "settings": {
-            "text": "The new season starts here. Shop new arrivals",
-            "link": "/#arrivals"
+            "text": "Free FedEx® delivery on orders over $800"
           }
         },
-        "m3": {
+        "message_returns": {
           "type": "message",
           "settings": {
-            "text": "Free FedEx® delivery on orders above 2000 HKD"
+            "text": "Free & easy returns within 14 days of delivery"
           }
         }
       },
       "block_order": [
-        "m1",
-        "m2",
-        "m3"
-      ]
+        "message_new_season",
+        "message_shipping",
+        "message_returns"
+      ],
+      "settings": {
+        "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
+        "desktop_font_size": 11,
+        "mobile_font_size": 10,
+        "background": "#000000",
+        "text_color": "#ffffff",
+        "show_dots": true,
+        "show_pause_button": true,
+        "text_font": "body",
+        "uppercase": false,
+        "letter_spacing": 1,
+        "vertical_padding": 9,
+        "dot_size": 4,
+        "controls_color": "#ffffff"
+      }
     },
     "header": {
-      "type": "reve-header",
+      "type": "header",
       "settings": {
+        "enable_sticky": true,
+        "show_separation_border": false,
+        "reduce_padding": true,
+        "logo_max_width": 110,
+        "logo_mobile_max_width": 80,
         "menu": "main-menu",
-        "overlay_home": true,
-        "show_currency": true,
-        "logo_width": 150,
-        "wishlist_url": "",
+        "sidebar_menu": "",
+        "menu_open_trigger": "hover",
+        "enable_search": true,
+        "sidebar_text_font": "body",
+        "sidebar_show_dividers": false,
+        "layout": "logo_center_navigation_inline",
+        "show_icons": true,
+        "show_country_selector": true,
         "show_country_name": false,
-        "show_country_flag": false
+        "show_country_flag": false,
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff",
+        "nav_font": "body",
+        "nav_uppercase": true,
+        "nav_font_size": 20,
+        "nav_letter_spacing": 4,
+        "nav_gap": 56,
+        "use_custom_links": true,
+        "link_1_text": "Shop",
+        "link_1_url": "shopify://collections/all",
+        "link_2_text": "About",
+        "link_2_url": "shopify://pages/about-us",
+        "show_utility_nav": true,
+        "nav_font_weight": "400",
+        "show_wishlist_icon": true
       }
     }
   },
   "order": [
-    "announcement",
+    "announcement-bar",
     "header"
   ]
 }

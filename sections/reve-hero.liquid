@@ -1,5 +1,5 @@
 {%- assign s = section.settings -%}
-<section class="rv rv-hero" style="--rv-hero-pos:{{ s.focal | default: '50% 50%' }}">
+<section class="rv rv-hero" {% if s.transparent_header %}allow-transparent-header{% endif %} style="--rv-hero-pos:{{ s.focal | default: '50% 50%' }}">
   <div class="rv-hero__media">
     {%- if s.video != blank -%}
       {{ s.video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, image_size: '1920x' }}
@@ -28,6 +28,12 @@
  "tag": "div",
  "class": "rv-sec-hero",
  "settings": [
+  {
+   "type": "checkbox",
+   "id": "transparent_header",
+   "label": "Transparent header over this hero",
+   "default": true
+  },
   {
    "type": "image_picker",
    "id": "image",

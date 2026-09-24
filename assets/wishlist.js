@@ -124,5 +124,22 @@
   });
   if (document.readyState !== 'loading') refresh();
 
+  // Editorial (rv-) hearts share the same storage key: refresh the badge/drawer after they toggle
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-rv-wish]')) setTimeout(refresh, 30);
+  });
+
+  // Editorial AJAX add-to-cart -> refresh and open the theme cart drawer
+  document.addEventListener('rv:cart-added', function () {
+    Promise.all([
+      fetch(root() + 'cart.js').then(function (r) { return r.json(); }),
+      fetch(root() + '?sections=cart-drawer').then(function (r) { return r.json(); }).catch(function () { return {}; })
+    ]).then(function (res) {
+      var cart = res[0]; cart.sections = res[1] || {};
+      document.documentElement.dispatchEvent(new CustomEvent('cart:change', { bubbles: true, detail: { baseEvent: 'variant:add', cart: cart } }));
+      document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+    });
+  });
+
   window.ReveWishlist = { read: read, has: has, toggle: toggle, remove: remove };
 })();

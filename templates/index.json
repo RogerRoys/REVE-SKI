@@ -11,7 +11,8 @@
         "button_label": "Shop Now",
         "focal": "50% 45%",
         "image_asset": "rv-hero-western.jpg",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/all",
+        "transparent_header": true
       }
     },
     "tiles": {
