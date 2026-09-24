@@ -28,25 +28,130 @@
         {%- endif -%}
       </a>
       <div class="rv-header__icons">
-        {%- if s.show_currency -%}<span class="rv-header__cur">{{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}</span>{%- endif -%}
+        {%- comment -%} Country / currency selector (Prestige popover) {%- endcomment -%}
+        {%- if s.show_currency and localization.available_countries.size > 1 -%}
+          <div class="rv-header__cur">
+            {%- render 'localization-selector', type: 'country', placement: 'bottom-end', show_country_name: s.show_country_name, show_country_flag: s.show_country_flag, id_prefix: 'rv-header' -%}
+          </div>
+        {%- elsif s.show_currency -%}
+          <span class="rv-header__cur">{{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}</span>
+        {%- endif -%}
+
         {%- if s.wishlist_url != blank -%}<a href="{{ s.wishlist_url }}" aria-label="Wishlist" class="rv-header__hide-sm">{% render 'reve-icon', icon: 'heart' %}</a>{%- else -%}<a href="#" aria-label="Wishlist" aria-controls="wishlist-drawer" class="rv-header__hide-sm">{% render 'reve-icon', icon: 'heart' %}</a>{%- endif -%}
         {%- if shop.customer_accounts_enabled -%}<a href="{{ routes.account_url }}" aria-label="Account" class="rv-header__hide-sm">{% render 'reve-icon', icon: 'account' %}</a>{%- endif -%}
-        <a href="{{ routes.search_url }}" aria-label="Search">{% render 'reve-icon', icon: 'search' %}</a>
-        <a href="{{ routes.cart_url }}" aria-label="Cart">{% render 'reve-icon', icon: 'cart' %}<span class="rv-cart-count" data-rv-cart-count>{% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}</span></a>
+
+        {%- comment -%} Search opens the Prestige predictive search dialog {%- endcomment -%}
+        <a href="{{ routes.search_url }}" aria-label="Search" aria-controls="header-search-{{ section.id }}">{% render 'reve-icon', icon: 'search' %}</a>
+
+        {%- comment -%} Cart opens the Prestige cart drawer {%- endcomment -%}
+        <a href="{{ routes.cart_url }}" aria-label="Cart" class="rv-header__cart" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>{% render 'reve-icon', icon: 'cart' %}<span class="rv-cart-count" data-rv-cart-count>{% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}</span></a>
       </div>
     </div>
   </div>
+
+  {%- render 'header-search' -%}
 </header>
+
+<style>
+  .rv-header__cur .localization-toggle {
+    font-family: var(--rv-mono, "JB Mono", monospace);
+    font-size: 12px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  .rv-header__cur .popover {
+    color: rgb(var(--text-color));
+  }
+</style>
+
+<script>
+  // Editorial add-to-cart (AJAX) -> refresh and open the Prestige cart drawer, like the rest of the theme
+  document.addEventListener('rv:cart-added', function () {
+    var root = (window.Shopify && Shopify.routes && Shopify.routes.root) || '/';
+    Promise.all([
+      fetch(root + 'cart.js').then(function (r) { return r.json(); }),
+      fetch(root + '?sections=cart-drawer').then(function (r) { return r.json(); }).catch(function () { return {}; })
+    ]).then(function (res) {
+      var cart = res[0]; cart.sections = res[1] || {};
+      document.documentElement.dispatchEvent(new CustomEvent('cart:change', { bubbles: true, detail: { baseEvent: 'variant:add', cart: cart } }));
+      document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+    });
+  });
+</script>
 {% schema %}
-{"name":"Reve · Header","tag":"div","class":"rv-sec-header","enabled_on":{"groups":["header"]},
-"settings":[
- {"type":"link_list","id":"menu","label":"Menu","default":"main-menu"},
- {"type":"image_picker","id":"logo","label":"Logo (dark)"},
- {"type":"image_picker","id":"logo_light","label":"Logo (white, for homepage overlay)"},
- {"type":"range","id":"logo_width","label":"Logo width","min":60,"max":300,"step":5,"unit":"px","default":150},
- {"type":"checkbox","id":"overlay_home","label":"Transparent header over homepage hero","default":true},
- {"type":"checkbox","id":"show_currency","label":"Show currency","default":true},
- {"type":"text","id":"wishlist_url","label":"Wishlist page link","default":"/pages/wishlist"}
-],
-"presets":[{"name":"Reve · Header"}]}
+{
+ "name": "Reve · Header",
+ "tag": "div",
+ "class": "rv-sec-header",
+ "enabled_on": {
+  "groups": [
+   "header"
+  ]
+ },
+ "settings": [
+  {
+   "type": "link_list",
+   "id": "menu",
+   "label": "Menu",
+   "default": "main-menu"
+  },
+  {
+   "type": "image_picker",
+   "id": "logo",
+   "label": "Logo (dark)"
+  },
+  {
+   "type": "image_picker",
+   "id": "logo_light",
+   "label": "Logo (white, for homepage overlay)"
+  },
+  {
+   "type": "range",
+   "id": "logo_width",
+   "label": "Logo width",
+   "min": 60,
+   "max": 300,
+   "step": 5,
+   "unit": "px",
+   "default": 150
+  },
+  {
+   "type": "checkbox",
+   "id": "overlay_home",
+   "label": "Transparent header over homepage hero",
+   "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "show_currency",
+   "label": "Show currency",
+   "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "show_country_name",
+   "label": "Show country name in the header (e.g. United States (USD $))",
+   "default": false
+  },
+  {
+   "type": "checkbox",
+   "id": "show_country_flag",
+   "label": "Show country flag",
+   "default": false
+  },
+  {
+   "type": "text",
+   "id": "wishlist_url",
+   "label": "Wishlist page link",
+   "default": "/pages/wishlist"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Header"
+  }
+ ]
+}
 {% endschema %}

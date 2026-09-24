@@ -42,7 +42,9 @@
         "overlay_home": true,
         "show_currency": true,
         "logo_width": 150,
-        "wishlist_url": ""
+        "wishlist_url": "",
+        "show_country_name": false,
+        "show_country_flag": false
       }
     }
   },
