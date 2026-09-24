@@ -296,3 +296,34 @@
 .rv-sticky .rv-btn{height:42px;padding:0 20px;font-size:11.5px}
 
 .rv-pdp__media[hidden]{display:none}
+
+/* ---- Theme button animation (Prestige "button transition") on editorial buttons ----
+   Hover: the fill sweeps out to one side and the button becomes its outline, exactly like .button in the theme.
+   Enabled by the theme setting "Show button transition" (body.features--button-transition). */
+.rv-btn{
+  --rvb-fill:var(--rv-ink);
+  --rvb-text:#FFFFFF;
+  --rvb-hover-text:var(--rv-ink);
+  background-color:transparent;
+  background-image:linear-gradient(var(--rvb-fill),var(--rvb-fill)),linear-gradient(transparent,transparent);
+  background-size:100% 100%,0 100%;
+  background-position:right center;
+  background-repeat:no-repeat;
+  border-color:var(--rvb-fill);
+  color:var(--rvb-text);
+  transition:background-size .45s cubic-bezier(.785,.135,.15,.86),background-position .45s step-end,color .45s cubic-bezier(.785,.135,.15,.86),border-color .45s cubic-bezier(.785,.135,.15,.86)
+}
+.rv a.rv-btn{color:var(--rvb-text)}
+.rv-btn:hover{background-color:transparent}
+.rv-btn--light{--rvb-fill:#FFFFFF;--rvb-text:var(--rv-ink);--rvb-hover-text:#FFFFFF;background:none;background-image:linear-gradient(#FFFFFF,#FFFFFF),linear-gradient(transparent,transparent);background-size:100% 100%,0 100%;background-position:right center;background-repeat:no-repeat}
+.rv-btn--light:hover{background-color:transparent}
+.rv-btn--outline{--rvb-fill:#FFFFFF;--rvb-text:#FFFFFF;--rvb-hover-text:var(--rv-ink);background-image:linear-gradient(transparent,transparent),linear-gradient(#FFFFFF,#FFFFFF);background-size:100% 100%,0 100%;background-position:left center}
+@media screen and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .features--button-transition .rv-btn:not([disabled]):hover{
+    background-position:left center;
+    background-size:0 100%,100% 100%;
+    color:var(--rvb-hover-text);
+    border-color:var(--rvb-fill)
+  }
+  .features--button-transition .rv-btn--outline:not([disabled]):hover{background-position:right center}
+}
