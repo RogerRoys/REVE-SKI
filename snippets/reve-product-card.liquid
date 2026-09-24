@@ -23,6 +23,26 @@
       {%- endif -%}
     </a>
     <button type="button" class="rv-wish" data-rv-wish="{{ product.handle }}" aria-pressed="false" aria-label="Add to wishlist">{% render 'reve-icon', icon: 'heart' %}</button>
+
+    {%- comment -%} Theme quick add "+" (Prestige): single variant adds directly, otherwise opens the quick buy modal {%- endcomment -%}
+    {%- if settings.show_quick_buy and product.available -%}
+      {%- if product.variants.size == 1 and product.selling_plan_groups.size == 0 -%}
+        {%- form 'product', product, is: 'product-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="product-card__quick-add-button rv-card__quick-add">
+            <span class="sr-only">{{ 'product.general.add_to_cart_button' | t }}</span>
+            {%- render 'icon' with 'plus' -%}
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        {%- capture quick_buy_id -%}product-quick-buy-{{ section.id }}-{{ block.id }}-rv-{{ product.id }}{%- endcapture -%}
+        <button type="button" aria-controls="{{ quick_buy_id }}" class="product-card__quick-add-button rv-card__quick-add">
+          <span class="sr-only">{{ 'product.general.choose_options' | t }}</span>
+          {%- render 'icon' with 'plus' -%}
+        </button>
+        <quick-buy-modal handle="{{ product.handle }}" class="quick-buy-modal modal" id="{{ quick_buy_id }}"></quick-buy-modal>
+      {%- endif -%}
+    {%- endif -%}
   </div>
   <a href="{{ product.url }}" class="rv-card__row">
     <span class="rv-card__name">{{ product.title | default: 'Product name' | escape }}</span>
