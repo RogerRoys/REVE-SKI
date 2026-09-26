@@ -54,7 +54,19 @@ Supported variables
             {%- endif -%}
           </div>
 
-          {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+          {%- if size_chart_content != blank and size_label_list contains option_downcase -%}
+            {%- comment -%} Editorial (Reve) size chart: pre-rendered content in a styled theme modal {%- endcomment -%}
+            {%- capture id -%}size-chart-{{ section.id }}-{{ block.id }}-{{ form_id }}{%- endcapture -%}
+
+            <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+              {{- 'product.general.size_chart' | t -}}
+            </button>
+
+            <x-modal id="{{ id | escape }}" class="modal modal--lg rv-chart-modal">
+              <span class="h5" slot="header">{{ size_chart_title | default: 'Size chart' }}</span>
+              {{ size_chart_content }}
+            </x-modal>
+          {%- elsif size_chart_page != blank and size_label_list contains option_downcase -%}
             {%- capture id -%}size-chart-{{ section.id }}-{{ block.id }}{%- endcapture -%}
 
             <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">

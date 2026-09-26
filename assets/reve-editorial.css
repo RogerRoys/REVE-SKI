@@ -492,3 +492,20 @@
   .rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:hover{text-decoration-color:currentColor}
   .rv-cta-invert .rv-btn{transition:background .3s ease,color .3s ease,border-color .3s ease}
 }
+
+/* ---- Size chart popup (theme x-modal, styled to the design) ---- */
+.rv-chart-modal{--modal-body-max-width:42rem;--modal-header-padding-block:18px;--modal-header-padding-inline:28px;--modal-body-padding-block:26px;--modal-body-padding-inline:28px}
+.rv-chart-modal::part(header){text-align:left;justify-items:start;border-block-end:1px solid rgba(25,25,25,.12)}
+.rv-chart-modal .h5{font-family:var(--rv-mono);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--rv-ink)}
+.rv-chart{display:grid;gap:18px;font-family:var(--rv-sans);color:var(--rv-ink)}
+.rv-chart__table{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(25,25,25,.14)}
+.rv-chart table{width:100%;min-width:440px;margin:0;border-collapse:collapse;border:0;font-size:13px;line-height:1.4}
+.rv-chart th{padding:12px 16px;text-align:left;font-family:var(--rv-mono);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:#F4F2EF;border:0;border-bottom:1px solid rgba(25,25,25,.14);white-space:nowrap}
+.rv-chart td{padding:12px 16px;border:0;border-bottom:1px solid rgba(25,25,25,.08);white-space:nowrap}
+.rv-chart tbody tr:last-child td{border-bottom:0}
+.rv-chart tbody tr:hover{background:#FAF9F7}
+.rv-chart td:first-child{font-family:var(--rv-mono);font-weight:700}
+.rv-chart h2,.rv-chart h3{margin:0 0 6px;font-family:var(--rv-mono);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.rv-chart p{margin:0;font-size:13.5px;line-height:1.6}
+.rv-chart__note{margin:0;font-size:12.5px;line-height:1.6;opacity:.7}
+@media (max-width:699px){.rv-chart-modal{--modal-header-padding-inline:20px;--modal-body-padding-inline:20px;--modal-body-padding-block:20px}.rv-chart table{min-width:400px}}

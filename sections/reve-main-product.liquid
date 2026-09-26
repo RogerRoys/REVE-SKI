@@ -3,9 +3,11 @@
   assign s = section.settings
   assign current = product.selected_or_first_available_variant
   assign form_id = 'product-form-' | append: product.id | append: '-' | append: section.id
-  assign chart_id = ''
+  assign chart_html = ''
   if s.show_chart
-    assign chart_id = 'rv-chart-' | append: section.id
+    capture chart_html
+      render 'reve-size-chart', chart_page: s.chart_page, chart_note: s.chart_note
+    endcapture
   endif
 -%}
 <section class="rv rv-main-product" data-rv-product="{{ section.id }}" data-rv-main>
@@ -69,7 +71,7 @@
 
       {%- form 'product', product, id: form_id, class: 'rv-pdp__form', novalidate: 'novalidate' -%}
                 <input type="hidden" name="id" value="{{ current.id }}">
-        {%- render 'variant-picker', product: product, form_id: form_id, update_url: true, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+        {%- render 'variant-picker', product: product, form_id: form_id, update_url: true, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_content: chart_html, size_chart_title: s.chart_title -%}
         <div class="rv-pdp__buy">
           <div class="rv-buy-row">
             <div class="rv-qty">
@@ -135,38 +137,9 @@
     </div>
   {%- endif -%}
 
-  {%- if s.show_chart -%}
-    <div class="rv rv-drawer" id="{{ chart_id }}" role="dialog" aria-modal="true" aria-labelledby="{{ chart_id }}-title" aria-hidden="true">
-      <div class="rv-drawer__overlay" data-rv-close></div>
-      <div class="rv-drawer__panel">
-        <div class="rv-drawer__head">
-          <h2 id="{{ chart_id }}-title">Size chart</h2>
-          <button type="button" class="rv-drawer__close" data-rv-close aria-label="Close">×</button>
-        </div>
-        <div class="rv-drawer__rte">
-          {%- if s.chart_page != blank -%}
-            {{ s.chart_page.content }}
-          {%- else -%}
-            <table>
-              <thead><tr><th>Size</th><th>US</th><th>Waist</th><th>Hips</th><th>Inseam</th></tr></thead>
-              <tbody>
-                <tr><td>P</td><td>00</td><td>23–24</td><td>33–34</td><td>31</td></tr>
-                <tr><td>XS</td><td>0–2</td><td>24–25</td><td>34–35</td><td>31.5</td></tr>
-                <tr><td>S</td><td>4–6</td><td>26–27</td><td>36–37</td><td>32</td></tr>
-                <tr><td>M</td><td>8–10</td><td>28–29</td><td>38–39</td><td>32</td></tr>
-                <tr><td>L</td><td>12–14</td><td>30–32</td><td>40–42</td><td>32.5</td></tr>
-                <tr><td>XL</td><td>16</td><td>33–34</td><td>43–44</td><td>32.5</td></tr>
-              </tbody>
-            </table>
-          {%- endif -%}
-        </div>
-        {%- if s.chart_note != blank -%}<p class="rv-drawer__note">{{ s.chart_note | escape }}</p>{%- endif -%}
-      </div>
-    </div>
-  {%- endif -%}
 </section>
 {%- comment -%} Theme quick buy: the "+" on product cards fetches this product page and reads #quick-buy-content {%- endcomment -%}
-{%- render 'reve-quick-buy', product: product -%}
+{%- render 'reve-quick-buy', product: product, size_chart_content: chart_html, size_chart_title: s.chart_title -%}
 
 {% schema %}
 {
@@ -204,6 +177,12 @@
    "id": "show_chart",
    "label": "Show size chart link",
    "default": true
+  },
+  {
+   "type": "text",
+   "id": "chart_title",
+   "label": "Popup title",
+   "default": "Size chart"
   },
   {
    "type": "page",

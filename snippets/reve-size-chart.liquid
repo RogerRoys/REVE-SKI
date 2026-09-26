@@ -1,0 +1,25 @@
+{%- comment -%}
+Size chart content for the editorial product page / quick buy modal.
+Params: chart_page (page object, optional), chart_note (text, optional)
+Outputs the size chart page content, or a built-in placeholder table when no page is set.
+{%- endcomment -%}
+<div class="rv-chart">
+  <div class="rv-chart__table">
+    {%- if chart_page != blank -%}
+      {{ chart_page.content }}
+    {%- else -%}
+      <table>
+        <thead><tr><th>Size</th><th>US</th><th>Waist</th><th>Hips</th><th>Inseam</th></tr></thead>
+        <tbody>
+          <tr><td>P</td><td>00</td><td>23–24</td><td>33–34</td><td>31</td></tr>
+          <tr><td>XS</td><td>0–2</td><td>24–25</td><td>34–35</td><td>31.5</td></tr>
+          <tr><td>S</td><td>4–6</td><td>26–27</td><td>36–37</td><td>32</td></tr>
+          <tr><td>M</td><td>8–10</td><td>28–29</td><td>38–39</td><td>32</td></tr>
+          <tr><td>L</td><td>12–14</td><td>30–32</td><td>40–42</td><td>32.5</td></tr>
+          <tr><td>XL</td><td>16</td><td>33–34</td><td>43–44</td><td>32.5</td></tr>
+        </tbody>
+      </table>
+    {%- endif -%}
+  </div>
+  {%- if chart_note != blank -%}<p class="rv-chart__note">{{ chart_note | escape }}</p>{%- endif -%}
+</div>

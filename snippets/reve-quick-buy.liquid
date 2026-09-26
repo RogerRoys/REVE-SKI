@@ -35,7 +35,7 @@ renders the info column directly (the editorial section has no title/price/varia
           </div>
 
           <div class="product-info__block-item" data-block-type="variant-picker">
-            {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+            {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_content: size_chart_content, size_chart_title: size_chart_title -%}
           </div>
 
           <div class="product-info__block-item" data-block-type="buy-buttons">
