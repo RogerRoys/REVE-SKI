@@ -378,3 +378,5 @@
   .rv-footer__col--collapsible.is-open a{display:block}
   .rv-footer__col--collapsible.is-open{padding-bottom:12px}
 }
+
+@media screen and (max-width:749px){.rv-hero__media img{object-position:var(--rv-hero-pos-m,var(--rv-hero-pos,50% 50%))}}

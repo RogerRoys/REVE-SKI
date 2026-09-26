@@ -4,10 +4,20 @@
   <div class="rv-hero__media">
     {%- if s.video != blank -%}
       {{ s.video | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, image_size: '1920x' }}
-    {%- elsif s.image != blank -%}
-      <img src="{{ s.image | image_url: width: 1920 }}" srcset="{{ s.image | image_url: width: 750 }} 750w, {{ s.image | image_url: width: 1100 }} 1100w, {{ s.image | image_url: width: 1500 }} 1500w, {{ s.image | image_url: width: 1920 }} 1920w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | escape }}" fetchpriority="high">
-    {%- elsif s.image_asset != blank -%}
-      <img src="{{ s.image_asset | asset_url }}" sizes="100vw" width="1920" height="1280" alt="{{ s.heading | escape }}" fetchpriority="high">
+    {%- elsif s.image != blank or s.image_asset != blank -%}
+      <picture>
+        {%- comment -%} Mobile image (picked, or from theme assets) — falls back to the desktop image {%- endcomment -%}
+        {%- if s.mobile_image != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ s.mobile_image | image_url: width: 750 }} 750w, {{ s.mobile_image | image_url: width: 1080 }} 1080w, {{ s.mobile_image | image_url: width: 1500 }} 1500w" sizes="100vw" width="{{ s.mobile_image.width }}" height="{{ s.mobile_image.height }}">
+        {%- elsif s.mobile_image_asset != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ s.mobile_image_asset | asset_url }}">
+        {%- endif -%}
+        {%- if s.image != blank -%}
+          <img src="{{ s.image | image_url: width: 1920 }}" srcset="{{ s.image | image_url: width: 750 }} 750w, {{ s.image | image_url: width: 1100 }} 1100w, {{ s.image | image_url: width: 1500 }} 1500w, {{ s.image | image_url: width: 1920 }} 1920w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | escape }}" fetchpriority="high" style="--rv-hero-pos-m:{{ s.focal_mobile | default: s.focal | default: '50% 50%' }}">
+        {%- else -%}
+          <img src="{{ s.image_asset | asset_url }}" sizes="100vw" width="1920" height="1280" alt="{{ s.heading | escape }}" fetchpriority="high" style="--rv-hero-pos-m:{{ s.focal_mobile | default: s.focal | default: '50% 50%' }}">
+        {%- endif -%}
+      </picture>
     {%- else -%}
       {{ 'lifestyle-2' | placeholder_svg_tag: 'rv-placeholder' }}
     {%- endif -%}
@@ -45,6 +55,25 @@
    "id": "image_asset",
    "label": "Fallback image file (assets)",
    "info": "File name in the theme assets folder, used only when no image is picked above"
+  },
+  {
+   "type": "image_picker",
+   "id": "mobile_image",
+   "label": "Mobile image",
+   "info": "Portrait crop for phones (e.g. 1080×1620). Leave empty to reuse the desktop image."
+  },
+  {
+   "type": "text",
+   "id": "mobile_image_asset",
+   "label": "Fallback mobile image file (assets)",
+   "info": "Used only when no mobile image is picked"
+  },
+  {
+   "type": "text",
+   "id": "focal_mobile",
+   "label": "Mobile image position",
+   "default": "50% 40%",
+   "info": "e.g. 50% 30% (horizontal vertical)"
   },
   {
    "type": "video",

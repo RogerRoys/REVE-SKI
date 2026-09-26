@@ -18,7 +18,9 @@
         "heading": "The Western Edit",
         "text": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
         "button_label": "Shop Now",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/all",
+        "mobile_image_asset": "hero-western-edit-mobile.jpg",
+        "focal_mobile": "50% 40%"
       }
     },
     "tiles": {
