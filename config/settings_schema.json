@@ -459,6 +459,62 @@
         "default": "normal"
       },
       {
+        "type": "select",
+        "id": "rv_reveal_style",
+        "label": "Section reveal style",
+        "options": [
+          {
+            "value": "fade-up",
+            "label": "Fade up (soft rise)"
+          },
+          {
+            "value": "wipe",
+            "label": "Wipe (editorial mask reveal)"
+          },
+          {
+            "value": "blur",
+            "label": "Focus (blur → sharp)"
+          },
+          {
+            "value": "scale",
+            "label": "Scale in (images grow into place)"
+          },
+          {
+            "value": "lines",
+            "label": "Lines (text slides up line by line)"
+          }
+        ],
+        "default": "wipe"
+      },
+      {
+        "type": "select",
+        "id": "rv_cta_hover",
+        "label": "CTA / button hover",
+        "options": [
+          {
+            "value": "lift",
+            "label": "Lift (soft shadow)"
+          },
+          {
+            "value": "sweep",
+            "label": "Sweep (fill slides across)"
+          },
+          {
+            "value": "invert",
+            "label": "Invert (outline ↔ solid)"
+          },
+          {
+            "value": "arrow",
+            "label": "Arrow slide (→ moves in)"
+          },
+          {
+            "value": "underline",
+            "label": "Underline draw (text links)"
+          }
+        ],
+        "default": "sweep"
+      },
+      {
         "type": "header",
         "content": "Wishlist"
       },

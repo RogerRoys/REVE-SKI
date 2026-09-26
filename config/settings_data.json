@@ -61,7 +61,9 @@
     "content_for_index": [],
     "show_selected_option_value": true,
     "rv_animations": true,
-    "rv_animation_speed": "normal"
+    "rv_animation_speed": "normal",
+    "rv_reveal_style": "wipe",
+    "rv_cta_hover": "sweep"
   },
   "presets": {
     "Allure": {
