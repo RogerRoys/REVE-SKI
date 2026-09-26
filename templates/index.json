@@ -13,12 +13,23 @@
       "type": "reve-hero",
       "settings": {
         "transparent_header": true,
+        "image": "shopify://shop_images/15021.jpg",
         "image_asset": "rv-hero-western.jpg",
         "focal": "50% 45%",
         "heading": "The Western Edit",
         "text": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
         "button_label": "Shop Now",
         "button_link": "shopify://collections/all",
+        "rv_heading_size": 82,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": "",
         "mobile_image_asset": "hero-western-edit-mobile.jpg",
         "focal_mobile": "50% 40%"
       }
@@ -56,7 +67,17 @@
         "t2"
       ],
       "settings": {
-        "numbers": true
+        "numbers": true,
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     },
     "featured": {
@@ -65,7 +86,17 @@
         "product": "cleo-jacket",
         "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
-        "show_price": false
+        "show_price": false,
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     },
     "arrivals": {
@@ -76,7 +107,17 @@
         "collection": "new-arrivals",
         "limit": 8,
         "show_count": true,
-        "anchor": "arrivals"
+        "anchor": "arrivals",
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     },
     "about": {
@@ -87,7 +128,17 @@
         "heading": "Designed in the city. Made for the mountains.",
         "button_label": "About us",
         "button_link": "shopify://pages/about-us",
-        "anchor": "about"
+        "anchor": "about",
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     },
     "services": {
@@ -127,7 +178,17 @@
         "s3"
       ],
       "settings": {
-        "numbers": true
+        "numbers": true,
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     },
     "newsletter": {
@@ -137,7 +198,17 @@
         "text": "Sign up for early access to exclusive launches.",
         "button_label": "Subscribe",
         "legal": "<p>By registering, you accept the <a href=\"/policies/terms-of-service\">Terms of Use</a> and our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
-        "success": "Thanks for subscribing."
+        "success": "Thanks for subscribing.",
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     }
   },
