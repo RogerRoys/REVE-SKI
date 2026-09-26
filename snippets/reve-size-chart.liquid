@@ -3,8 +3,8 @@ Size chart content for the editorial product page / quick buy modal.
 Params: chart_page (page object, optional), chart_note (text, optional)
 Outputs the size chart page content, or a built-in placeholder table when no page is set.
 {%- endcomment -%}
-<div class="rv-chart">
-  <div class="rv-chart__table">
+<div>
+  <div>
     {%- if chart_page != blank -%}
       {{ chart_page.content }}
     {%- else -%}
@@ -21,5 +21,5 @@ Outputs the size chart page content, or a built-in placeholder table when no pag
       </table>
     {%- endif -%}
   </div>
-  {%- if chart_note != blank -%}<p class="rv-chart__note">{{ chart_note | escape }}</p>{%- endif -%}
+  {%- if chart_note != blank -%}<p>{{ chart_note | escape }}</p>{%- endif -%}
 </div>
