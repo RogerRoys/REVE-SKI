@@ -430,6 +430,36 @@
     "settings": [
       {
         "type": "header",
+        "content": "Editorial animations (option-01)"
+      },
+      {
+        "type": "checkbox",
+        "id": "rv_animations",
+        "label": "Enable subtle animations (reveal on scroll, image hover, button micro-interactions)",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "rv_animation_speed",
+        "label": "Animation speed",
+        "options": [
+          {
+            "value": "fast",
+            "label": "Fast"
+          },
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "slow",
+            "label": "Slow"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "header",
         "content": "Wishlist"
       },
       {

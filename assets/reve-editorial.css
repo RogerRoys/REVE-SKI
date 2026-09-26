@@ -385,3 +385,37 @@
 .rv-card__swatch{width:14px;height:14px;padding:0;border-radius:50%;border:1px solid rgba(0,0,0,.18);cursor:pointer;box-shadow:0 0 0 2px transparent;transition:box-shadow .15s}
 .rv-card__swatch[aria-pressed="true"]{box-shadow:0 0 0 1px #fff,0 0 0 2px var(--rv-ink)}
 .rv-card__media img{transition:opacity .2s}
+
+
+/* ================= Editorial animations (Theme settings > Editorial animations) ================= */
+@media (prefers-reduced-motion: no-preference){
+  /* Reveal on scroll: quiet fade + 18px rise, staggered for grids */
+  .rv-anim [data-rv-reveal]{opacity:0;transform:translateY(18px);transition:opacity var(--rv-anim-d,.65s) cubic-bezier(.22,.61,.36,1),transform var(--rv-anim-d,.65s) cubic-bezier(.22,.61,.36,1);transition-delay:var(--rv-reveal-delay,0s)}
+  .rv-anim [data-rv-reveal].is-in{opacity:1;transform:none}
+  .rv-anim .rv-hero [data-rv-reveal]{transform:translateY(24px)}
+
+  /* Media: slow editorial zoom on hover (tiles, cards, banner, product media) */
+  .rv-anim .rv-tile__media img,.rv-anim .rv-card__media img,.rv-anim .rv-banner__media img,.rv-anim .rv-pdp__media img{transition:transform 1.1s cubic-bezier(.22,.61,.36,1),opacity .3s}
+  .rv-anim .rv-tile:hover .rv-tile__media img,.rv-anim .rv-card:hover .rv-card__media img:not(.rv-card__alt){transform:scale(1.035)}
+  .rv-anim .rv-pdp__media:hover img{transform:scale(1.02)}
+
+  /* Buttons: gentle lift + arrow nudge */
+  .rv-anim .rv-btn{transition:background .25s,color .25s,transform .25s cubic-bezier(.22,.61,.36,1),box-shadow .25s}
+  .rv-anim .rv-btn:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 8px 20px -12px rgba(0,0,0,.45)}
+  .rv-anim .rv-btn:not(:disabled):active{transform:translateY(0);box-shadow:none}
+  .rv-anim .rv-tile__cta,.rv-anim .rv-link{transition:letter-spacing .3s,opacity .3s}
+  .rv-anim .rv-tile:hover .rv-tile__cta{letter-spacing:.16em}
+
+  /* Underline links grow from the left (nav, footer, text links) */
+  .rv-anim .rv-footer__col a,.rv-anim .rv-service a,.rv-anim .rv-news__legal a{background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .35s cubic-bezier(.22,.61,.36,1);text-decoration:none}
+  .rv-anim .rv-footer__col a:hover,.rv-anim .rv-service a:hover,.rv-anim .rv-news__legal a:hover{background-size:100% 1px}
+
+  /* Wishlist heart pop, swatch ring, accordion, announcement */
+  .rv-anim .rv-wish svg,.rv-anim .rv-wish-link svg{transition:transform .25s cubic-bezier(.34,1.56,.64,1),fill .2s}
+  .rv-anim .rv-wish[aria-pressed="true"] svg,.rv-anim .rv-wish-link[aria-pressed="true"] svg{transform:scale(1.15)}
+  .rv-anim .rv-card__swatch{transition:transform .2s,box-shadow .2s}
+  .rv-anim .rv-card__swatch:hover{transform:scale(1.18)}
+  .rv-anim .rv-acc__body{animation:rvFade var(--rv-anim-d,.65s) ease both}
+  .rv-anim .rv-footer__col--collapsible.is-open a{animation:rvFade .35s ease both}
+  @keyframes rvFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+}

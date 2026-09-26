@@ -7,3 +7,7 @@
 </style>
 {{ 'reve-editorial.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'reve-editorial.js' | asset_url }}" defer="defer"></script>
+{%- if settings.rv_animations -%}
+<style>:root{--rv-anim-d:{% case settings.rv_animation_speed %}{% when 'fast' %}.45s{% when 'slow' %}.9s{% else %}.65s{% endcase %}}</style>
+<script>document.documentElement.classList.add('rv-anim');</script>
+{%- endif -%}

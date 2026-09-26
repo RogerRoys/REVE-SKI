@@ -208,5 +208,30 @@
     if (sw.dataset.url) card.querySelectorAll('a[href]').forEach(function (a) { if (a.href.indexOf('/products/') !== -1) a.href = sw.dataset.url; });
   });
 
+  // Reveal on scroll for editorial sections (staggered inside grids); off when animations are disabled
+  (function () {
+    if (!document.documentElement.classList.contains('rv-anim') || !('IntersectionObserver' in window)) return;
+    var singles = '.rv-hero__stack, .rv-feat__media, .rv-feat__info, .rv-banner__content, .rv-news__intro, .rv-news__form, .rv-carousel__head, .rv-tech__intro, .rv-tech__media, .rv-tech__list, .rv-pdp__info';
+    var groups = '.rv-tiles, .rv-services, .rv-carousel__track, .rv-pdp__gallery, .rv-footer__top';
+    function mark() {
+      document.querySelectorAll(singles).forEach(function (el) { if (!el.hasAttribute('data-rv-reveal')) el.setAttribute('data-rv-reveal', ''); });
+      document.querySelectorAll(groups).forEach(function (g) {
+        Array.prototype.forEach.call(g.children, function (child, i) {
+          if (child.hasAttribute('data-rv-reveal')) return;
+          child.setAttribute('data-rv-reveal', ''); child.style.setProperty('--rv-reveal-delay', Math.min(i, 6) * 0.08 + 's');
+        });
+      });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    function observe() { document.querySelectorAll('[data-rv-reveal]:not(.is-in)').forEach(function (el) { io.observe(el); }); }
+    function run() { mark(); observe(); }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+    document.addEventListener('shopify:section:load', run);
+    // never leave content hidden if something goes wrong
+    setTimeout(function () { document.querySelectorAll('[data-rv-reveal]:not(.is-in)').forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < window.innerHeight) el.classList.add('is-in'); }); }, 1500);
+  })();
+
   window.ReveWishlist = { read: read, has: has, toggle: toggle, remove: remove };
 })();
