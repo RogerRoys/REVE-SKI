@@ -41,9 +41,23 @@
         "ship"
       ],
       "settings": {
+        "collapse_mobile": true,
         "brand": "Reve Ski",
+        "about": "<p>Merging urban elegance with alpine functionality. Founded in 2023, we're redefining women's ski wear for the modern adventurer.</p>",
+        "instagram": "https://www.instagram.com/reve.ski?igsh=MWFrbGVzNm1jNW5zMg==",
+        "xhs": "https://www.xiaohongshu.com/user/profile/64fed1e700000000060315cd?xhsshare=CopyLink&amp;appuid=64fed1e700000000060315cd&amp;apptime=1729937034&amp;share_id=26c9c76a713644c2b66e1d8cb70454e6",
         "copyright": "Reve Ski | Urban Elegance , Alpine Excellence",
-        "show_payments": true
+        "show_payments": true,
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     }
   },
