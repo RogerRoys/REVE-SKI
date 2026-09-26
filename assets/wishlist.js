@@ -210,7 +210,7 @@
 
   // Reveal on scroll for editorial sections (staggered inside grids); off when animations are disabled
   (function () {
-    if (!document.documentElement.classList.contains('rv-anim') || !('IntersectionObserver' in window)) return;
+    if (!document.documentElement.classList.contains('rv-anim') || document.documentElement.classList.contains('rv-reveal-none') || !('IntersectionObserver' in window)) return;
     var singles = '.rv-hero__stack, .rv-feat__media, .rv-feat__info, .rv-banner__content, .rv-news__intro, .rv-news__form, .rv-carousel__head, .rv-tech__intro, .rv-tech__media, .rv-tech__list, .rv-pdp__info';
     var groups = '.rv-tiles, .rv-services, .rv-track, .rv-pdp__gallery, .rv-footer__top';
     function mark() {

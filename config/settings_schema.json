@@ -435,7 +435,7 @@
       {
         "type": "checkbox",
         "id": "rv_animations",
-        "label": "Enable subtle animations (reveal on scroll, image hover, button micro-interactions)",
+        "label": "Enable CTA / button hover animation",
         "default": true
       },
       {
@@ -464,6 +464,10 @@
         "label": "Section reveal style",
         "options": [
           {
+            "value": "none",
+            "label": "None (no section animation)"
+          },
+          {
             "value": "fade-up",
             "label": "Fade up (soft rise)"
           },
@@ -484,7 +488,7 @@
             "label": "Lines (text slides up line by line)"
           }
         ],
-        "default": "wipe"
+        "default": "none"
       },
       {
         "type": "select",
@@ -512,7 +516,7 @@
             "label": "Underline draw (text links)"
           }
         ],
-        "default": "sweep"
+        "default": "invert"
       },
       {
         "type": "header",
