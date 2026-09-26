@@ -1,69 +1,14 @@
 {%- comment -%}
-Editorial product card. Colour swatches use the Prestige product-card mechanism: radio swatches inside a
-fieldset[data-option-position]; theme.js (ProductCard) fetches the product JSON, swaps the primary image
-(.product-card__image--primary) to the matching variant's image and updates the product links.
-{%- endcomment -%}
-{%- liquid
-  assign color_opt = nil
-  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
-  for color_label in color_label_list
-    if product.options_by_name[color_label] != blank
-      assign color_opt = product.options_by_name[color_label]
-      break
-    endif
-  endfor
-  assign main_media = product.featured_media
-  assign alt_media = product.media[main_media.position] | default: product.media[1]
--%}
-<product-card class="rv-card" handle="{{ product.handle | escape }}">
-  <div class="rv-card__media">
-    <a href="{{ product.url }}" tabindex="-1" aria-hidden="true">
-      {%- if main_media -%}
-        <img class="product-card__image--primary" src="{{ main_media | image_url: width: 900 }}" srcset="{{ main_media | image_url: width: 450 }} 450w, {{ main_media | image_url: width: 700 }} 700w, {{ main_media | image_url: width: 900 }} 900w" sizes="(min-width: 990px) 25vw, (min-width: 561px) 50vw, 78vw" width="{{ main_media.preview_image.width }}" height="{{ main_media.preview_image.height }}" alt="{{ product.title | escape }}" loading="lazy">
-        {%- if alt_media and alt_media != main_media -%}
-          <img class="rv-card__alt product-card__image--secondary" src="{{ alt_media | image_url: width: 900 }}" srcset="{{ alt_media | image_url: width: 450 }} 450w, {{ alt_media | image_url: width: 900 }} 900w" sizes="(min-width: 990px) 25vw, 50vw" width="{{ alt_media.preview_image.width }}" height="{{ alt_media.preview_image.height }}" alt="" loading="lazy">
-        {%- endif -%}
-      {%- else -%}
-        {{ 'product-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}
-      {%- endif -%}
-    </a>
-    <button type="button" class="rv-wish" data-rv-wish="{{ product.handle }}" aria-pressed="false" aria-label="Add to wishlist">{% render 'reve-icon', icon: 'heart' %}</button>
+----------------------------------------------------------------------------------------------------------------------
+EDITORIAL PRODUCT CARD
+----------------------------------------------------------------------------------------------------------------------
 
-    {%- comment -%} Theme quick add "+" (Prestige): single variant adds directly, otherwise opens the quick buy modal {%- endcomment -%}
-    {%- if settings.show_quick_buy and product.available -%}
-      {%- if product.variants.size == 1 and product.selling_plan_groups.size == 0 -%}
-        {%- form 'product', product, is: 'product-form' -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <button type="submit" class="product-card__quick-add-button rv-card__quick-add">
-            <span class="sr-only">{{ 'product.general.add_to_cart_button' | t }}</span>
-            {%- render 'icon' with 'plus' -%}
-          </button>
-        {%- endform -%}
-      {%- else -%}
-        {%- capture quick_buy_id -%}product-quick-buy-{{ section.id }}-{{ block.id }}-rv-{{ product.id }}{%- endcapture -%}
-        <button type="button" aria-controls="{{ quick_buy_id }}" class="product-card__quick-add-button rv-card__quick-add">
-          <span class="sr-only">{{ 'product.general.choose_options' | t }}</span>
-          {%- render 'icon' with 'plus' -%}
-        </button>
-        <quick-buy-modal handle="{{ product.handle }}" class="quick-buy-modal modal" id="{{ quick_buy_id }}"></quick-buy-modal>
-      {%- endif -%}
-    {%- endif -%}
-  </div>
-  <a href="{{ product.url }}" class="rv-card__row">
-    <span class="rv-card__name">{{ product.title | default: 'Product name' | escape }}</span>
-    <span class="rv-card__price">{% if product.price_varies %}From {% endif %}{{ product.price | money }}</span>
-  </a>
-  {%- if color_opt -%}
-    {%- capture swatch_name -%}swatch-{{ section.id }}-{{ product.id }}-{{ color_opt.position }}{%- endcapture -%}
-    <fieldset class="rv-card__swatches" data-option-position="{{ color_opt.position }}">
-      {%- for option_value in color_opt.values -%}
-        {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == color_opt.selected_value -%}
-          {%- assign selected = true -%}
-        {%- else -%}
-          {%- assign selected = false -%}
-        {%- endif -%}
-        {%- render 'swatch' with 'color', value: option_value, name: swatch_name, selected: selected, size: 'sm', id_prefix: 'rv' -%}
-      {%- endfor -%}
-    </fieldset>
-  {%- endif -%}
-</product-card>
+Wraps the theme's own product card (snippets/product-card.liquid) so the editorial collection sections keep every
+Prestige card function as-is: colour swatches that switch the image to the variant image (hover + click), secondary
+image on hover, quick add "+" / quick buy modal, badges, price display. Layout is restyled to the design in
+assets/reve-editorial.css (.rv-track .product-card). The wishlist heart is added on top.
+{%- endcomment -%}
+<div class="rv-card">
+  {%- render 'product-card', product: product, show_badges: true, show_vendor: false, show_rating: false, show_secondary_image: true, quick_buy_context: 'rv' -%}
+  <button type="button" class="rv-wish" data-rv-wish="{{ product.handle }}" aria-pressed="false" aria-label="Add to wishlist">{% render 'reve-icon', icon: 'heart' %}</button>
+</div>
