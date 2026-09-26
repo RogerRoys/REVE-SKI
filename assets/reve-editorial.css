@@ -162,7 +162,6 @@
 .rv-card__name{font-family:var(--rv-mono);font-weight:700;font-size:13.5px;letter-spacing:.02em;text-transform:uppercase}
 .rv-card__price{font-size:13px;letter-spacing:.06em;white-space:nowrap}
 .rv-card__swatches{display:flex;gap:6px}
-.rv-card__swatches span{width:12px;height:12px;border-radius:50%;border:1px solid rgba(25,25,25,.3);background-size:cover}
 
 /* Banner */
 .rv-banner{position:relative;min-height:clamp(520px,80vh,900px);overflow:hidden;background:var(--rv-ink);color:#FFFFFF;display:flex;align-items:flex-end}
@@ -382,8 +381,11 @@
 @media screen and (max-width:749px){.rv-hero__media img{object-position:var(--rv-hero-pos-m,var(--rv-hero-pos,50% 50%))}}
 
 /* Card colour swatches (interactive, like the theme product cards) */
-.rv-card__swatch{width:14px;height:14px;padding:0;border-radius:50%;border:1px solid rgba(0,0,0,.18);cursor:pointer;box-shadow:0 0 0 2px transparent;transition:box-shadow .15s}
-.rv-card__swatch[aria-pressed="true"]{box-shadow:0 0 0 1px #fff,0 0 0 2px var(--rv-ink)}
+/* Theme (Prestige) colour swatches inside the editorial card, sized to the design */
+fieldset.rv-card__swatches{border:0;margin:0;padding:0;min-width:0}
+.rv-card .color-swatch{--swatch-size:16px;--swatch-offset:2px;--swatch-border-size:1px;border-radius:50%;cursor:pointer}
+.rv-card .color-swatch.border{box-shadow:inset 0 0 0 var(--swatch-offset) #fff,inset 0 0 0 calc(var(--swatch-offset) + 1px) rgba(0,0,0,.18)}
+.rv-card :checked + .color-swatch{border-color:var(--rv-ink)}
 .rv-card__media img{transition:opacity .2s}
 
 
@@ -413,8 +415,8 @@
   /* Wishlist heart pop, swatch ring, accordion, announcement */
   .rv-anim:not(.rv-reveal-none) .rv-wish svg,.rv-anim:not(.rv-reveal-none) .rv-wish-link svg{transition:transform .25s cubic-bezier(.34,1.56,.64,1),fill .2s}
   .rv-anim:not(.rv-reveal-none) .rv-wish[aria-pressed="true"] svg,.rv-anim:not(.rv-reveal-none) .rv-wish-link[aria-pressed="true"] svg{transform:scale(1.15)}
-  .rv-anim:not(.rv-reveal-none) .rv-card__swatch{transition:transform .2s,box-shadow .2s}
-  .rv-anim:not(.rv-reveal-none) .rv-card__swatch:hover{transform:scale(1.18)}
+  .rv-anim:not(.rv-reveal-none) .rv-card .color-swatch{transition:transform .2s,border-color .2s}
+  .rv-anim:not(.rv-reveal-none) .rv-card .color-swatch:hover{transform:scale(1.18)}
   .rv-anim:not(.rv-reveal-none) .rv-acc__body{animation:rvFade var(--rv-anim-d,.65s) ease both}
   .rv-anim:not(.rv-reveal-none) .rv-footer__col--collapsible.is-open a{animation:rvFade .35s ease both}
   @keyframes rvFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
