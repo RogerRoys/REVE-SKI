@@ -43,6 +43,7 @@
             "image_asset": "rv-tile-new-arrivals-1.jpg",
             "image_asset_2": "rv-tile-new-arrivals-2.jpg",
             "image_asset_3": "rv-tile-new-arrivals-3.jpg",
+            "video": "shopify://files/videos/C0300.mp4",
             "focal": "50% 22%",
             "title": "New Arrivals",
             "cta": "Shop now",
