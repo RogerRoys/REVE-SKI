@@ -27,7 +27,7 @@
         <button type="button" class="rv-arrow" data-rv-dir="1" aria-label="Next">{% render 'reve-icon', icon: 'next' %}</button>
       </div>
     </div>
-    <div class="rv-track" data-rv-track style="--rv-card-fit: {{ s.card_image_fit | default: 'contain' }}; --rv-card-ratio: {{ s.card_image_ratio | default: '3 / 4' }}">
+    <div class="rv-track" data-rv-track data-rv-card-ratio="{{ s.card_image_ratio | default: 'auto' }}" style="--rv-card-fit: {{ s.card_image_fit | default: 'contain' }}; --rv-card-ratio: {{ s.card_image_ratio | default: 'auto' }}">
       {%- for p in items limit: s.limit -%}{%- render 'reve-product-card', product: p -%}{%- endfor -%}
     </div>
   {%- elsif request.design_mode and use_recs == false -%}
@@ -90,7 +90,7 @@
   {
    "type": "select",
    "id": "card_image_fit",
-   "label": "Image fit",
+   "label": "Image fit (when a box ratio is set)",
    "default": "contain",
    "options": [
     { "value": "contain", "label": "Fit (show the whole image)" },
@@ -101,12 +101,12 @@
    "type": "select",
    "id": "card_image_ratio",
    "label": "Image box ratio",
-   "default": "3 / 4",
+   "default": "auto",
    "options": [
+    { "value": "auto", "label": "Natural (image as is)" },
     { "value": "3 / 4", "label": "Portrait 3:4" },
     { "value": "4 / 5", "label": "Portrait 4:5" },
-    { "value": "1 / 1", "label": "Square" },
-    { "value": "auto", "label": "Natural (image height)" }
+    { "value": "1 / 1", "label": "Square" }
    ]
   },
   {
