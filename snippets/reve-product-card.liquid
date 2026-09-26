@@ -54,17 +54,21 @@
       {%- assign color_index = color_opt.position | minus: 1 -%}
       {%- for value in color_opt.values -%}
         {%- liquid
+          comment
+            `value` is a product_option_value object on current Liquid (string on older stores); compare by name
+          endcomment
+          assign value_name = value.name | default: value
           assign hex = ''
           if value.swatch.color
             assign hex = value.swatch.color
           else
             capture hex
-              render 'reve-color-hex', name: value
+              render 'reve-color-hex', name: value_name
             endcapture
           endif
           assign variant_for_value = nil
           for v in product.variants
-            if v.options[color_index] == value
+            if v.options[color_index] == value_name
               assign variant_for_value = v
               break
             endif
@@ -75,8 +79,8 @@
               No image assigned to the variant: fall back to a product image whose alt names this colour
               (theme convention "#Color_Black", or a plain "Black" alt)
             endcomment
-            assign value_key = value | downcase | strip
-            assign tag_key = color_opt.name | append: '_' | append: value | downcase | replace: ' ', '_'
+            assign value_key = value_name | downcase | strip
+            assign tag_key = color_opt.name | append: '_' | append: value_name | downcase | replace: ' ', '_'
             for m in product.media
               assign m_alt = m.alt | downcase
               if m_alt contains tag_key or m_alt contains value_key
@@ -86,11 +90,11 @@
             endfor
           endif
           assign is_current = false
-          if product.selected_or_first_available_variant.options[color_index] == value
+          if product.selected_or_first_available_variant.options[color_index] == value_name
             assign is_current = true
           endif
         -%}
-        <button type="button" class="rv-card__swatch" title="{{ value | escape }}" aria-label="{{ value | escape }}" aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
+        <button type="button" class="rv-card__swatch" title="{{ value_name | escape }}" aria-label="{{ value_name | escape }}" aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
           {% if media_for_value %}data-img="{{ media_for_value | image_url: width: 900 }}" data-img-450="{{ media_for_value | image_url: width: 450 }}" data-img-700="{{ media_for_value | image_url: width: 700 }}"{% endif %}
           {% if variant_for_value %}data-url="{{ product.url }}?variant={{ variant_for_value.id }}" data-price="{{ variant_for_value.price | money }}"{% endif %}
           style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 32 }});{% endif %}"></button>
