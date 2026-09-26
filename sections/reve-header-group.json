@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Reve header",
@@ -31,20 +40,20 @@
       ],
       "settings": {
         "enable_sticky": false,
+        "show_dots": true,
+        "show_pause_button": true,
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 11,
         "mobile_font_size": 10,
-        "background": "#000000",
-        "text_color": "#ffffff",
-        "show_dots": true,
-        "show_pause_button": true,
         "text_font": "body",
         "uppercase": false,
         "letter_spacing": 1,
         "vertical_padding": 9,
         "dot_size": 4,
-        "controls_color": "#ffffff"
+        "controls_color": "#ffffff",
+        "background": "#000000",
+        "text_color": "#ffffff"
       }
     },
     "header": {
@@ -53,35 +62,41 @@
         "enable_sticky": true,
         "show_separation_border": false,
         "reduce_padding": true,
+        "logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT_1d365d7b-4789-444d-98ad-a51a02e53bc8.png",
         "logo_max_width": 110,
         "logo_mobile_max_width": 80,
+        "use_custom_links": true,
+        "link_1_text": "Shop",
+        "link_1_url": "shopify://collections/all",
+        "link_2_text": "About",
+        "link_2_url": "shopify://pages/about-us",
+        "link_3_text": "",
+        "link_3_url": "",
+        "link_4_text": "",
+        "link_4_url": "",
         "menu": "main-menu",
         "sidebar_menu": "",
         "menu_open_trigger": "hover",
         "enable_search": true,
         "sidebar_text_font": "body",
         "sidebar_show_dividers": false,
+        "nav_font": "body",
+        "nav_font_weight": "400",
+        "nav_uppercase": true,
+        "nav_font_size": 13,
+        "nav_letter_spacing": 16,
+        "nav_gap": 34,
+        "nav_underline": true,
         "layout": "logo_center_navigation_inline",
+        "show_utility_nav": true,
+        "show_wishlist_icon": true,
         "show_icons": true,
         "show_country_selector": true,
         "show_country_name": false,
         "show_country_flag": false,
         "show_locale_selector": false,
         "transparent_header_text_color": "#ffffff",
-        "nav_font": "body",
-        "nav_uppercase": true,
-        "nav_font_size": 13,
-        "nav_letter_spacing": 16,
-        "nav_gap": 34,
-        "use_custom_links": true,
-        "link_1_text": "Shop",
-        "link_1_url": "shopify://collections/all",
-        "link_2_text": "About",
-        "link_2_url": "shopify://pages/about-us",
-        "show_utility_nav": true,
-        "nav_font_weight": "400",
-        "show_wishlist_icon": true,
-        "nav_underline": true
+        "transparent_logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT_1d365d7b-4789-444d-98ad-a51a02e53bc8.png"
       }
     }
   },
