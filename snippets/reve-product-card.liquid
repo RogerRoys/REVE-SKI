@@ -51,6 +51,7 @@
   {%- if color_opt -%}
     {%- comment -%} Colour swatches switch the card image to that colour's variant image (theme behaviour) {%- endcomment -%}
     <div class="rv-card__swatches" data-rv-card-swatches>
+      {%- assign color_index = color_opt.position | minus: 1 -%}
       {%- for value in color_opt.values -%}
         {%- liquid
           assign hex = ''
@@ -63,7 +64,7 @@
           endif
           assign variant_for_value = nil
           for v in product.variants
-            if v.options[color_opt.position | minus: 1] == value
+            if v.options[color_index] == value
               assign variant_for_value = v
               break
             endif
@@ -85,7 +86,7 @@
             endfor
           endif
           assign is_current = false
-          if product.selected_or_first_available_variant.options[color_opt.position | minus: 1] == value
+          if product.selected_or_first_available_variant.options[color_index] == value
             assign is_current = true
           endif
         -%}
