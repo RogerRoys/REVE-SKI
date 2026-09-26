@@ -192,5 +192,21 @@
     tg.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
+  // Product card colour swatches: swap the card image / links to that colour's variant
+  document.addEventListener('click', function (e) {
+    var sw = e.target.closest('.rv-card__swatch');
+    if (!sw) return;
+    e.preventDefault();
+    var card = sw.closest('.rv-card');
+    card.querySelectorAll('.rv-card__swatch').forEach(function (b) { b.setAttribute('aria-pressed', b === sw ? 'true' : 'false'); });
+    var img = card.querySelector('.rv-card__media img:not(.rv-card__alt)');
+    if (img && sw.dataset.img) {
+      img.src = sw.dataset.img;
+      img.srcset = sw.dataset.img450 + ' 450w, ' + sw.dataset.img700 + ' 700w, ' + sw.dataset.img + ' 900w';
+      var alt = card.querySelector('.rv-card__alt'); if (alt) alt.hidden = true;
+    }
+    if (sw.dataset.url) card.querySelectorAll('a[href]').forEach(function (a) { if (a.href.indexOf('/products/') !== -1) a.href = sw.dataset.url; });
+  });
+
   window.ReveWishlist = { read: read, has: has, toggle: toggle, remove: remove };
 })();

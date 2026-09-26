@@ -380,3 +380,8 @@
 }
 
 @media screen and (max-width:749px){.rv-hero__media img{object-position:var(--rv-hero-pos-m,var(--rv-hero-pos,50% 50%))}}
+
+/* Card colour swatches (interactive, like the theme product cards) */
+.rv-card__swatch{width:14px;height:14px;padding:0;border-radius:50%;border:1px solid rgba(0,0,0,.18);cursor:pointer;box-shadow:0 0 0 2px transparent;transition:box-shadow .15s}
+.rv-card__swatch[aria-pressed="true"]{box-shadow:0 0 0 1px #fff,0 0 0 2px var(--rv-ink)}
+.rv-card__media img{transition:opacity .2s}

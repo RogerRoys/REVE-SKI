@@ -49,10 +49,35 @@
     <span class="rv-card__price">{% if product.price_varies %}From {% endif %}{{ product.price | money }}</span>
   </a>
   {%- if color_opt -%}
-    <div class="rv-card__swatches">
+    {%- comment -%} Colour swatches switch the card image to that colour's variant image (theme behaviour) {%- endcomment -%}
+    <div class="rv-card__swatches" data-rv-card-swatches>
       {%- for value in color_opt.values -%}
-        {%- capture hex -%}{%- if value.swatch.color -%}{{ value.swatch.color }}{%- else -%}{%- render 'reve-color-hex', name: value -%}{%- endif -%}{%- endcapture -%}
-        <span title="{{ value | escape }}" style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 32 }});{% endif %}"></span>
+        {%- liquid
+          assign hex = ''
+          if value.swatch.color
+            assign hex = value.swatch.color
+          else
+            capture hex
+              render 'reve-color-hex', name: value
+            endcapture
+          endif
+          assign variant_for_value = nil
+          for v in product.variants
+            if v.options[color_opt.position | minus: 1] == value
+              assign variant_for_value = v
+              break
+            endif
+          endfor
+          assign media_for_value = variant_for_value.featured_media
+          assign is_current = false
+          if product.selected_or_first_available_variant.options[color_opt.position | minus: 1] == value
+            assign is_current = true
+          endif
+        -%}
+        <button type="button" class="rv-card__swatch" title="{{ value | escape }}" aria-label="{{ value | escape }}" aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
+          {% if media_for_value %}data-img="{{ media_for_value | image_url: width: 900 }}" data-img-450="{{ media_for_value | image_url: width: 450 }}" data-img-700="{{ media_for_value | image_url: width: 700 }}"{% endif %}
+          {% if variant_for_value %}data-url="{{ product.url }}?variant={{ variant_for_value.id }}"{% endif %}
+          style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 32 }});{% endif %}"></button>
       {%- endfor -%}
     </div>
   {%- endif -%}
