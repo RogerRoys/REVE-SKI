@@ -15,6 +15,8 @@
         "transparent_header": true,
         "image": "shopify://shop_images/15021.jpg",
         "image_asset": "rv-hero-western.jpg",
+        "mobile_image_asset": "hero-western-edit-mobile.jpg",
+        "focal_mobile": "50% 40%",
         "focal": "50% 45%",
         "heading": "The Western Edit",
         "text": "<p>This season, we’re taking fringe to the mountains. Wrangler, Landry wears our Lexi Jacket and our Phoenix Fringe Ski pants in Jackson Hole, Wyoming.</p>",
@@ -29,9 +31,7 @@
         "rv_small_size": 0,
         "rv_text_color": "",
         "rv_bg_color": "",
-        "rv_accent_color": "",
-        "mobile_image_asset": "hero-western-edit-mobile.jpg",
-        "focal_mobile": "50% 40%"
+        "rv_accent_color": ""
       }
     },
     "tiles": {
@@ -108,7 +108,7 @@
         "limit": 8,
         "show_count": true,
         "anchor": "arrivals",
-        "rv_heading_size": 0,
+        "rv_heading_size": 48,
         "rv_heading_size_mobile": 0,
         "rv_heading_uppercase": "default",
         "rv_letter_spacing": 0,
@@ -199,7 +199,7 @@
         "button_label": "Subscribe",
         "legal": "<p>By registering, you accept the <a href=\"/policies/terms-of-service\">Terms of Use</a> and our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
         "success": "Thanks for subscribing.",
-        "rv_heading_size": 0,
+        "rv_heading_size": 48,
         "rv_heading_size_mobile": 0,
         "rv_heading_uppercase": "default",
         "rv_letter_spacing": 0,
