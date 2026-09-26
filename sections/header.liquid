@@ -88,6 +88,11 @@
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+
+    /* Only one underline: hide the theme's animated 2px bar when the text underline is on */
+    #shopify-section-{{ section.id }} .header__primary-nav-item::before {
+      display: none;
+    }
   {%- endif -%}
 
   /* Search / account / cart hidden per client design; re-enable in Header > Utility icons */
