@@ -303,3 +303,78 @@
 @media screen and (pointer:fine){
   .rv-card:hover .rv-card__quick-add{opacity:1;transform:translateY(0)}
 }
+
+
+/* ================= Text & colour settings (per section CSS variables) ================= */
+.rv-sec-hero .rv-hero__content{color:var(--rv-fg,#FFFFFF)}
+.rv-hero__title{font-size:var(--rv-h,clamp(44px,9.4vw,168px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,-.03em)}
+.rv-hero__text{font-size:var(--rv-t,clamp(14px,1.1vw,16px))}
+.rv-sec-hero .rv-btn--light{background:var(--rv-accent,#FFFFFF);border-color:var(--rv-accent,#FFFFFF)}
+
+.rv-sec-tiles{color:var(--rv-fg,inherit)}
+.rv-tile__title{font-size:var(--rv-h,clamp(16px,1.4vw,20px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,.02em)}
+.rv-tile__cta{font-size:var(--rv-sm,13px)}
+
+.rv-sec-feat{color:var(--rv-fg,inherit)}
+.rv-feat__title{font-size:var(--rv-h,clamp(30px,3.4vw,56px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,-.02em)}
+.rv-feat__desc{font-size:var(--rv-t,14.5px)}
+.rv-feat__price,.rv-feat .rv-eyebrow{font-size:var(--rv-sm,15px)}
+.rv-sec-feat .rv-btn{background:var(--rv-accent,var(--rv-ink));border-color:var(--rv-accent,var(--rv-ink))}
+
+.rv-sec-carousel,.rv-sec-arrivals{color:var(--rv-fg,inherit)}
+.rv-carousel .rv-h-xl{font-size:var(--rv-h,inherit);text-transform:var(--rv-h-case,inherit);letter-spacing:var(--rv-h-track,inherit)}
+.rv-card__name{font-size:var(--rv-t,13.5px)}
+.rv-card__price{font-size:var(--rv-sm,13px)}
+.rv-carousel__head{border-bottom-color:var(--rv-accent,var(--rv-ink))}
+
+.rv-banner__content{color:var(--rv-fg,#FFFFFF)}
+.rv-banner__title{font-size:var(--rv-h,clamp(30px,4.6vw,76px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,-.02em)}
+.rv-banner .rv-btn{background:var(--rv-accent,#FFFFFF);border-color:var(--rv-accent,#FFFFFF)}
+
+.rv-sec-services{color:var(--rv-fg,inherit)}
+.rv-service{border-top-color:var(--rv-accent,var(--rv-ink))}
+.rv-service__title{font-size:var(--rv-h,15px);text-transform:var(--rv-h-case,none);letter-spacing:var(--rv-h-track,.04em)}
+.rv-service__text{font-size:var(--rv-t,13px)}
+.rv-service a{font-size:var(--rv-sm,inherit)}
+
+.rv-news{background:var(--rv-bg,var(--rv-soft));color:var(--rv-fg,inherit)}
+.rv-news .rv-h-xl{font-size:var(--rv-h,inherit);text-transform:var(--rv-h-case,inherit);letter-spacing:var(--rv-h-track,inherit)}
+.rv-news__intro p,.rv-news__intro div{font-size:var(--rv-t,inherit)}
+.rv-news__legal{font-size:var(--rv-sm,11.5px)}
+.rv-news .rv-btn{background:var(--rv-accent,var(--rv-ink));border-color:var(--rv-accent,var(--rv-ink))}
+
+.rv-footer{background:var(--rv-bg,var(--rv-ink));color:var(--rv-fg,#FFFFFF)}
+.rv-footer h3{font-size:var(--rv-h,inherit);text-transform:var(--rv-h-case,inherit);letter-spacing:var(--rv-h-track,inherit)}
+.rv-footer__col a{font-size:var(--rv-t,13.5px)}
+.rv-footer__about,.rv-footer__copy{font-size:var(--rv-sm,inherit)}
+
+.rv-sec-pdp,.rv-pdp{color:var(--rv-fg,inherit)}
+.rv-pdp__title{font-size:var(--rv-h,clamp(34px,3.4vw,56px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,-.02em)}
+.rv-pdp__desc,.rv-acc__body{font-size:var(--rv-t,14px)}
+.rv-pdp__price,.rv-pair__name,.rv-pair__price{font-size:var(--rv-sm,16px)}
+.rv-pdp__price,.rv-pairs__title,.rv-acc{border-color:var(--rv-accent,var(--rv-ink))}
+.rv-pdp .rv-btn{background:var(--rv-accent,var(--rv-ink));border-color:var(--rv-accent,var(--rv-ink))}
+
+.rv-tech{color:var(--rv-fg,inherit);border-top-color:var(--rv-accent,var(--rv-ink))}
+.rv-tech .rv-h-xl{font-size:var(--rv-h,inherit);text-transform:var(--rv-h-case,inherit);letter-spacing:var(--rv-h-track,inherit)}
+.rv-tech__row{font-size:var(--rv-t,inherit);border-bottom-color:var(--rv-accent,var(--rv-ink))}
+
+.rv-ann{background:var(--rv-bg,#000000);color:var(--rv-fg,#FFFFFF)}
+.rv-ann__msg{font-size:var(--rv-t,14px)}
+.rv-ann__dot,.rv-ann__toggle{background-color:var(--rv-accent,#FFFFFF);color:var(--rv-accent,#FFFFFF)}
+
+/* ================= Footer: collapsible menu columns on mobile ================= */
+.rv-footer__toggle{display:inline;background:none;border:0;padding:0;margin:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:default;text-align:left}
+.rv-footer__toggle-icon{display:none}
+@media screen and (max-width:749px){
+  .rv-footer__col--collapsible{gap:0;border-bottom:1px solid rgba(255,255,255,.18)}
+  .rv-footer__col--collapsible h3{margin:0}
+  .rv-footer__toggle{display:flex;width:100%;justify-content:space-between;align-items:center;padding:14px 0;cursor:pointer}
+  .rv-footer__toggle-icon{display:block;position:relative;width:12px;height:12px;flex:0 0 12px}
+  .rv-footer__toggle-icon::before,.rv-footer__toggle-icon::after{content:"";position:absolute;left:0;top:5px;width:12px;height:1.5px;background:currentColor;transition:transform .25s ease}
+  .rv-footer__toggle-icon::after{transform:rotate(90deg)}
+  .rv-footer__col--collapsible.is-open .rv-footer__toggle-icon::after{transform:rotate(0)}
+  .rv-footer__col--collapsible a{display:none;padding:6px 0}
+  .rv-footer__col--collapsible.is-open a{display:block}
+  .rv-footer__col--collapsible.is-open{padding-bottom:12px}
+}

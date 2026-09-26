@@ -183,5 +183,14 @@
     }
   });
 
+  // Footer menu columns collapse on mobile
+  document.addEventListener('click', function (e) {
+    var tg = e.target.closest('[data-rv-footer-toggle]');
+    if (!tg || window.innerWidth > 749) return;
+    var col = tg.closest('.rv-footer__col');
+    var open = col.classList.toggle('is-open');
+    tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
   window.ReveWishlist = { read: read, has: has, toggle: toggle, remove: remove };
 })();

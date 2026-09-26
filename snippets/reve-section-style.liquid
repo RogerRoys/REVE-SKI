@@ -1,0 +1,23 @@
+{%- comment -%}
+Text & colour settings shared by every Reve section. Emits CSS variables scoped to the section; the editorial CSS
+uses them with the design values as fallbacks, so "0" / empty means "use the design default".
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if s.rv_heading_size > 0 %}--rv-h: {{ s.rv_heading_size }}px;{% endif %}
+    {%- if s.rv_text_size > 0 %}--rv-t: {{ s.rv_text_size }}px;{% endif %}
+    {%- if s.rv_small_size > 0 %}--rv-sm: {{ s.rv_small_size }}px;{% endif %}
+    {%- if s.rv_text_color != blank and s.rv_text_color != 'rgba(0,0,0,0)' %}--rv-fg: {{ s.rv_text_color }};{% endif %}
+    {%- if s.rv_bg_color != blank and s.rv_bg_color != 'rgba(0,0,0,0)' %}--rv-bg: {{ s.rv_bg_color }}; background: {{ s.rv_bg_color }};{% endif %}
+    {%- if s.rv_accent_color != blank and s.rv_accent_color != 'rgba(0,0,0,0)' %}--rv-accent: {{ s.rv_accent_color }};{% endif %}
+    {%- if s.rv_heading_uppercase == 'on' %}--rv-h-case: uppercase;{% elsif s.rv_heading_uppercase == 'off' %}--rv-h-case: none;{% endif %}
+    {%- if s.rv_letter_spacing != 0 %}--rv-h-track: {{ s.rv_letter_spacing | divided_by: 100.0 }}em;{% endif %}
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      {%- if s.rv_heading_size_mobile > 0 %}--rv-h: {{ s.rv_heading_size_mobile }}px;{% endif %}
+      {%- if s.rv_text_size_mobile > 0 %}--rv-t: {{ s.rv_text_size_mobile }}px;{% endif %}
+    }
+  }
+</style>

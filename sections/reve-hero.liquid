@@ -1,3 +1,4 @@
+{%- render 'reve-section-style' -%}
 {%- assign s = section.settings -%}
 <section class="rv rv-hero" {% if s.transparent_header %}allow-transparent-header{% endif %} style="--rv-hero-pos:{{ s.focal | default: '50% 50%' }}">
   <div class="rv-hero__media">
@@ -79,6 +80,109 @@
    "type": "url",
    "id": "button_link",
    "label": "Button link"
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
   }
  ],
  "presets": [

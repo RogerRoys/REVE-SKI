@@ -1,3 +1,4 @@
+{%- render 'reve-section-style' -%}
 {%- assign s = section.settings -%}
 <footer class="rv rv-footer">
   <div class="rv-wrap rv-footer__top">
@@ -12,8 +13,8 @@
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when 'menu' -%}
-          <nav class="rv-footer__col" aria-label="{{ block.settings.heading | escape }}" {{ block.shopify_attributes }}>
-            <h3>{{ block.settings.heading | escape }}</h3>
+          <nav class="rv-footer__col {% if s.collapse_mobile %}rv-footer__col--collapsible{% endif %}" aria-label="{{ block.settings.heading | escape }}" {{ block.shopify_attributes }}>
+            <h3>{%- if s.collapse_mobile -%}<button type="button" class="rv-footer__toggle" aria-expanded="false" data-rv-footer-toggle>{{ block.settings.heading | escape }}<span class="rv-footer__toggle-icon" aria-hidden="true"></span></button>{%- else -%}{{ block.settings.heading | escape }}{%- endif -%}</h3>
             {%- for link in block.settings.menu.links -%}<a href="{{ link.url }}">{{ link.title | escape }}</a>{%- endfor -%}
           </nav>
         {%- when 'country' -%}
@@ -46,19 +47,216 @@
   </div>
 </footer>
 {% schema %}
-{"name":"Reve · Footer","tag":"div","class":"rv-sec-footer","enabled_on":{"groups":["footer"]},
-"settings":[
- {"type":"text","id":"brand","label":"Brand name","default":"Reve Ski"},
- {"type":"richtext","id":"about","label":"About text","default":"<p>Merging urban elegance with alpine functionality. Founded in 2023, we're redefining women's ski wear for the modern adventurer.</p>"},
- {"type":"url","id":"instagram","label":"Instagram link"},
- {"type":"url","id":"xhs","label":"Xiaohongshu link"},
- {"type":"image_picker","id":"xhs_icon","label":"Xiaohongshu icon"},
- {"type":"text","id":"copyright","label":"Copyright text","default":"Reve Ski | Urban Elegance , Alpine Excellence"},
- {"type":"checkbox","id":"show_payments","label":"Show payment icons","default":true}
-],
-"blocks":[
- {"type":"menu","name":"Menu","settings":[{"type":"text","id":"heading","label":"Heading","default":"Shop"},{"type":"link_list","id":"menu","label":"Menu","default":"footer"}]},
- {"type":"country","name":"Shipping to","limit":1,"settings":[{"type":"text","id":"heading","label":"Heading","default":"Shipping To"}]}
-],
-"presets":[{"name":"Reve · Footer","blocks":[{"type":"menu"},{"type":"menu","settings":{"heading":"Help"}},{"type":"country"}]}]}
+{
+ "name": "Reve · Footer",
+ "tag": "div",
+ "class": "rv-sec-footer",
+ "enabled_on": {
+  "groups": [
+   "footer"
+  ]
+ },
+ "settings": [
+  {
+   "type": "checkbox",
+   "id": "collapse_mobile",
+   "label": "Collapse menu columns on mobile",
+   "default": true
+  },
+  {
+   "type": "text",
+   "id": "brand",
+   "label": "Brand name",
+   "default": "Reve Ski"
+  },
+  {
+   "type": "richtext",
+   "id": "about",
+   "label": "About text",
+   "default": "<p>Merging urban elegance with alpine functionality. Founded in 2023, we're redefining women's ski wear for the modern adventurer.</p>"
+  },
+  {
+   "type": "url",
+   "id": "instagram",
+   "label": "Instagram link"
+  },
+  {
+   "type": "url",
+   "id": "xhs",
+   "label": "Xiaohongshu link"
+  },
+  {
+   "type": "image_picker",
+   "id": "xhs_icon",
+   "label": "Xiaohongshu icon"
+  },
+  {
+   "type": "text",
+   "id": "copyright",
+   "label": "Copyright text",
+   "default": "Reve Ski | Urban Elegance , Alpine Excellence"
+  },
+  {
+   "type": "checkbox",
+   "id": "show_payments",
+   "label": "Show payment icons",
+   "default": true
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
+  }
+ ],
+ "blocks": [
+  {
+   "type": "menu",
+   "name": "Menu",
+   "settings": [
+    {
+     "type": "text",
+     "id": "heading",
+     "label": "Heading",
+     "default": "Shop"
+    },
+    {
+     "type": "link_list",
+     "id": "menu",
+     "label": "Menu",
+     "default": "footer"
+    }
+   ]
+  },
+  {
+   "type": "country",
+   "name": "Shipping to",
+   "limit": 1,
+   "settings": [
+    {
+     "type": "text",
+     "id": "heading",
+     "label": "Heading",
+     "default": "Shipping To"
+    }
+   ]
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Footer",
+   "blocks": [
+    {
+     "type": "menu"
+    },
+    {
+     "type": "menu",
+     "settings": {
+      "heading": "Help"
+     }
+    },
+    {
+     "type": "country"
+    }
+   ]
+  }
+ ]
+}
 {% endschema %}
