@@ -206,6 +206,8 @@
       var alt = card.querySelector('.rv-card__alt'); if (alt) alt.hidden = true;
     }
     if (sw.dataset.url) card.querySelectorAll('a[href]').forEach(function (a) { if (a.href.indexOf('/products/') !== -1) a.href = sw.dataset.url; });
+    var price = card.querySelector('.rv-card__price');
+    if (price && sw.dataset.price) price.textContent = sw.dataset.price;
   });
 
   // Reveal on scroll for editorial sections (staggered inside grids); off when animations are disabled

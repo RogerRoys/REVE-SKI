@@ -69,6 +69,21 @@
             endif
           endfor
           assign media_for_value = variant_for_value.featured_media
+          if media_for_value == nil
+            comment
+              No image assigned to the variant: fall back to a product image whose alt names this colour
+              (theme convention "#Color_Black", or a plain "Black" alt)
+            endcomment
+            assign value_key = value | downcase | strip
+            assign tag_key = color_opt.name | append: '_' | append: value | downcase | replace: ' ', '_'
+            for m in product.media
+              assign m_alt = m.alt | downcase
+              if m_alt contains tag_key or m_alt contains value_key
+                assign media_for_value = m
+                break
+              endif
+            endfor
+          endif
           assign is_current = false
           if product.selected_or_first_available_variant.options[color_opt.position | minus: 1] == value
             assign is_current = true
@@ -76,7 +91,7 @@
         -%}
         <button type="button" class="rv-card__swatch" title="{{ value | escape }}" aria-label="{{ value | escape }}" aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
           {% if media_for_value %}data-img="{{ media_for_value | image_url: width: 900 }}" data-img-450="{{ media_for_value | image_url: width: 450 }}" data-img-700="{{ media_for_value | image_url: width: 700 }}"{% endif %}
-          {% if variant_for_value %}data-url="{{ product.url }}?variant={{ variant_for_value.id }}"{% endif %}
+          {% if variant_for_value %}data-url="{{ product.url }}?variant={{ variant_for_value.id }}" data-price="{{ variant_for_value.price | money }}"{% endif %}
           style="background-color:{{ hex | strip }};{% if value.swatch.image %}background-image:url({{ value.swatch.image | image_url: width: 32 }});{% endif %}"></button>
       {%- endfor -%}
     </div>
