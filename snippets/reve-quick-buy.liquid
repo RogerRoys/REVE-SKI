@@ -1,0 +1,50 @@
+{%- comment -%}
+Quick buy content for products using the editorial product template. The theme's quick buy modal (the "+" on product
+cards) fetches the product page and imports #quick-buy-content, so this mirrors snippets/product-quick-buy.liquid but
+renders the info column directly (the editorial section has no title/price/variant/buy blocks).
+{%- endcomment -%}
+{%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
+
+<template id="quick-buy-content">
+  <p class="h5" slot="header">{{ 'product.general.choose_options' | t }}</p>
+
+  <div class="quick-buy-modal__content">
+    <button type="button" class="quick-buy-modal__close-button sm-max:hidden" is="dialog-close-button">
+      <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+      {%- render 'icon' with 'close' -%}
+    </button>
+
+    <div class="quick-buy-modal__gallery-wrapper">
+      {%- render 'product-gallery', product: product, desktop_layout: 'carousel_dots', mobile_controls: 'arrows', enable_media_autoplay: false, enable_video_looping: true, enable_image_zoom: false -%}
+
+      <div class="quick-buy-modal__mobile-info v-stack gap-1 justify-center text-center sm:hidden">
+        <a href="{{ product.url }}" class="product-title h6">{{ product.title }}</a>
+        {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, hide_unit_price: true, form_id: product_form_id, context: 'card' -%}
+      </div>
+    </div>
+
+    <div class="quick-buy-modal__info-wrapper">
+      <div class="product-info">
+        <div class="product-info__block-list">
+          <div class="product-info__block-item" data-block-type="title">
+            <h2 class="product-title h3">{{ product.title }}</h2>
+          </div>
+
+          <div class="product-info__block-item" data-block-type="price">
+            {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, form_id: product_form_id, context: 'product' -%}
+          </div>
+
+          <div class="product-info__block-item" data-block-type="variant-picker">
+            {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+          </div>
+
+          <div class="product-info__block-item" data-block-type="buy-buttons">
+            {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: false, show_gift_card_recipient: false -%}
+          </div>
+        </div>
+      </div>
+
+      <a href="{{ product.url }}" class="quick-buy-modal__view-more link sm-max:hidden">{{ 'product.general.view_details' | t }}</a>
+    </div>
+  </div>
+</template>
