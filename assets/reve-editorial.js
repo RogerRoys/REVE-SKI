@@ -95,13 +95,19 @@
     if(sticky){
       var sb=$('[data-rv-atc]',sticky);
       if(sb) sb.addEventListener('click',function(){ if(form.requestSubmit) form.requestSubmit(btn); else btn.click() });
-      if('IntersectionObserver' in window){
-        // Show once the main add-to-cart button has scrolled above the viewport; hide again when the footer comes into view
-        var pastBtn=false, footerSeen=false, footer=document.querySelector('.rv-footer, footer');
-        function sync(){ sticky.classList.toggle('is-visible',pastBtn&&!footerSeen) }
-        new IntersectionObserver(function(en){ var x=en[0]; pastBtn=!x.isIntersecting&&x.boundingClientRect.top<0; sync() }).observe(btn);
-        if(footer) new IntersectionObserver(function(en){ footerSeen=en[0].isIntersecting; sync() }).observe(footer);
-      }
+      // Show once the main add-to-cart button has scrolled above the viewport; hide as soon as the footer enters it
+      (function(){
+        var ticking=false;
+        function footerEl(){ var f=document.querySelectorAll('.rv-footer, #shopify-section-footer, footer'); return f.length?f[f.length-1]:null }
+        function sync(){
+          ticking=false;
+          var b=btn.getBoundingClientRect(), pastBtn=b.bottom<0, f=footerEl();
+          var footerIn=f?f.getBoundingClientRect().top<window.innerHeight:false;
+          sticky.classList.toggle('is-visible',pastBtn&&!footerIn);
+        }
+        function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(sync) } }
+        window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); sync();
+      })();
     }
     update();
   }
