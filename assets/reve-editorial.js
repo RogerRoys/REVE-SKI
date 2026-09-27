@@ -95,7 +95,13 @@
     if(sticky){
       var sb=$('[data-rv-atc]',sticky);
       if(sb) sb.addEventListener('click',function(){ if(form.requestSubmit) form.requestSubmit(btn); else btn.click() });
-      if('IntersectionObserver' in window) new IntersectionObserver(function(en){ var x=en[0]; sticky.classList.toggle('is-visible',!x.isIntersecting&&x.boundingClientRect.top<0) }).observe(btn);
+      if('IntersectionObserver' in window){
+        // Show once the main add-to-cart button has scrolled above the viewport; hide again when the footer comes into view
+        var pastBtn=false, footerSeen=false, footer=document.querySelector('.rv-footer, footer');
+        function sync(){ sticky.classList.toggle('is-visible',pastBtn&&!footerSeen) }
+        new IntersectionObserver(function(en){ var x=en[0]; pastBtn=!x.isIntersecting&&x.boundingClientRect.top<0; sync() }).observe(btn);
+        if(footer) new IntersectionObserver(function(en){ footerSeen=en[0].isIntersecting; sync() }).observe(footer);
+      }
     }
     update();
   }
