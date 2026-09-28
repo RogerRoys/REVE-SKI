@@ -47,19 +47,20 @@
             "focal": "50% 22%",
             "title": "New Arrivals",
             "cta": "Shop now",
-            "link": "shopify://collections/new-arrivals"
+            "link": "shopify://collections/new-arrivals-1"
           }
         },
         "t2": {
           "type": "tile",
           "settings": {
+            "image": "shopify://shop_images/6_3a3e76d0-adf5-46ab-80e4-e1e1316fdf06.jpg",
             "image_asset": "tile-phoenix-ski-pant.jpg",
             "image_asset_2": "",
             "image_asset_3": "",
             "focal": "50% 30%",
             "title": "Phoenix Ski Pant",
             "cta": "Shop now",
-            "link": "shopify://products/phoenix-ski-pants"
+            "link": "shopify://products/phoenix-ski-pant"
           }
         }
       },
