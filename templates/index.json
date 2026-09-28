@@ -118,7 +118,7 @@
         "card_image_fit": "contain",
         "card_image_ratio": "auto",
         "anchor": "arrivals",
-        "rv_heading_size": 48,
+        "rv_heading_size": 46,
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
         "rv_letter_spacing": 0,
