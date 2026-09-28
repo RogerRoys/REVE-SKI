@@ -32,11 +32,17 @@
     "heading_font_size_factor": 1,
     "heading_letter_spacing": 5,
     "text_font": "helvetica_n4",
-    "text_font_size_desktop": 14,
+    "text_font_size_mobile": 16,
+    "text_font_size_desktop": 16,
     "text_font_letter_spacing": 0,
     "button_letter_spacing": 5,
     "currency_code_enabled": true,
     "stagger_products_apparition": false,
+    "rv_animations": true,
+    "rv_animation_speed": "normal",
+    "rv_reveal_style": "none",
+    "rv_cta_hover": "invert",
+    "show_selected_option_value": true,
     "round_color_swatches": true,
     "color_swatch_config": "Floral Camo:Floral_Camo.png\nPurple Sunset:Purple_Sunset.png\nJade:#607169\nPurple:#3d3b79\nRed:#B70D25\nWhite:#EAE5DA\nIvory:#F4EFE4\nEspresso:#332325\nDark grey:#4a4a4a\nDark Grey:#4a4a4a\nAlabaster:#fefdf5\nBlack:#1b1b1b\nStone:#d9d9d7\nLight grey:#d9d9d7",
     "product_color_display": "swatch",
@@ -58,12 +64,7 @@
     "checkout_accent_color": "#1b1b1b",
     "checkout_button_color": "#1b1b1b",
     "heading_color": "#1c1c1c",
-    "content_for_index": [],
-    "show_selected_option_value": true,
-    "rv_animations": true,
-    "rv_animation_speed": "normal",
-    "rv_reveal_style": "none",
-    "rv_cta_hover": "invert"
+    "content_for_index": []
   },
   "presets": {
     "Allure": {
@@ -138,7 +139,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".about-us-page p, .about-us-page h1, .about-us-page h2, .about-us-page div {text-align: left !important;}"
+      ".about-us-page p,.about-us-page h1,.about-us-page h2,.about-us-page div {text-align: left !important;}"
     ]
   }
 }
