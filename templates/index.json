@@ -86,6 +86,7 @@
       "type": "reve-featured-product",
       "settings": {
         "product": "phoenix-ski-pant",
+        "image": "shopify://shop_images/5_e5c4c2a5-27de-4efa-918f-dd17188ebb04.jpg",
         "image_fit": "natural",
         "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
