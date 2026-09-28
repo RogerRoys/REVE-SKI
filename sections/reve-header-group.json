@@ -45,7 +45,7 @@
         "autoplay": true,
         "cycle_speed": 5,
         "desktop_font_size": 12,
-        "mobile_font_size": 10,
+        "mobile_font_size": 12,
         "text_font": "body",
         "uppercase": false,
         "letter_spacing": 1,
