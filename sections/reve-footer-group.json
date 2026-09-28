@@ -42,6 +42,9 @@
       ],
       "settings": {
         "collapse_mobile": true,
+        "logo": "shopify://shop_images/REVE_SKI_WHITE_TEXT_5c80a555-12db-49e9-b2f6-ed55c7ca3751.png",
+        "logo_width": 120,
+        "logo_width_mobile": 130,
         "brand": "Reve Ski",
         "about": "<p>Merging urban elegance with alpine functionality. Founded in 2023, we're redefining women's ski wear for the modern adventurer.</p>",
         "instagram": "https://www.instagram.com/reve.ski?igsh=MWFrbGVzNm1jNW5zMg==",
