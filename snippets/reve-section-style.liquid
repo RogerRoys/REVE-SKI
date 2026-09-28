@@ -13,6 +13,7 @@ uses them with the design values as fallbacks, so "0" / empty means "use the des
     {%- if s.rv_accent_color != blank and s.rv_accent_color != 'rgba(0,0,0,0)' %}--rv-accent: {{ s.rv_accent_color }};{% endif %}
     {%- if s.rv_heading_uppercase == 'on' %}--rv-h-case: uppercase;{% elsif s.rv_heading_uppercase == 'off' %}--rv-h-case: none;{% endif %}
     {%- if s.rv_letter_spacing != 0 %}--rv-h-track: {{ s.rv_letter_spacing | divided_by: 100.0 }}em;{% endif %}
+    {%- if s.rv_line_height > 0 %}--rv-h-lh: {{ s.rv_line_height | divided_by: 100.0 }};{% endif %}
   }
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} {

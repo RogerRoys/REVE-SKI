@@ -7,7 +7,7 @@
 .rv-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .rv-muted{opacity:.6}
 .rv-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.rv-h-xl{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,4vw,64px);letter-spacing:-.02em;line-height:1;text-transform:uppercase}
+.rv-h-xl{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,4vw,64px);letter-spacing:-.02em;line-height:var(--rv-h-lh,.9);text-transform:uppercase}
 .rv-placeholder{position:absolute;inset:0;width:100%;height:100%;background:var(--rv-img);fill:rgba(25,25,25,.22)}
 .rv-icon{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.3}
 .rv-icon--sm{width:14px;height:14px;stroke-width:1.4}
@@ -74,7 +74,7 @@
 .rv-hero__row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px}
 .rv-hero__text{max-width:40ch;font-size:clamp(14px,1.1vw,16px);line-height:1.6;letter-spacing:.03em;text-wrap:pretty}
 .rv-hero__text p{margin:0}
-.rv-hero__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(44px,9.4vw,168px);line-height:.92;letter-spacing:-.03em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.4);padding-top:clamp(14px,1.6vw,22px)}
+.rv-hero__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(44px,9.4vw,168px);line-height:var(--rv-h-lh,.92);letter-spacing:-.03em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.4);padding-top:clamp(14px,1.6vw,22px)}
 
 /* Tiles */
 .rv-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(16px,2vw,28px);padding-top:clamp(48px,6vw,96px)}
@@ -106,7 +106,7 @@
 .rv-feat__media--cover img{position:absolute;inset:0;height:100%;object-fit:cover}
 .rv-feat__info{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:36px;padding:clamp(4px,1vw,12px) 0}
 .rv-feat__top{display:flex;flex-direction:column;gap:18px}
-.rv-feat__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,3.4vw,56px);letter-spacing:-.02em;line-height:1;text-transform:uppercase}
+.rv-feat__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,3.4vw,56px);letter-spacing:-.02em;line-height:var(--rv-h-lh,.92);text-transform:uppercase}
 .rv-feat__price{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:15px}
 .rv-feat__desc{font-size:14.5px;line-height:1.75;letter-spacing:.02em;max-width:52ch;text-wrap:pretty}
 .rv-feat__desc p{margin:0 0 14px}
@@ -181,7 +181,7 @@
 .rv-banner__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--rv-banner-pos,50% 30%)}
 .rv-banner__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,25,25,.1) 30%,rgba(25,25,25,.66) 100%)}
 .rv-banner__content{position:relative;width:100%;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-top:clamp(28px,4vw,64px);padding-bottom:clamp(28px,4vw,64px)}
-.rv-banner__title{margin:0;max-width:16ch;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,4.6vw,76px);line-height:.98;letter-spacing:-.02em;text-transform:uppercase}
+.rv-banner__title{margin:0;max-width:16ch;font-family:var(--rv-mono);font-weight:700;font-size:clamp(30px,4.6vw,76px);line-height:var(--rv-h-lh,.92);letter-spacing:-.02em;text-transform:uppercase}
 
 /* Services */
 .rv-services{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(24px,3vw,48px);padding-top:clamp(40px,4.4vw,64px);padding-bottom:clamp(40px,4.4vw,64px)}
@@ -243,7 +243,7 @@
 .rv-pdp__info{flex:1 1 340px;max-width:460px;min-width:0;position:sticky;top:88px;display:flex;flex-direction:column;gap:24px;padding:clamp(4px,1vw,14px) 0 24px}
 @media (max-width:989px){.rv-pdp__info{position:static;max-width:none}}
 .rv-pdp__head{display:flex;flex-direction:column;gap:10px}
-.rv-pdp__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(34px,3.4vw,56px);letter-spacing:-.02em;line-height:.98;text-transform:uppercase}
+.rv-pdp__title{margin:0;font-family:var(--rv-mono);font-weight:700;font-size:clamp(34px,3.4vw,56px);letter-spacing:-.02em;line-height:var(--rv-h-lh,.92);text-transform:uppercase}
 .rv-pdp__price{margin:0;padding-top:12px;border-top:1px solid var(--rv-ink);font-family:var(--rv-mono);font-weight:700;font-size:16px}
 .rv-pdp__price s{margin-left:8px;font-weight:100;opacity:.6}
 .rv-pdp__desc{font-size:14px;line-height:1.7;letter-spacing:.02em;text-wrap:pretty}
