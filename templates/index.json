@@ -84,7 +84,8 @@
     "featured": {
       "type": "reve-featured-product",
       "settings": {
-        "product": "cleo-jacket",
+        "product": "phoenix-ski-pant",
+        "image": "shopify://shop_images/2_3c305420-958a-4efe-bb02-52fa9c5a715c.jpg",
         "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
         "show_price": false,
