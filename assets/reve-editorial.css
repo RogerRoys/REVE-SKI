@@ -560,5 +560,12 @@
   .rv-qb__info{justify-content:center}
 }
 @media screen and (max-width:699px){
-  .rv-qb__info{gap:14px}
+  /* Mobile: theme bottom-sheet layout (image on top, info below), desktop-only pieces hidden */
+  .rv-qb__head,.rv-qb__eyebrow,.rv-qb__desc,.rv-qb__arrow,.rv-qb__more{display:none}
+  .rv-qb .quick-buy-modal__gallery-wrapper{aspect-ratio:auto;background:none;padding-inline:20px}
+  .rv-qb .product-gallery,.rv-qb .product-gallery__image-list,.rv-qb .product-gallery__carousel,.rv-qb .product-gallery__media{height:auto}
+  .rv-qb .product-gallery__media img{height:auto;max-height:55vh;object-fit:contain;background:var(--rv-img)}
+  .rv-qb .quick-buy-modal__mobile-info{margin-top:14px}
+  .rv-qb .quick-buy-modal__mobile-info .product-title{font-family:var(--rv-mono);font-weight:700;font-size:15px;text-transform:uppercase}
+  .rv-qb__info{gap:14px;padding:20px 20px 24px}
 }
