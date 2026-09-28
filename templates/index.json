@@ -109,7 +109,7 @@
     "arrivals": {
       "type": "reve-product-carousel",
       "settings": {
-        "heading": "New Arrivals",
+        "heading": "NEW ARRIVALS",
         "source": "collection",
         "collection": "new-arrivals",
         "limit": 8,
@@ -203,7 +203,7 @@
     "newsletter": {
       "type": "reve-newsletter",
       "settings": {
-        "heading": "Sign up for our newsletter",
+        "heading": "SIGN UP FOR OUR NEWSLETTER",
         "text": "Sign up for early access to exclusive launches.",
         "button_label": "Subscribe",
         "legal": "<p>By registering, you accept the <a href=\"/policies/terms-of-service\">Terms of Use</a> and our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>",
