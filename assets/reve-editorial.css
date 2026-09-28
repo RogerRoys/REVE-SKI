@@ -502,3 +502,15 @@
   .rv-cta-invert .rv-btn{transition:background .3s ease,color .3s ease,border-color .3s ease}
 }
 
+
+
+/* ---- Theme product grids (collection / search / featured collection): same card info layout as the editorial cards ---- */
+.product-list .product-card__info{text-align:left;justify-items:stretch;gap:10px}
+.product-list .product-card__info>.v-stack{justify-items:stretch}
+.product-list .product-card__info>.v-stack>.v-stack{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.product-list .product-card .product-title{font-family:var(--rv-mono);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:uppercase;color:var(--rv-ink);min-width:0}
+.product-list .product-card .price-list{justify-content:flex-end;font-family:var(--rv-sans);font-size:13px;color:var(--rv-ink);flex-wrap:nowrap}
+.product-list .product-card .price-list .text-subdued{color:var(--rv-ink)}
+.product-list .product-card__info fieldset{justify-content:flex-start;gap:6px}
+.product-list .product-card__info .color-swatch{--swatch-size:16px;--swatch-offset:2px;--swatch-border-size:1px;border-radius:50%}
+.product-list .product-card :checked + .color-swatch{border-color:var(--rv-ink)}
