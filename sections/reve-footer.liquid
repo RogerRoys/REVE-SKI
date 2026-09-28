@@ -3,7 +3,13 @@
 <footer class="rv rv-footer">
   <div class="rv-wrap rv-footer__top">
     <div class="rv-footer__brand">
-      <span class="rv-footer__logo">{{ s.brand | default: shop.name | escape }}</span>
+      {%- if s.logo != blank -%}
+        <a href="{{ routes.root_url }}" class="rv-footer__logo rv-footer__logo--image" style="--rv-footer-logo-w: {{ s.logo_width }}px; --rv-footer-logo-w-m: {{ s.logo_width_mobile }}px">
+          {{ s.logo | image_url: width: 800 | image_tag: widths: '200,300,400,600,800', sizes: '400px', alt: s.brand | default: shop.name, loading: 'lazy' }}
+        </a>
+      {%- else -%}
+        <span class="rv-footer__logo">{{ s.brand | default: shop.name | escape }}</span>
+      {%- endif -%}
       {%- if s.about != blank -%}<div class="rv-footer__about">{{ s.about }}</div>{%- endif -%}
       <div class="rv-footer__social">
         {%- if s.instagram != blank -%}<a href="{{ s.instagram }}" aria-label="Instagram" target="_blank" rel="noopener">{% render 'reve-icon', icon: 'instagram' %}</a>{%- endif -%}
@@ -64,9 +70,39 @@
    "default": true
   },
   {
+   "type": "header",
+   "content": "Logo"
+  },
+  {
+   "type": "image_picker",
+   "id": "logo",
+   "label": "Logo image",
+   "info": "Shown instead of the brand name. Use a white / light logo for the dark footer."
+  },
+  {
+   "type": "range",
+   "id": "logo_width",
+   "label": "Logo width (desktop)",
+   "min": 60,
+   "max": 400,
+   "step": 10,
+   "unit": "px",
+   "default": 160
+  },
+  {
+   "type": "range",
+   "id": "logo_width_mobile",
+   "label": "Logo width (mobile)",
+   "min": 60,
+   "max": 300,
+   "step": 10,
+   "unit": "px",
+   "default": 130
+  },
+  {
    "type": "text",
    "id": "brand",
-   "label": "Brand name",
+   "label": "Brand name (used when no logo)",
    "default": "Reve Ski"
   },
   {

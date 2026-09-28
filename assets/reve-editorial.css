@@ -209,6 +209,9 @@
 .rv-footer__brand{grid-column:span 2;min-width:0;display:flex;flex-direction:column;gap:16px}
 @media (max-width:560px){.rv-footer__brand{grid-column:auto}}
 .rv-footer__logo{font-weight:700;font-size:20px;letter-spacing:.1em;text-transform:uppercase}
+.rv-footer__logo--image{display:block;width:var(--rv-footer-logo-w,160px);max-width:100%;line-height:0}
+.rv-footer__logo--image img{display:block;width:100%;height:auto}
+@media (max-width:749px){.rv-footer__logo--image{width:var(--rv-footer-logo-w-m,130px)}}
 .rv-footer__about{max-width:44ch;font-family:var(--rv-mono);font-weight:100;font-size:13px;line-height:1.7}
 .rv-footer__about p{margin:0}
 .rv-footer__social{display:flex;align-items:center;gap:18px;margin-top:6px}
