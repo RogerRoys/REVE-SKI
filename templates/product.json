@@ -11,13 +11,6 @@
   "sections": {
     "main": {
       "type": "reve-main-product",
-      "settings": {
-        "show_wishlist": true,
-        "sticky": true,
-        "show_chart": true,
-        "pairs_heading": "Pairs well with",
-        "chart_note": "Measurements in inches. Between sizes? Size up for layering."
-      },
       "blocks": {
         "acc1": {
           "type": "accordion",
@@ -31,21 +24,24 @@
           "type": "accordion",
           "settings": {
             "title": "Fabric & Care",
-            "content": "<ul><li>Shell: 46% recycled polyester, 41% nylon, 13% spandex</li><li>Contrast fabric: 97% polyester, 3% spandex</li><li>Lining: 92% polyester, 8% spandex</li><li>Trim: 100% cowhide leather</li><li>Fill: 90% duck down, 10% feather</li></ul>"
+            "content": "<ul><li>Shell: 46% recycled polyester, 41% nylon, 13% spandex</li><li>Contrast fabric: 97% polyester, 3% spandex</li><li>Lining: 92% polyester, 8% spandex</li><li>Trim: 100% cowhide leather</li><li>Fill: 90% duck down, 10% feather</li></ul>",
+            "open": false
           }
         },
         "acc3": {
           "type": "accordion",
           "settings": {
             "title": "Care Instructions",
-            "content": "<ul><li>Please entrust cleaning to a professional leather-care specialist.</li><li>Do not wash</li><li>Do not bleach</li><li>Do not tumble dry</li><li>Do not iron</li><li>Do not dry clean</li><li>Spot clean only</li><li>Avoid direct sunlight and high temperatures</li></ul>"
+            "content": "<ul><li>Please entrust cleaning to a professional leather-care specialist.</li><li>Do not wash</li><li>Do not bleach</li><li>Do not tumble dry</li><li>Do not iron</li><li>Do not dry clean</li><li>Spot clean only</li><li>Avoid direct sunlight and high temperatures</li></ul>",
+            "open": false
           }
         },
         "acc4": {
           "type": "accordion",
           "settings": {
             "title": "Leather Note",
-            "content": "<p>The fringe is crafted from genuine cowhide leather. Natural variations in texture and color are part of its character. Genuine leather will naturally soften and develop character over time.</p>"
+            "content": "<p>The fringe is crafted from genuine cowhide leather. Natural variations in texture and color are part of its character. Genuine leather will naturally soften and develop character over time.</p>",
+            "open": false
           }
         },
         "p1": {
@@ -75,14 +71,33 @@
         "p1",
         "p2",
         "p3"
-      ]
+      ],
+      "settings": {
+        "show_wishlist": true,
+        "sticky": true,
+        "show_chart": true,
+        "chart_title": "Size chart",
+        "chart_page": "size-chart",
+        "chart_note": "Measurements in inches. Between sizes? Size up for layering.",
+        "pairs_heading": "Pairs well with",
+        "pairs": [
+          "alia-ski-suit",
+          "amara-bib"
+        ],
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
+      }
     },
     "tech": {
       "type": "reve-tech-features",
-      "settings": {
-        "heading": "Technical Features",
-        "text": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort."
-      },
       "blocks": {
         "f1": {
           "type": "feature",
@@ -142,16 +157,43 @@
         "f5",
         "f6",
         "f7"
-      ]
+      ],
+      "settings": {
+        "heading": "Technical Features",
+        "text": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort.",
+        "rv_heading_size": 40,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
+      }
     },
     "more": {
       "type": "reve-product-carousel",
       "settings": {
         "heading": "Explore More Styles",
         "source": "recommendations",
+        "collection": "",
         "limit": 8,
         "show_count": true,
-        "anchor": "more"
+        "card_image_fit": "contain",
+        "card_image_ratio": "auto",
+        "anchor": "more",
+        "rv_heading_size": 40,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
       }
     }
   },
