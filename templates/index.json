@@ -15,6 +15,7 @@
         "transparent_header": true,
         "image": "shopify://shop_images/15021.jpg",
         "image_asset": "rv-hero-western.jpg",
+        "mobile_image": "shopify://shop_images/Mobile_Image_c2bef5d5-30d3-4009-aedc-911ffb076fde.jpg",
         "mobile_image_asset": "hero-western-edit-mobile.jpg",
         "focal_mobile": "50% 40%",
         "focal": "50% 45%",
@@ -86,7 +87,6 @@
       "type": "reve-featured-product",
       "settings": {
         "product": "phoenix-ski-pant",
-        "image": "shopify://shop_images/5_e5c4c2a5-27de-4efa-918f-dd17188ebb04.jpg",
         "image_fit": "natural",
         "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
