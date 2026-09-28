@@ -5,6 +5,12 @@
   assign current = product.selected_or_first_available_variant
   assign form_id = 'rv-feat-form-' | append: section.id
   assign img = current.featured_media | default: product.featured_media
+  assign chart_html = ''
+  if s.show_chart
+    capture chart_html
+      render 'reve-size-chart', chart_page: s.chart_page, chart_note: s.chart_note
+    endcapture
+  endif
 -%}
 <section class="rv rv-wrap rv-feat" data-rv-product="{{ section.id }}">
   <div class="rv-feat__grid">
@@ -31,7 +37,7 @@
           {%- form 'product', product, id: form_id, novalidate: 'novalidate' -%}
                         <input type="hidden" name="quantity" value="1">
             <input type="hidden" name="id" value="{{ current.id }}">
-        {%- render 'variant-picker', product: product, form_id: form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_page: pages['size-chart'] -%}
+        {%- render 'variant-picker', product: product, form_id: form_id, update_url: false, hide_sold_out_variants: false, selector_type: 'block', color_selector_type: 'color', size_chart_content: chart_html, size_chart_title: s.chart_title -%}
             {%- render 'reve-atc', current: current, block_btn: true -%}
           {%- endform -%}
           <div class="rv-feat__links">
@@ -88,6 +94,34 @@
    "id": "show_price",
    "label": "Show price",
    "default": false
+  },
+  {
+   "type": "header",
+   "content": "Size chart"
+  },
+  {
+   "type": "checkbox",
+   "id": "show_chart",
+   "label": "Show size chart link",
+   "default": true
+  },
+  {
+   "type": "text",
+   "id": "chart_title",
+   "label": "Drawer title",
+   "default": "Size chart"
+  },
+  {
+   "type": "page",
+   "id": "chart_page",
+   "label": "Size chart page",
+   "info": "Create a page with a table. Leave empty to use the built-in placeholder table."
+  },
+  {
+   "type": "text",
+   "id": "chart_note",
+   "label": "Size chart note",
+   "default": "Measurements in inches. Between sizes? Size up for layering."
   },
   {
    "type": "header",
