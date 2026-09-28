@@ -78,7 +78,7 @@
         "show_chart": true,
         "chart_title": "Size chart",
         "chart_page": "size-chart-up",
-        "chart_note": "Measurements in inches. Between sizes? Size up for layering.",
+        "chart_note": "",
         "pairs_heading": "Pairs well with",
         "pairs": [
           "alia-ski-suit",
