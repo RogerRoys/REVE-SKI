@@ -88,7 +88,7 @@
         "product": "phoenix-ski-pant",
         "image_asset": "rv-featured-phoenix-packshot.jpg",
         "eyebrow": "Featured piece",
-        "show_price": false,
+        "show_price": true,
         "rv_heading_size": 0,
         "rv_heading_size_mobile": 0,
         "rv_heading_uppercase": "default",
