@@ -532,13 +532,13 @@
 .rv-qb .product-gallery{--product-gallery-gap:0;--product-gallery-thumbnail-size:2.75rem;--product-gallery-thumbnail-list-gap:.5rem;width:100%}
 .rv-qb .product-gallery,.rv-qb .product-gallery__image-list,.rv-qb .product-gallery__carousel,.rv-qb .product-gallery__media{height:100%}
 .rv-qb .product-gallery__media img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.rv-qb .product-gallery__thumbnail-list{position:absolute!important;inset-block-start:auto!important;inset-block-end:18px!important;inset-inline-start:18px;z-index:2;max-width:calc(100% - 36px);margin:0}
-.rv-qb .product-gallery__thumbnail-scroller{grid-auto-flow:column;max-height:none}
-.rv-qb .product-gallery__thumbnail{background:#FFFFFF;border:1px solid rgba(25,25,25,.25);padding:0;aspect-ratio:4/5;width:2.5rem;opacity:.85}
-.rv-qb .product-gallery__thumbnail[aria-current="true"]{opacity:1}
-.rv-qb .product-gallery__thumbnail[aria-current="true"]{border-color:var(--rv-ink)}
-.rv-qb .product-gallery__thumbnail img{width:100%;height:100%;object-fit:cover}
-.rv-qb .page-dots{display:none}
+.rv-qb .product-gallery__thumbnail-list,.rv-qb .page-dots{display:none}
+.rv-qb__arrow{position:absolute;top:50%;z-index:2;transform:translateY(-50%);width:40px;height:40px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:var(--rv-ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,opacity .2s}
+.rv-qb__arrow svg{width:16px;height:16px}
+.rv-qb__arrow--prev{left:14px}.rv-qb__arrow--next{right:14px}
+.rv-qb__arrow:hover{background:#FFFFFF}
+.rv-qb__arrow[disabled]{opacity:.35;cursor:default}
+.rv-qb__desc{margin:0;font-size:13.5px;line-height:1.6;color:rgba(25,25,25,.85)}
 .rv-qb__info{display:flex;flex-direction:column;gap:18px}
 .rv-qb__eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
 .rv-qb__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--rv-ink)}
@@ -561,5 +561,4 @@
 }
 @media screen and (max-width:699px){
   .rv-qb__info{gap:14px}
-  .rv-qb .product-gallery__thumbnail-list{display:none}
 }
