@@ -140,7 +140,7 @@
         "button_link": "shopify://pages/about-us",
         "anchor": "about",
         "rv_heading_size": 46,
-        "rv_heading_size_mobile": 0,
+        "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
         "rv_letter_spacing": 0,
         "rv_text_size": 0,
