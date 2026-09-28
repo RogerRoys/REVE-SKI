@@ -92,12 +92,26 @@
           <span class="rv-eyebrow rv-pairs__title">{{ s.pairs_heading | escape }}</span>
           <div class="rv-pairs__grid">
             {%- for p in s.pairs limit: 4 -%}
-              <a href="{{ p.url }}" class="rv-pair">
-                <div class="rv-pair__media">{%- if p.featured_media -%}<img src="{{ p.featured_media | image_url: width: 500 }}" width="{{ p.featured_media.preview_image.width }}" height="{{ p.featured_media.preview_image.height }}" alt="{{ p.title | escape }}" loading="lazy">{%- endif -%}</div>
-                <span class="rv-pair__name">{{ p.title | escape }}</span>
-                <span class="rv-pair__price">{{ p.price | money }}</span>
-                <span class="rv-pair__cta">Choose options</span>
-              </a>
+              <div class="rv-pair">
+                <a href="{{ p.url }}" class="rv-pair__media" tabindex="-1" aria-hidden="true">{%- if p.featured_media -%}<img src="{{ p.featured_media | image_url: width: 500 }}" width="{{ p.featured_media.preview_image.width }}" height="{{ p.featured_media.preview_image.height }}" alt="{{ p.title | escape }}" loading="lazy">{%- endif -%}</a>
+                <a href="{{ p.url }}" class="rv-pair__name">{{ p.title | escape }}</a>
+                <span class="rv-pair__price">{% if p.price_varies %}From {% endif %}{{ p.price | money }}</span>
+                {%- comment -%} Theme quick buy: one variant adds straight to the cart, otherwise the quick buy modal opens {%- endcomment -%}
+                {%- if p.available -%}
+                  {%- if p.variants.size == 1 and p.selling_plan_groups.size == 0 -%}
+                    {%- form 'product', p, is: 'product-form' -%}
+                      <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+                      <button type="submit" class="rv-pair__cta">{{ 'product.general.add_to_cart_button' | t }}</button>
+                    {%- endform -%}
+                  {%- else -%}
+                    {%- capture pair_qb_id -%}product-quick-buy-{{ section.id }}-pair-{{ p.id }}{%- endcapture -%}
+                    <button type="button" class="rv-pair__cta" aria-controls="{{ pair_qb_id }}">{{ 'product.general.choose_options' | t }}</button>
+                    <quick-buy-modal handle="{{ p.handle }}" class="quick-buy-modal modal" id="{{ pair_qb_id }}"></quick-buy-modal>
+                  {%- endif -%}
+                {%- else -%}
+                  <span class="rv-pair__cta rv-pair__cta--soldout">{{ 'product.general.sold_out_button' | t }}</span>
+                {%- endif -%}
+              </div>
             {%- endfor -%}
           </div>
         </div>

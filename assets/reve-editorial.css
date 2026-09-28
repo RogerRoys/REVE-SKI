@@ -257,9 +257,11 @@
 .rv-pair{display:flex;flex-direction:column;gap:8px}
 .rv-pair__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--rv-img)}
 .rv-pair__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
-.rv-pair__name{font-family:var(--rv-mono);font-weight:700;font-size:12.5px}
-.rv-pair__price{font-size:12.5px;letter-spacing:.06em}
-.rv-pair__cta{align-self:flex-start;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--rv-ink)}
+.rv-pair__media{display:block}
+.rv-pair__name{font-family:var(--rv-mono);font-weight:700;font-size:12.5px;color:inherit;text-decoration:none}
+.rv-pair__price{font-size:12px;letter-spacing:.04em;opacity:.8}
+.rv-pair__cta{align-self:flex-start;padding:0 0 2px;border:0;border-bottom:1px solid var(--rv-ink);background:none;color:inherit;font-family:var(--rv-sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;line-height:1.4}
+.rv-pair__cta--soldout{opacity:.5;cursor:default}
 .rv-acc{border-top:1px solid var(--rv-ink)}
 .rv-acc details{border-bottom:1px solid var(--rv-ink)}
 .rv-acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
@@ -365,7 +367,9 @@
 .rv-sec-pdp,.rv-pdp{color:var(--rv-fg,inherit)}
 .rv-pdp__title{font-size:var(--rv-h,clamp(34px,3.4vw,56px));text-transform:var(--rv-h-case,uppercase);letter-spacing:var(--rv-h-track,-.02em)}
 .rv-pdp__desc,.rv-acc__body{font-size:var(--rv-t,14px)}
-.rv-pdp__price,.rv-pair__name,.rv-pair__price{font-size:var(--rv-sm,16px)}
+.rv-pdp__price{font-size:var(--rv-sm,16px)}
+.rv-pair__name{font-size:calc(var(--rv-sm,16px) * .8)}
+.rv-pair__price{font-size:calc(var(--rv-sm,16px) * .75)}
 .rv-pdp__price,.rv-pairs__title,.rv-acc{border-color:var(--rv-accent,var(--rv-ink))}
 .rv-pdp .rv-btn{background:var(--rv-accent,var(--rv-ink));border-color:var(--rv-accent,var(--rv-ink))}
 
