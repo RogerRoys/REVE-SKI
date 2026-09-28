@@ -501,8 +501,8 @@
   .rv-cta-invert .rv-tile__cta,.rv-cta-invert .rv-wish-link,.rv-cta-invert .rv-footer__col a,.rv-cta-invert .rv-service a:not(.rv-link){text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .3s ease}
   .rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:not(.rv-link):hover{text-decoration-color:currentColor}
   /* Underlined links (More details, Shop now, text buttons): theme ".link" hover, the line shrinks away from the right */
-  .rv-cta-invert .rv-link,.rv-cta-invert .rv-textbtn{text-decoration:none;border-bottom:0;padding-bottom:2px;background:linear-gradient(to right,currentColor,currentColor) 0 100% / 100% 1px no-repeat;transition:background-size .3s ease-in-out}
-  @media screen and (pointer:fine){.rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-textbtn:hover{background-size:0 1px}}
+  .rv-cta-invert .rv-link,.rv-cta-invert .rv-textbtn,.rv-cta-invert .rv-pair__cta:not(.rv-pair__cta--soldout){text-decoration:none;border-bottom:0;padding-bottom:2px;background:linear-gradient(to right,currentColor,currentColor) 0 100% / 100% 1px no-repeat;transition:background-size .3s ease-in-out}
+  @media screen and (pointer:fine){.rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-textbtn:hover,.rv-cta-invert .rv-pair__cta:not(.rv-pair__cta--soldout):hover{background-size:0 1px}}
   .rv-cta-invert .rv-btn{transition:background .3s ease,color .3s ease,border-color .3s ease}
 }
 
