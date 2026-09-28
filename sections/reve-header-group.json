@@ -64,7 +64,7 @@
         "reduce_padding": true,
         "logo": "shopify://shop_images/REVE_SKI_TEXT_28e27348-8aec-4238-bd56-802b498bd5e2.png",
         "logo_max_width": 110,
-        "logo_mobile_max_width": 80,
+        "logo_mobile_max_width": 90,
         "use_custom_links": true,
         "link_1_text": "Shop",
         "link_1_url": "shopify://collections/all",
