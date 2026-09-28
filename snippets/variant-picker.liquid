@@ -62,13 +62,13 @@ Supported variables
               {{- 'product.general.size_chart' | t -}}
             </button>
 
-            <x-modal id="{{ id | escape }}" class="modal modal--lg">
+            <x-drawer id="{{ id | escape }}" class="drawer rv-size-chart-drawer" initial-focus="false">
               <span class="h5" slot="header">{{ size_chart_title | default: 'Size chart' }}</span>
 
               <div class="prose">
                 {{ size_chart_content }}
               </div>
-            </x-modal>
+            </x-drawer>
           {%- elsif size_chart_page != blank and size_label_list contains option_downcase -%}
             {%- capture id -%}size-chart-{{ section.id }}-{{ block.id }}{%- endcapture -%}
 

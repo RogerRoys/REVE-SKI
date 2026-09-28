@@ -518,3 +518,11 @@
 .product-list .product-card__info fieldset{justify-content:flex-start;gap:6px}
 .product-list .product-card__info .color-swatch{--swatch-size:16px;--swatch-offset:2px;--swatch-border-size:1px;border-radius:50%}
 .product-list .product-card :checked + .color-swatch{border-color:var(--rv-ink)}
+
+
+/* Size chart drawer: a little wider so tables fit */
+.rv-size-chart-drawer{--drawer-max-width:min(92vw,34rem)}
+.rv-size-chart-drawer .prose table{font-size:13px}
+/* Quick buy: description accordion */
+.rv-quick-buy__desc{border-top:1px solid rgb(var(--border-color));margin-top:.5rem}
+.rv-quick-buy__desc .prose{font-size:13.5px;line-height:1.6}

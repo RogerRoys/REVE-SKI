@@ -41,6 +41,13 @@ renders the info column directly (the editorial section has no title/price/varia
           <div class="product-info__block-item" data-block-type="buy-buttons">
             {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: false, show_gift_card_recipient: false -%}
           </div>
+
+          {%- if product.description != blank -%}
+            <div class="product-info__block-item rv-quick-buy__desc" data-block-type="description">
+              {%- assign accordion_title = 'product.general.description' | t -%}
+              {%- render 'accordion', title: accordion_title, content: product.description, prose_content: true -%}
+            </div>
+          {%- endif -%}
         </div>
       </div>
 
