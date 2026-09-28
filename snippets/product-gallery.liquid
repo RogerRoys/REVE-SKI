@@ -15,6 +15,7 @@ Supported variables
 * enable_media_autoplay: if set to true media are autoplayed when switched to
 * enable_video_looping: if set to true videos automatically loop when finished
 * enable_image_zoom: if set to true the gallery allow zoom
+* form_id: optional product form ID to listen to (defaults to product-form-{product.id}-{section.id})
 * max_image_zoom_level: the maximum zoom level allowed (if enabled)
 {%- endcomment -%}
 
@@ -70,6 +71,9 @@ only way to do it on Shopify right now.
 
 {% liquid
   assign product_form_id = 'product-form-' | append: product.id | append: '-' | append: section.id
+  if form_id != blank
+    assign product_form_id = form_id
+  endif
   assign default_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
   assign product_gallery_carousel_id = 'product-gallery-carousel-' | append: product.id | append: '-' | append: section.id
   assign filtered_indexes = null | sort
