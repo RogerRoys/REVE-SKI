@@ -485,14 +485,18 @@
   .rv-cta-arrow .rv-btn:not(:disabled):hover::after{width:1em;opacity:1;margin-left:.6em}
 
   /* underline: text links draw an underline; buttons keep the lift */
+  .rv-cta-underline .rv-link{border-bottom-color:transparent}
   .rv-cta-underline .rv-link,.rv-cta-underline .rv-tile__cta,.rv-cta-underline .rv-wish-link{background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-position:0 100%;background-repeat:no-repeat;transition:background-size .4s cubic-bezier(.22,.61,.36,1);text-decoration:none}
   .rv-cta-underline .rv-link:hover,.rv-cta-underline .rv-tile:hover .rv-tile__cta,.rv-cta-underline .rv-wish-link:hover{background-size:100% 1px}
 }
 
 /* ================= D · Minimal CTA (default): solid -> outline invert, links underline fade in ================= */
 @media (prefers-reduced-motion: no-preference){
-  .rv-cta-invert .rv-link,.rv-cta-invert .rv-tile__cta,.rv-cta-invert .rv-wish-link,.rv-cta-invert .rv-footer__col a,.rv-cta-invert .rv-service a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .3s ease}
-  .rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:hover{text-decoration-color:currentColor}
+  .rv-cta-invert .rv-tile__cta,.rv-cta-invert .rv-wish-link,.rv-cta-invert .rv-footer__col a,.rv-cta-invert .rv-service a:not(.rv-link){text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .3s ease}
+  .rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:not(.rv-link):hover{text-decoration-color:currentColor}
+  /* Links that already carry a permanent border underline (More details, Shop now): no second line; the border softens on hover */
+  .rv-cta-invert .rv-link,.rv-cta-invert .rv-textbtn{text-decoration:none;transition:border-color .3s ease,opacity .3s ease}
+  .rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-textbtn:hover{border-bottom-color:transparent}
   .rv-cta-invert .rv-btn{transition:background .3s ease,color .3s ease,border-color .3s ease}
 }
 
