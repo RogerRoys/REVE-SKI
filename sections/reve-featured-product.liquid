@@ -8,7 +8,7 @@
 -%}
 <section class="rv rv-wrap rv-feat" data-rv-product="{{ section.id }}">
   <div class="rv-feat__grid">
-    <div class="rv-feat__media">
+    <div class="rv-feat__media{% if s.image_fit == 'cover' %} rv-feat__media--cover{% endif %}">
       {%- if s.image != blank -%}
         <img src="{{ s.image | image_url: width: 1800 }}" srcset="{{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1400 }} 1400w, {{ s.image | image_url: width: 1800 }} 1800w" sizes="(min-width: 990px) 58vw, 100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ product.title | escape }}" loading="lazy">
       {%- elsif s.image_asset != blank -%}
@@ -60,6 +60,16 @@
    "id": "image",
    "label": "Image override",
    "info": "Leave empty to use the product / variant image"
+  },
+  {
+   "type": "select",
+   "id": "image_fit",
+   "label": "Image display",
+   "default": "natural",
+   "options": [
+    { "value": "natural", "label": "Natural (image as is)" },
+    { "value": "cover", "label": "Fill 6:5 box (crop)" }
+   ]
   },
   {
    "type": "text",
