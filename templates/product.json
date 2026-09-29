@@ -16,7 +16,7 @@
           "type": "accordion",
           "settings": {
             "title": "Details",
-            "content": "<ul><li>4-way stretch, fleece-lined 3L softshell fabric</li><li>Dramatic genuine leather fringe</li><li>Metal trims</li><li>Zippered hip pockets</li><li>Laser cut leather detailing</li><li>Adjustable waist</li><li>Back waist ribbing for snug fit</li><li>V-shaped yoke for flattering back</li><li>Bootcut silhouette</li><li>Pant leg extension zippers</li><li>Snow gaiters with gripper tape</li><li>Shifted sideseam for slimming effect</li></ul>",
+            "content": "",
             "open": true
           }
         },
@@ -103,49 +103,49 @@
           "type": "feature",
           "settings": {
             "name": "Waterproof Softshell",
-            "text": "10,000 mm H₂O waterproof rating"
+            "text": "{{ product.metafields.custom.technical_features.value.waterproof_softshell.value }}"
           }
         },
         "f2": {
           "type": "feature",
           "settings": {
             "name": "4-way Stretch",
-            "text": "Stretchy fleece lined fabric"
+            "text": "{{ product.metafields.custom.technical_features.value[\"4_way_stretch\"].value }}"
           }
         },
         "f3": {
           "type": "feature",
           "settings": {
             "name": "Leather Fringe",
-            "text": "100% genuine leather"
+            "text": "{{ product.metafields.custom.technical_features.value.leather_fringe.value }}"
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
             "name": "Metal Trims",
-            "text": "Matte silver zippers and snaps"
+            "text": "{{ product.metafields.custom.technical_features.value.metal_trims.value }}"
           }
         },
         "f5": {
           "type": "feature",
           "settings": {
             "name": "Snow Gaiters",
-            "text": "Interior leg opening to prevent snow entry"
+            "text": "{{ product.metafields.custom.technical_features.value.snow_gaiters.value }}"
           }
         },
         "f6": {
           "type": "feature",
           "settings": {
             "name": "Breathability",
-            "text": "10,000 g/m²/24h"
+            "text": "{{ product.metafields.custom.technical_features.value.breathability.value }}"
           }
         },
         "f7": {
           "type": "feature",
           "settings": {
             "name": "Fully Seam-Sealed",
-            "text": "All seams are sealed for waterproof protection"
+            "text": "{{ product.metafields.custom.technical_features.value.fully_seam_sealed.value }}"
           }
         }
       },
@@ -161,6 +161,7 @@
       "settings": {
         "heading": "Technical Features",
         "text": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort.",
+        "image": "{{ product.metafields.custom.technical_features.value.image.value }}",
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
