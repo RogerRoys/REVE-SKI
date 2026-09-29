@@ -133,7 +133,7 @@
     "about": {
       "type": "reve-banner",
       "settings": {
-        "image": "shopify://shop_images/WhatsApp_Image_2026-09-28_at_20.06.06.jpg",
+        "image": "shopify://shop_images/final.jpg",
         "image_asset": "rv-about-banner-mountain.jpg",
         "focal": "50% 30%",
         "heading": "Designed in the city. Made for the mountains.",
