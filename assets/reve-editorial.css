@@ -269,7 +269,7 @@
 .rv-acc summary::-webkit-details-marker{display:none}
 .rv-acc summary::after{content:"+";font-family:var(--rv-mono);font-size:15px}
 .rv-acc details[open] summary::after{content:"\2212"}
-.rv-acc__body{padding:0 0 18px;font-family:var(--rv-mono);font-weight:100;font-size:13px;line-height:1.55}
+.rv-acc__body{padding:0 0 18px;font-family:var(--rv-sans);font-weight:400;font-size:13.5px;line-height:1.6}
 .rv-acc__body p{margin:0 0 7px}
 .rv-acc__body ul,.rv-acc__body ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
 .rv-acc__body li::before{content:"\2013  "}
