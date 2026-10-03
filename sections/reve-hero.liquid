@@ -27,8 +27,8 @@
     <div class="rv-hero__caption">
       {%- if s.heading != blank -%}<h1 class="rv-hero__title">{{ s.heading | escape }}</h1>{%- endif -%}
       {%- if s.text != blank -%}<div class="rv-hero__text">{{ s.text }}</div>{%- endif -%}
+      {%- if s.button_label != blank -%}<a href="{{ s.button_link | default: routes.all_products_collection_url }}" class="rv-hero__cta">{{ s.button_label | escape }}</a>{%- endif -%}
     </div>
-    {%- if s.button_label != blank -%}<a href="{{ s.button_link | default: routes.all_products_collection_url }}" class="rv-hero__cta">{{ s.button_label | escape }}</a>{%- endif -%}
   </div>
 </section>
 {% schema %}
