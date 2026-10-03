@@ -70,7 +70,8 @@
         "t2"
       ],
       "settings": {
-        "numbers": true,
+        "numbers": false,
+        "show_line": false,
         "rv_heading_size": 16,
         "rv_heading_size_mobile": 16,
         "rv_heading_uppercase": "default",

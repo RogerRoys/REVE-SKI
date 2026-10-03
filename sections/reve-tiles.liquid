@@ -21,7 +21,7 @@
           {{ 'lifestyle-1' | placeholder_svg_tag: 'rv-placeholder' }}
         {%- endif -%}
       </div>
-      <div class="rv-tile__bar">
+      <div class="rv-tile__bar{% unless section.settings.show_line %} rv-tile__bar--no-line{% endunless %}">
         <span class="rv-tile__title">{% if section.settings.numbers %}{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }} — {% endif %}{{ b.title | escape }}</span>
         {%- if b.cta != blank -%}<span class="rv-tile__cta">{{ b.cta | escape }} →</span>{%- endif -%}
       </div>
@@ -39,7 +39,13 @@
    "type": "checkbox",
    "id": "numbers",
    "label": "Show numbers (01 —)",
-   "default": true
+   "default": false
+  },
+  {
+   "type": "checkbox",
+   "id": "show_line",
+   "label": "Show line above the caption",
+   "default": false
   },
   {
    "type": "header",

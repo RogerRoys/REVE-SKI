@@ -94,6 +94,7 @@
 @keyframes rvZoom{0%{transform:scale(1.03)}100%{transform:scale(1.14)}}
 @media (prefers-reduced-motion:reduce){.rv-tile__media--fade .rv-tile__slide,.rv-tile__media--fade .rv-tile__slide img{animation:none}.rv-tile__media--fade .rv-tile__slide:first-child{opacity:1}}
 .rv-tile__bar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--rv-ink);padding-top:12px}
+.rv-tile__bar--no-line{border-top:0;padding-top:0}
 .rv-tile__title{font-family:var(--rv-mono);font-weight:700;font-size:clamp(16px,1.4vw,20px);letter-spacing:.02em;text-transform:uppercase}
 .rv-tile__cta{font-size:13px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 
