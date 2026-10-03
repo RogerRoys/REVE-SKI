@@ -6,7 +6,7 @@
   assign chart_html = ''
   if s.show_chart
     capture chart_html
-      render 'reve-size-chart', chart_page: s.chart_page, chart_note: s.chart_note
+      render 'reve-size-chart', product: product, chart_page: s.chart_page, chart_note: s.chart_note
     endcapture
   endif
 -%}
@@ -207,8 +207,8 @@
   {
    "type": "text",
    "id": "chart_note",
-   "label": "Size chart note",
-   "default": "Measurements in inches. Between sizes? Size up for layering."
+   "label": "Size chart note (shown after the unit line)",
+   "default": "Between sizes? Size up for layering."
   },
   {
    "type": "header",

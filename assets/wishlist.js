@@ -183,6 +183,27 @@
     }
   });
 
+  // Size chart pop-up: CM / IN switch (remembers the customer's last choice)
+  function applyUnit(root, u) {
+    root.querySelectorAll('[data-rv-unit]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.rvUnit === u ? 'true' : 'false'); });
+    root.querySelectorAll('[data-rv-table]').forEach(function (t) { t.hidden = t.dataset.rvTable !== u; });
+    root.querySelectorAll('[data-rv-unit-name]').forEach(function (n) { n.textContent = u === 'cm' ? 'centimetres' : 'inches'; });
+  }
+  function savedUnit() { var u = null; try { u = localStorage.getItem('rv_size_unit'); } catch (e) {} return u === 'in' ? 'in' : 'cm'; }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-rv-unit]');
+    if (!b) return;
+    var u = b.dataset.rvUnit;
+    try { localStorage.setItem('rv_size_unit', u); } catch (err) {}
+    document.querySelectorAll('.rvsc').forEach(function (r) { applyUnit(r, u); });
+  });
+  document.addEventListener('click', function (e) {
+    // size chart links open theme modals; sync the remembered unit when one is about to open
+    var t = e.target.closest('[aria-controls^="size-chart-"]');
+    if (t) setTimeout(function () { document.querySelectorAll('.rvsc').forEach(function (r) { applyUnit(r, savedUnit()); }); }, 0);
+  });
+  document.addEventListener('DOMContentLoaded', function () { document.querySelectorAll('.rvsc').forEach(function (r) { applyUnit(r, savedUnit()); }); });
+
   // Footer menu columns collapse on mobile
   document.addEventListener('click', function (e) {
     var tg = e.target.closest('[data-rv-footer-toggle]');
