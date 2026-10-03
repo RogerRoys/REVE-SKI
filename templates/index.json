@@ -115,7 +115,7 @@
         "source": "collection",
         "collection": "new-arrivals",
         "limit": 8,
-        "show_count": true,
+        "show_count": false,
         "card_image_fit": "contain",
         "card_image_ratio": "auto",
         "anchor": "arrivals",
