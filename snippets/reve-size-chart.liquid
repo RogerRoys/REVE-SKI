@@ -1,56 +1,60 @@
 {%- comment -%}
 Size chart content (client package "3a Classic modal"): CM / IN switch with two tables and a note.
-Params: chart_page (CM page, optional), chart_page_in (IN page, optional), chart_note (text, optional)
-When pages are set their content (a table each) replaces the built-in tables; with both pages the CM / IN switch toggles them.
-The unit switch is handled in assets/wishlist.js ([data-rv-unit]); the chosen unit is remembered in the browser.
-Edit the numbers in the two tables below.
+Params: product, columns (text, "|" separated), rows_cm / rows_in (textarea, one row per line, cells "|" separated), chart_note (text)
+Defaults are the package numbers. The unit switch is handled in assets/wishlist.js ([data-rv-unit]).
 {%- endcomment -%}
+{%- liquid
+  assign cols_src = columns | default: 'SIZE | A CHEST | B WAIST | C HIP | D INSEAM'
+  assign cols = cols_src | split: '|'
+  assign cm_src = rows_cm
+  if cm_src == blank
+    assign cm_src = 'XS | 76-81 | 61-66 | 81-86 | 78
+S | 81-86 | 66-71 | 86-91 | 79
+M | 86-91 | 71-76 | 91-96 | 80
+L | 91-96 | 76-81 | 96-101 | 81
+XL | 96-101 | 81-86 | 101-106 | 81'
+  endif
+  assign in_src = rows_in
+  if in_src == blank
+    assign in_src = 'XS | 30-32 | 24-26 | 32-34 | 31
+S | 32-34 | 26-28 | 34-36 | 31
+M | 34-36 | 28-30 | 36-38 | 31.5
+L | 36-38 | 30-32 | 38-40 | 32
+XL | 38-40 | 32-34 | 40-42 | 32'
+  endif
+  assign cm_rows = cm_src | newline_to_br | split: '<br />'
+  assign in_rows = in_src | newline_to_br | split: '<br />'
+-%}
+{%- capture thead -%}
+  <thead><tr>
+    {%- for c in cols -%}
+      {%- assign parts = c | strip | split: ' ' -%}
+      <th>{% if parts.size > 1 %}{{ parts.first | upcase }}<br>{{ c | strip | remove_first: parts.first | strip | upcase }}{% else %}{{ c | strip | upcase }}{% endif %}</th>
+    {%- endfor -%}
+  </tr></thead>
+{%- endcapture -%}
 <div class="rvsc">
-  {%- if chart_page != blank or chart_page_in != blank -%}
-    {%- comment -%} Pages from the editor: CM page and (optional) IN page; the switch shows when both exist {%- endcomment -%}
-    <div class="rvsc__bar">
-      <span class="rvsc__sub">{{ product.title | default: 'Size guide' }}</span>
-      {%- if chart_page != blank and chart_page_in != blank -%}
-        <div class="rvsc__switch" role="group" aria-label="Units">
-          <button type="button" data-rv-unit="cm" aria-pressed="true">CM</button>
-          <button type="button" data-rv-unit="in" aria-pressed="false">IN</button>
-        </div>
-      {%- endif -%}
+  <div class="rvsc__bar">
+    <span class="rvsc__sub">{{ product.title | default: 'Size guide' }}</span>
+    <div class="rvsc__switch" role="group" aria-label="Units">
+      <button type="button" data-rv-unit="cm" aria-pressed="true">CM</button>
+      <button type="button" data-rv-unit="in" aria-pressed="false">IN</button>
     </div>
-    {%- if chart_page != blank -%}<div class="rvsc__page" data-rv-table="cm">{{ chart_page.content }}</div>{%- endif -%}
-    {%- if chart_page_in != blank -%}<div class="rvsc__page" data-rv-table="in" {% if chart_page != blank %}hidden{% endif %}>{{ chart_page_in.content }}</div>{%- endif -%}
-    {%- if chart_note != blank -%}<p class="rvsc__note">{{ chart_note | escape }}</p>{%- endif -%}
-  {%- else -%}
-    <div class="rvsc__bar">
-      <span class="rvsc__sub">{{ product.title | default: 'Size guide' }}</span>
-      <div class="rvsc__switch" role="group" aria-label="Units">
-        <button type="button" data-rv-unit="cm" aria-pressed="true">CM</button>
-        <button type="button" data-rv-unit="in" aria-pressed="false">IN</button>
-      </div>
-    </div>
+  </div>
 
-    <table class="rvsc__table" data-rv-table="cm">
-      <thead><tr><th>SIZE</th><th>A<br>CHEST</th><th>B<br>WAIST</th><th>C<br>HIP</th><th>D<br>INSEAM</th></tr></thead>
-      <tbody>
-        <tr><td>XS</td><td>76-81</td><td>61-66</td><td>81-86</td><td>78</td></tr>
-        <tr><td>S</td><td>81-86</td><td>66-71</td><td>86-91</td><td>79</td></tr>
-        <tr><td>M</td><td>86-91</td><td>71-76</td><td>91-96</td><td>80</td></tr>
-        <tr><td>L</td><td>91-96</td><td>76-81</td><td>96-101</td><td>81</td></tr>
-        <tr><td>XL</td><td>96-101</td><td>81-86</td><td>101-106</td><td>81</td></tr>
-      </tbody>
-    </table>
+  <table class="rvsc__table" data-rv-table="cm">
+    {{ thead }}
+    <tbody>
+      {%- for r in cm_rows -%}{%- assign cells = r | strip | split: '|' -%}{%- if cells.size > 0 and r != blank -%}<tr>{%- for cell in cells -%}<td>{{ cell | strip }}</td>{%- endfor -%}</tr>{%- endif -%}{%- endfor -%}
+    </tbody>
+  </table>
 
-    <table class="rvsc__table" data-rv-table="in" hidden>
-      <thead><tr><th>SIZE</th><th>A<br>CHEST</th><th>B<br>WAIST</th><th>C<br>HIP</th><th>D<br>INSEAM</th></tr></thead>
-      <tbody>
-        <tr><td>XS</td><td>30-32</td><td>24-26</td><td>32-34</td><td>31</td></tr>
-        <tr><td>S</td><td>32-34</td><td>26-28</td><td>34-36</td><td>31</td></tr>
-        <tr><td>M</td><td>34-36</td><td>28-30</td><td>36-38</td><td>31.5</td></tr>
-        <tr><td>L</td><td>36-38</td><td>30-32</td><td>38-40</td><td>32</td></tr>
-        <tr><td>XL</td><td>38-40</td><td>32-34</td><td>40-42</td><td>32</td></tr>
-      </tbody>
-    </table>
+  <table class="rvsc__table" data-rv-table="in" hidden>
+    {{ thead }}
+    <tbody>
+      {%- for r in in_rows -%}{%- assign cells = r | strip | split: '|' -%}{%- if cells.size > 0 and r != blank -%}<tr>{%- for cell in cells -%}<td>{{ cell | strip }}</td>{%- endfor -%}</tr>{%- endif -%}{%- endfor -%}
+    </tbody>
+  </table>
 
-    <p class="rvsc__note">Body measurements in <span data-rv-unit-name>centimetres</span>.{% if chart_note != blank %} {{ chart_note | escape }}{% endif %}</p>
-  {%- endif -%}
+  <p class="rvsc__note">Body measurements in <span data-rv-unit-name>centimetres</span>.{% if chart_note != blank %} {{ chart_note | escape }}{% endif %}</p>
 </div>

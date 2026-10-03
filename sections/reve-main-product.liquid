@@ -6,7 +6,7 @@
   assign chart_html = ''
   if s.show_chart
     capture chart_html
-      render 'reve-size-chart', product: product, chart_page: s.chart_page, chart_page_in: s.chart_page_in, chart_note: s.chart_note
+      render 'reve-size-chart', product: product, columns: s.chart_columns, rows_cm: s.chart_rows_cm, rows_in: s.chart_rows_in, chart_note: s.chart_note
     endcapture
   endif
 -%}
@@ -199,16 +199,25 @@
    "default": "Size chart"
   },
   {
-   "type": "page",
-   "id": "chart_page",
-   "label": "Size chart page — CM",
-   "info": "A page containing the centimetre table. Leave both pages empty to use the built-in tables."
+   "type": "text",
+   "id": "chart_columns",
+   "label": "Columns",
+   "default": "SIZE | A CHEST | B WAIST | C HIP | D INSEAM",
+   "info": "Separate columns with |"
   },
   {
-   "type": "page",
-   "id": "chart_page_in",
-   "label": "Size chart page — IN",
-   "info": "A page containing the inch table. With both pages set, the CM / IN switch toggles between them."
+   "type": "textarea",
+   "id": "chart_rows_cm",
+   "label": "Rows — CM",
+   "default": "XS | 76-81 | 61-66 | 81-86 | 78\nS | 81-86 | 66-71 | 86-91 | 79\nM | 86-91 | 71-76 | 91-96 | 80\nL | 91-96 | 76-81 | 96-101 | 81\nXL | 96-101 | 81-86 | 101-106 | 81",
+   "info": "One size per line, cells separated with |"
+  },
+  {
+   "type": "textarea",
+   "id": "chart_rows_in",
+   "label": "Rows — IN",
+   "default": "XS | 30-32 | 24-26 | 32-34 | 31\nS | 32-34 | 26-28 | 34-36 | 31\nM | 34-36 | 28-30 | 36-38 | 31.5\nL | 36-38 | 30-32 | 38-40 | 32\nXL | 38-40 | 32-34 | 40-42 | 32",
+   "info": "One size per line, cells separated with |"
   },
   {
    "type": "text",

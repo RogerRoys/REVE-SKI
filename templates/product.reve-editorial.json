@@ -77,7 +77,6 @@
         "sticky": true,
         "show_chart": true,
         "chart_title": "Size chart",
-        "chart_page": "size-chart",
         "chart_note": "Between sizes? Size up for layering.",
         "pairs_heading": "Pairs well with",
         "pairs": [

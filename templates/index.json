@@ -100,7 +100,6 @@
         "show_price": true,
         "show_chart": true,
         "chart_title": "Size chart",
-        "chart_page": "size-chart-up",
         "chart_note": "",
         "rv_heading_size": 46,
         "rv_heading_size_mobile": 40,
