@@ -23,15 +23,13 @@
     {%- endif -%}
   </div>
   <div class="rv-hero__shade"></div>
-  {%- comment -%} Magazine-style caption in the top-left corner (under the transparent header) {%- endcomment -%}
-  {%- if s.text != blank and s.caption_position == 'top_left' -%}
-    <div class="rv-hero__caption"><div class="rv-wrap"><div class="rv-hero__text">{{ s.text }}</div></div></div>
-  {%- endif -%}
   <div class="rv-hero__content">
     <div class="rv-wrap rv-hero__stack">
-      {%- if s.text != blank and s.caption_position != 'top_left' -%}<div class="rv-hero__text">{{ s.text }}</div>{%- endif -%}
+      <div class="rv-hero__row">
+        {%- if s.text != blank -%}<div class="rv-hero__text">{{ s.text }}</div>{%- endif -%}
+        {%- if s.button_label != blank -%}<a href="{{ s.button_link | default: routes.all_products_collection_url }}" class="rv-btn rv-btn--light">{{ s.button_label | escape }}</a>{%- endif -%}
+      </div>
       {%- if s.heading != blank -%}<h1 class="rv-hero__title">{{ s.heading | escape }}</h1>{%- endif -%}
-      {%- if s.button_label != blank -%}<div class="rv-hero__actions"><a href="{{ s.button_link | default: routes.all_products_collection_url }}" class="rv-btn rv-btn--light rv-hero__btn">{{ s.button_label | escape }}</a></div>{%- endif -%}
     </div>
   </div>
 </section>
@@ -46,16 +44,6 @@
    "id": "transparent_header",
    "label": "Transparent header over this hero",
    "default": true
-  },
-  {
-   "type": "select",
-   "id": "caption_position",
-   "label": "Small text position",
-   "default": "top_left",
-   "options": [
-    { "value": "top_left", "label": "Top left (magazine caption)" },
-    { "value": "bottom", "label": "Above the heading" }
-   ]
   },
   {
    "type": "image_picker",
