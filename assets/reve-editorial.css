@@ -187,6 +187,7 @@
 /* Services */
 .rv-services{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(24px,3vw,48px);padding-top:clamp(40px,4.4vw,64px);padding-bottom:clamp(40px,4.4vw,64px)}
 .rv-service{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--rv-ink);padding-top:16px}
+.rv-service--no-line{border-top:0;padding-top:0}
 .rv-service__num{font-family:var(--rv-mono);font-weight:700;font-size:13px}
 .rv-service__title{font-weight:700;font-size:15px;letter-spacing:.04em}
 .rv-service__text{margin:0;max-width:42ch;font-family:var(--rv-mono);font-weight:100;font-size:13px;line-height:1.65;text-wrap:pretty}

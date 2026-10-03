@@ -1,7 +1,7 @@
 {%- render 'reve-section-style' -%}
 <div class="rv rv-wrap rv-services">
   {%- for block in section.blocks -%}
-    <div class="rv-service" {{ block.shopify_attributes }}>
+    <div class="rv-service{% unless section.settings.show_line %} rv-service--no-line{% endunless %}" {{ block.shopify_attributes }}>
       {%- if section.settings.numbers -%}<span class="rv-service__num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{%- endif -%}
       <span class="rv-service__title">{{ block.settings.title | escape }}</span>
       {%- if block.settings.text != blank -%}<p class="rv-service__text">{{ block.settings.text | escape }}</p>{%- endif -%}
@@ -21,6 +21,12 @@
    "id": "numbers",
    "label": "Show numbers",
    "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "show_line",
+   "label": "Show line above each item",
+   "default": false
   },
   {
    "type": "header",
