@@ -16,7 +16,7 @@
           "type": "accordion",
           "settings": {
             "title": "Details",
-            "content": "",
+            "content": "<p>{{ product.metafields.custom.details | metafield_tag }}</p>",
             "open": true
           }
         },
@@ -24,7 +24,7 @@
           "type": "accordion",
           "settings": {
             "title": "Fabric & Care",
-            "content": "<ul><li>Shell: 46% recycled polyester, 41% nylon, 13% spandex</li><li>Contrast fabric: 97% polyester, 3% spandex</li><li>Lining: 92% polyester, 8% spandex</li><li>Trim: 100% cowhide leather</li><li>Fill: 90% duck down, 10% feather</li></ul>",
+            "content": "{{ product.metafields.custom.fabric_care | metafield_tag }}",
             "open": false
           }
         },
@@ -32,7 +32,7 @@
           "type": "accordion",
           "settings": {
             "title": "Care Instructions",
-            "content": "<ul><li>Please entrust cleaning to a professional leather-care specialist.</li><li>Do not wash</li><li>Do not bleach</li><li>Do not tumble dry</li><li>Do not iron</li><li>Do not dry clean</li><li>Spot clean only</li><li>Avoid direct sunlight and high temperatures</li></ul>",
+            "content": "{{ product.metafields.custom.care_instructions | metafield_tag }}",
             "open": false
           }
         },
@@ -40,7 +40,7 @@
           "type": "accordion",
           "settings": {
             "title": "Leather Note",
-            "content": "<p>The fringe is crafted from genuine cowhide leather. Natural variations in texture and color are part of its character. Genuine leather will naturally soften and develop character over time.</p>",
+            "content": "{{ product.metafields.custom.leather_note | metafield_tag }}",
             "open": false
           }
         },
