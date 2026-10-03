@@ -1,12 +1,25 @@
 {%- comment -%}
 Size chart content (client package "3a Classic modal"): CM / IN switch with two tables and a note.
-Params: chart_page (page object, optional — its content replaces the built-in tables), chart_note (text, optional)
+Params: chart_page (CM page, optional), chart_page_in (IN page, optional), chart_note (text, optional)
+When pages are set their content (a table each) replaces the built-in tables; with both pages the CM / IN switch toggles them.
 The unit switch is handled in assets/wishlist.js ([data-rv-unit]); the chosen unit is remembered in the browser.
 Edit the numbers in the two tables below.
 {%- endcomment -%}
 <div class="rvsc">
-  {%- if chart_page != blank -%}
-    <div class="rvsc__page prose">{{ chart_page.content }}</div>
+  {%- if chart_page != blank or chart_page_in != blank -%}
+    {%- comment -%} Pages from the editor: CM page and (optional) IN page; the switch shows when both exist {%- endcomment -%}
+    <div class="rvsc__bar">
+      <span class="rvsc__sub">{{ product.title | default: 'Size guide' }}</span>
+      {%- if chart_page != blank and chart_page_in != blank -%}
+        <div class="rvsc__switch" role="group" aria-label="Units">
+          <button type="button" data-rv-unit="cm" aria-pressed="true">CM</button>
+          <button type="button" data-rv-unit="in" aria-pressed="false">IN</button>
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if chart_page != blank -%}<div class="rvsc__page" data-rv-table="cm">{{ chart_page.content }}</div>{%- endif -%}
+    {%- if chart_page_in != blank -%}<div class="rvsc__page" data-rv-table="in" {% if chart_page != blank %}hidden{% endif %}>{{ chart_page_in.content }}</div>{%- endif -%}
+    {%- if chart_note != blank -%}<p class="rvsc__note">{{ chart_note | escape }}</p>{%- endif -%}
   {%- else -%}
     <div class="rvsc__bar">
       <span class="rvsc__sub">{{ product.title | default: 'Size guide' }}</span>

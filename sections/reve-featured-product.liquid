@@ -8,7 +8,7 @@
   assign chart_html = ''
   if s.show_chart
     capture chart_html
-      render 'reve-size-chart', product: product, chart_page: s.chart_page, chart_note: s.chart_note
+      render 'reve-size-chart', product: product, chart_page: s.chart_page, chart_page_in: s.chart_page_in, chart_note: s.chart_note
     endcapture
   endif
 -%}
@@ -114,8 +114,14 @@
   {
    "type": "page",
    "id": "chart_page",
-   "label": "Size chart page",
-   "info": "Create a page with a table. Leave empty to use the built-in placeholder table."
+   "label": "Size chart page — CM",
+   "info": "A page containing the centimetre table. Leave both pages empty to use the built-in tables."
+  },
+  {
+   "type": "page",
+   "id": "chart_page_in",
+   "label": "Size chart page — IN",
+   "info": "A page containing the inch table. With both pages set, the CM / IN switch toggles between them."
   },
   {
    "type": "text",
