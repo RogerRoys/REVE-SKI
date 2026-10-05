@@ -1,6 +1,17 @@
 {%- render 'reve-section-style' -%}
 {%- assign s = section.settings -%}
-{%- if section.blocks.size > 0 -%}
+{%- liquid
+  comment
+    Visibility: the checkbox hides the section manually; the "Show (from metafield)" text can be connected to a
+    product metafield (true/false) — "false", "0", "no" or "hide" hides the section for that product.
+  endcomment
+  assign visible = s.enabled
+  assign flag = s.enabled_source | strip | downcase
+  if flag == 'false' or flag == '0' or flag == 'no' or flag == 'hide'
+    assign visible = false
+  endif
+-%}
+{%- if visible and section.blocks.size > 0 -%}
 <section class="rv rv-tech">
   <div class="rv-wrap rv-tech__inner">
     <div class="rv-tech__intro">
@@ -31,6 +42,18 @@
  "tag": "div",
  "class": "rv-sec-tech",
  "settings": [
+  {
+   "type": "checkbox",
+   "id": "enabled",
+   "label": "Show section",
+   "default": true
+  },
+  {
+   "type": "text",
+   "id": "enabled_source",
+   "label": "Show (from metafield)",
+   "info": "Optional. Connect a true/false product metafield with the dynamic source icon: false hides the section for that product. Leave empty to ignore."
+  },
   {
    "type": "text",
    "id": "heading",
