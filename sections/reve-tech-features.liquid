@@ -10,6 +10,12 @@
   if flag == 'false' or flag == '0' or flag == 'no' or flag == 'hide'
     assign visible = false
   endif
+  comment
+    Auto-hide: when the heading is connected to a product metafield and this product has no value, hide the section
+  endcomment
+  if s.hide_if_empty and s.heading == blank
+    assign visible = false
+  endif
 -%}
 {%- if visible and section.blocks.size > 0 -%}
 <section class="rv rv-tech">
@@ -46,6 +52,13 @@
    "type": "checkbox",
    "id": "enabled",
    "label": "Show section",
+   "default": true
+  },
+  {
+   "type": "checkbox",
+   "id": "hide_if_empty",
+   "label": "Hide automatically when the heading is empty",
+   "info": "With the heading connected to a product metafield, products without that metafield hide the section.",
    "default": true
   },
   {
