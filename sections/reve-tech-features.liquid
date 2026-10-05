@@ -5,7 +5,7 @@
   <div class="rv-wrap rv-tech__inner">
     <div class="rv-tech__intro">
       <h2 class="rv-h-xl">{{ s.heading | escape }}</h2>
-      {%- if s.text != blank -%}<p>{{ s.text | escape }}</p>{%- endif -%}
+      {%- if s.text != blank -%}<div class="rv-tech__text">{{ s.text }}</div>{%- endif -%}
     </div>
     <div class="rv-tech__grid">
       <div class="rv-tech__media">
@@ -38,10 +38,11 @@
    "default": "Technical Features"
   },
   {
-   "type": "textarea",
+   "type": "richtext",
    "id": "text",
    "label": "Intro",
-   "default": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort."
+   "default": "<p>Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort.</p>",
+   "info": "Connect a product metafield with the dynamic source icon to make this product-specific."
   },
   {
    "type": "image_picker",

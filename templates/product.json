@@ -161,7 +161,6 @@
       ],
       "settings": {
         "heading": "{{ product.metafields.custom.technical_features.value.heading.value }}",
-        "text": "",
         "image": "{{ product.metafields.custom.technical_features.value.image.value }}",
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
