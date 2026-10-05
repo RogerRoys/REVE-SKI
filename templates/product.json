@@ -28,13 +28,6 @@
             "open": false
           }
         },
-        "pairs_d7KreQ": {
-          "type": "pairs",
-          "settings": {
-            "heading": "Pairs well with",
-            "products": "{{ product.metafields[\"shopify--discovery--product_recommendation\"].related_products.value }}"
-          }
-        },
         "acc3": {
           "type": "accordion",
           "settings": {
@@ -58,6 +51,13 @@
             "text": "Free FedEx® Delivery — orders above 2000 HKD"
           }
         },
+        "pairs_d7KreQ": {
+          "type": "pairs",
+          "settings": {
+            "heading": "Pairs well with",
+            "products": "{{ product.metafields[\"shopify--discovery--product_recommendation\"].related_products.value }}"
+          }
+        },
         "p2": {
           "type": "perk",
           "settings": {
@@ -74,10 +74,10 @@
       "block_order": [
         "acc1",
         "acc2",
-        "pairs_d7KreQ",
         "acc3",
         "acc4",
         "p1",
+        "pairs_d7KreQ",
         "p2",
         "p3"
       ],
