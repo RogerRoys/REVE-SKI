@@ -51,6 +51,13 @@
             "text": "Free FedEx® Delivery — orders above 2000 HKD"
           }
         },
+        "pairs_d7KreQ": {
+          "type": "pairs",
+          "settings": {
+            "heading": "Pairs well with",
+            "products": "{{ product.metafields[\"shopify--discovery--product_recommendation\"].related_products.value }}"
+          }
+        },
         "p2": {
           "type": "perk",
           "settings": {
@@ -70,6 +77,7 @@
         "acc3",
         "acc4",
         "p1",
+        "pairs_d7KreQ",
         "p2",
         "p3"
       ],
@@ -82,8 +90,6 @@
         "chart_rows_cm": "XS | 76-81 | 61-66 | 81-86 | 78\nS | 81-86 | 66-71 | 86-91 | 79\nM | 86-91 | 71-76 | 91-96 | 80\nL | 91-96 | 76-81 | 96-101 | 81\nXL | 96-101 | 81-86 | 101-106 | 81",
         "chart_rows_in": "XS | 30-32 | 24-26 | 32-34 | 31\nS | 32-34 | 26-28 | 34-36 | 31\nM | 34-36 | 28-30 | 36-38 | 31.5\nL | 36-38 | 30-32 | 38-40 | 32\nXL | 38-40 | 32-34 | 40-42 | 32",
         "chart_note": "",
-        "pairs_heading": "Pairs well with",
-        "pairs": [],
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
@@ -161,6 +167,7 @@
       ],
       "settings": {
         "heading": "{{ product.metafields.custom.technical_features.value.heading.value }}",
+        "text": "<p>Elevated style meets technical performance, with every detail designed for the mountain.</p>",
         "image": "{{ product.metafields.custom.technical_features.value.image.value }}",
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
