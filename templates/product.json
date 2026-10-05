@@ -160,8 +160,8 @@
         "f7"
       ],
       "settings": {
-        "heading": "Technical Features{{ product.metafields.custom.technical_features.value.heading.value }}",
-        "text": "Advanced materials and responsible design come together to deliver uncompromising performance and lasting comfort.",
+        "heading": "{{ product.metafields.custom.technical_features.value.heading.value }}",
+        "text": "",
         "image": "{{ product.metafields.custom.technical_features.value.image.value }}",
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
