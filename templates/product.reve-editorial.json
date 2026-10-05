@@ -12,6 +12,16 @@
     "main": {
       "type": "reve-main-product",
       "blocks": {
+        "pairs1": {
+          "type": "pairs",
+          "settings": {
+            "heading": "Pairs well with",
+            "products": [
+              "alia-ski-suit",
+              "amara-bib"
+            ]
+          }
+        },
         "acc1": {
           "type": "accordion",
           "settings": {
@@ -64,6 +74,7 @@
         }
       },
       "block_order": [
+        "pairs1",
         "acc1",
         "acc2",
         "acc3",
@@ -78,11 +89,6 @@
         "show_chart": true,
         "chart_title": "Size chart",
         "chart_note": "Between sizes? Size up for layering.",
-        "pairs_heading": "Pairs well with",
-        "pairs": [
-          "alia-ski-suit",
-          "amara-bib"
-        ],
         "rv_heading_size": 0,
         "rv_heading_size_mobile": 0,
         "rv_heading_uppercase": "default",
