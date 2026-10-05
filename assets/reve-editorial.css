@@ -284,7 +284,6 @@
 .rv-tech__inner{padding-top:clamp(48px,5vw,80px);padding-bottom:clamp(48px,5vw,80px)}
 .rv-tech__intro{display:flex;flex-direction:column;gap:10px;margin-bottom:clamp(24px,2.8vw,40px)}
 .rv-tech__intro p{margin:0;max-width:62ch;font-size:14px;letter-spacing:.02em}
-.rv-tech__text p+p{margin-top:8px}
 .rv-tech__grid{display:flex;flex-wrap:wrap;gap:clamp(24px,3.4vw,56px);align-items:stretch}
 .rv-tech__media{flex:1 1 420px;min-width:0;position:relative;aspect-ratio:3/2;overflow:hidden;background:var(--rv-img)}
 .rv-tech__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
