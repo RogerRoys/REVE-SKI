@@ -83,10 +83,7 @@
         "chart_rows_in": "XS | 30-32 | 24-26 | 32-34 | 31\nS | 32-34 | 26-28 | 34-36 | 31\nM | 34-36 | 28-30 | 36-38 | 31.5\nL | 36-38 | 30-32 | 38-40 | 32\nXL | 38-40 | 32-34 | 40-42 | 32",
         "chart_note": "",
         "pairs_heading": "Pairs well with",
-        "pairs": [
-          "alia-ski-suit",
-          "amara-bib"
-        ],
+        "pairs": [],
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
