@@ -55,7 +55,7 @@
           "type": "pairs",
           "settings": {
             "heading": "Pairs well with",
-            "products": "{{ product.metafields[\"shopify--discovery--product_recommendation\"].complementary_products.value }}"
+            "products": "{{ product.metafields.custom.products.value }}"
           }
         },
         "p2": {
