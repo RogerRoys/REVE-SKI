@@ -154,6 +154,13 @@
             "name": "{{ product.metafields.custom.technical_features.value.fully_seam_sealed.value }}",
             "text": "{{ product.metafields.custom.technical_features.value.features_07_description.value }}"
           }
+        },
+        "feature_NjycCc": {
+          "type": "feature",
+          "settings": {
+            "name": "{{ product.metafields.custom.technical_features.value.features_08.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_08_description.value }}"
+          }
         }
       },
       "block_order": [
@@ -163,7 +170,8 @@
         "f4",
         "f5",
         "f6",
-        "f7"
+        "f7",
+        "feature_NjycCc"
       ],
       "settings": {
         "enabled": true,
