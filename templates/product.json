@@ -109,50 +109,50 @@
         "f1": {
           "type": "feature",
           "settings": {
-            "name": "Waterproof Softshell",
-            "text": "{{ product.metafields.custom.technical_features.value.waterproof_softshell.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.waterproof_softshell.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_01_description.value }}"
           }
         },
         "f2": {
           "type": "feature",
           "settings": {
-            "name": "4-way Stretch",
-            "text": "{{ product.metafields.custom.technical_features.value[\"4_way_stretch\"].value }}"
+            "name": "{{ product.metafields.custom.technical_features.value[\"4_way_stretch\"].value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_02_description.value }}"
           }
         },
         "f3": {
           "type": "feature",
           "settings": {
-            "name": "Leather Fringe",
-            "text": "{{ product.metafields.custom.technical_features.value.leather_fringe.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.leather_fringe.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_03_description.value }}"
           }
         },
         "f4": {
           "type": "feature",
           "settings": {
-            "name": "Metal Trims",
-            "text": "{{ product.metafields.custom.technical_features.value.metal_trims.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.metal_trims.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_04_description.value }}"
           }
         },
         "f5": {
           "type": "feature",
           "settings": {
-            "name": "Snow Gaiters",
-            "text": "{{ product.metafields.custom.technical_features.value.snow_gaiters.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.snow_gaiters.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_05_description.value }}"
           }
         },
         "f6": {
           "type": "feature",
           "settings": {
-            "name": "Breathability",
-            "text": "{{ product.metafields.custom.technical_features.value.breathability.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.breathability.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_06_description.value }}"
           }
         },
         "f7": {
           "type": "feature",
           "settings": {
-            "name": "Fully Seam-Sealed",
-            "text": "{{ product.metafields.custom.technical_features.value.fully_seam_sealed.value }}"
+            "name": "{{ product.metafields.custom.technical_features.value.fully_seam_sealed.value }}",
+            "text": "{{ product.metafields.custom.technical_features.value.features_07_description.value }}"
           }
         }
       },
