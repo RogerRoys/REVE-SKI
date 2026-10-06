@@ -16,8 +16,20 @@
   if s.hide_if_empty and s.heading == blank
     assign visible = false
   endif
+  comment
+    Rows whose connected metafield is empty are skipped; with no rows at all the section is hidden
+  endcomment
+  assign row_count = 0
+  for block in section.blocks
+    if block.settings.name != blank or block.settings.text != blank
+      assign row_count = row_count | plus: 1
+    endif
+  endfor
+  if row_count == 0
+    assign visible = false
+  endif
 -%}
-{%- if visible and section.blocks.size > 0 -%}
+{%- if visible -%}
 <section class="rv rv-tech">
   <div class="rv-wrap rv-tech__inner">
     <div class="rv-tech__intro">
@@ -35,7 +47,9 @@
       </div>
       <dl class="rv-tech__list">
         {%- for block in section.blocks -%}
-          <div class="rv-tech__row" {{ block.shopify_attributes }}><dt>{{ block.settings.name | escape }}</dt><dd>{{ block.settings.text | escape }}</dd></div>
+          {%- if block.settings.name != blank or block.settings.text != blank -%}
+            <div class="rv-tech__row" {{ block.shopify_attributes }}><dt>{{ block.settings.name | escape }}</dt><dd>{{ block.settings.text | escape }}</dd></div>
+          {%- endif -%}
         {%- endfor -%}
       </dl>
     </div>
