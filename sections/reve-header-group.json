@@ -22,6 +22,7 @@
         },
         "message_shipping": {
           "type": "message",
+          "disabled": true,
           "settings": {
             "text": "Free FedEx® delivery on orders over $800"
           }
