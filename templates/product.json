@@ -173,6 +173,9 @@
         "f7",
         "feature_NjycCc"
       ],
+      "custom_css": [
+        ".rv-tech__media {aspect-ratio: 3 / 3;}"
+      ],
       "settings": {
         "enabled": true,
         "hide_if_empty": true,
