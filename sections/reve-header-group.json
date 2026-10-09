@@ -68,7 +68,7 @@
         "logo_mobile_max_width": 90,
         "use_custom_links": true,
         "link_1_text": "Shop",
-        "link_1_url": "shopify://collections/all",
+        "link_1_url": "shopify://collections/shop-all",
         "link_2_text": "About",
         "link_2_url": "shopify://pages/about-us",
         "link_3_text": "",
