@@ -81,6 +81,9 @@
         "p2",
         "p3"
       ],
+      "custom_css": [
+        ".rv-pdp__title {text-transform: capitalize;}"
+      ],
       "settings": {
         "show_wishlist": true,
         "sticky": true,
