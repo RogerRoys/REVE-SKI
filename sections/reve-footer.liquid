@@ -13,6 +13,7 @@
       {%- if s.about != blank -%}<div class="rv-footer__about">{{ s.about }}</div>{%- endif -%}
       <div class="rv-footer__social">
         {%- if s.instagram != blank -%}<a href="{{ s.instagram }}" aria-label="Instagram" target="_blank" rel="noopener">{% render 'reve-icon', icon: 'instagram' %}</a>{%- endif -%}
+        {%- if s.pinterest != blank -%}<a href="{{ s.pinterest }}" aria-label="Pinterest" target="_blank" rel="noopener">{% render 'reve-icon', icon: 'pinterest' %}</a>{%- endif -%}
         {%- if s.xhs != blank -%}<a href="{{ s.xhs }}" aria-label="Xiaohongshu" target="_blank" rel="noopener">{%- if s.xhs_icon != blank -%}<img class="rv-footer__xhs" src="{{ s.xhs_icon | image_url: width: 64 }}" alt="" width="22" height="22" loading="lazy">{%- else -%}<span class="rv-footer__xhs-text">小红书</span>{%- endif -%}</a>{%- endif -%}
       </div>
     </div>
@@ -115,6 +116,11 @@
    "type": "url",
    "id": "instagram",
    "label": "Instagram link"
+  },
+  {
+   "type": "url",
+   "id": "pinterest",
+   "label": "Pinterest link"
   },
   {
    "type": "url",
