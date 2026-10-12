@@ -170,27 +170,27 @@
         "s1": {
           "type": "service",
           "settings": {
-            "title": "Get Help Buying",
-            "text": "If you have any questions about our gear, get in touch.",
-            "link_label": "Chat with us",
+            "title": "Flexible Payment Plans",
+            "text": "Shop now, pay later. Split your purchase into smaller payments with flexible payment options available at checkout. Choose what works best for you and pay over time.",
+            "link_label": "",
             "link": ""
           }
         },
         "s2": {
           "type": "service",
           "settings": {
-            "title": "Free FedEx® Delivery",
-            "text": "All prices include customs delivery and import taxes. Orders above 2000 HKD ship for free.",
-            "link_label": "Learn more",
+            "title": "1-Year Limited Warranty",
+            "text": "All REVE SKI products are covered by a one-year limited warranty against manufacturing defects in materials and workmanship. More info here.",
+            "link_label": "",
             "link": ""
           }
         },
         "s3": {
           "type": "service",
           "settings": {
-            "title": "Free & Easy Returns",
-            "text": "Returns are accepted within 14 days of delivery. Returns are free across all Reve Ski products, with the exception of collaborations, special projects, and Reve Ski Archive.",
-            "link_label": "Learn more",
+            "title": "Easy Returns",
+            "text": "Returns are accepted within 14 days of delivery. For more information, please refer to our Returns & Exchanges page.",
+            "link_label": "",
             "link": ""
           }
         }
@@ -201,7 +201,7 @@
         "s3"
       ],
       "settings": {
-        "numbers": true,
+        "numbers": false,
         "show_line": false,
         "rv_heading_size": 0,
         "rv_heading_size_mobile": 0,
