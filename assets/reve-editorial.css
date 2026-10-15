@@ -198,7 +198,8 @@
 .rv-service__text{margin:0;max-width:42ch;font-family:var(--rv-mono);font-weight:100;font-size:13px;line-height:1.65;text-wrap:pretty}
 .rv-service__text p{margin:0}
 .rv-service__text p+p{margin-top:8px}
-.rv-service__text a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.rv-service__text a,.rv-acc__body a,.rv-pdp__desc a{color:inherit;text-decoration:none;padding-bottom:1px;background:linear-gradient(to right,currentColor,currentColor) 0 100% / 100% 1px no-repeat;transition:background-size .3s ease-in-out}
+@media screen and (pointer:fine){.rv-service__text a:hover,.rv-acc__body a:hover,.rv-pdp__desc a:hover{background-size:0 1px}}
 .rv-service .rv-link{align-self:flex-start}
 
 /* Newsletter */
@@ -510,8 +511,8 @@
 
 /* ================= D · Minimal CTA (default): solid -> outline invert, links underline fade in ================= */
 @media (prefers-reduced-motion: no-preference){
-  .rv-cta-invert .rv-tile__cta,.rv-cta-invert .rv-wish-link,.rv-cta-invert .rv-footer__col a,.rv-cta-invert .rv-service a:not(.rv-link){text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .3s ease}
-  .rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:not(.rv-link):hover{text-decoration-color:currentColor}
+  .rv-cta-invert .rv-tile__cta,.rv-cta-invert .rv-wish-link,.rv-cta-invert .rv-footer__col a,.rv-cta-invert .rv-service a:not(.rv-link):not(.rv-service__text a){text-decoration:underline;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .3s ease}
+  .rv-cta-invert .rv-tile:hover .rv-tile__cta,.rv-cta-invert .rv-wish-link:hover,.rv-cta-invert .rv-footer__col a:hover,.rv-cta-invert .rv-service a:not(.rv-link):not(.rv-service__text a):hover{text-decoration-color:currentColor}
   /* Underlined links (More details, Shop now, text buttons): theme ".link" hover, the line shrinks away from the right */
   .rv-cta-invert .rv-link,.rv-cta-invert .rv-textbtn,.rv-cta-invert .rv-pair__cta:not(.rv-pair__cta--soldout){text-decoration:none;border-bottom:0;padding-bottom:2px;background:linear-gradient(to right,currentColor,currentColor) 0 100% / 100% 1px no-repeat;transition:background-size .3s ease-in-out}
   @media screen and (pointer:fine){.rv-cta-invert .rv-link:hover,.rv-cta-invert .rv-textbtn:hover,.rv-cta-invert .rv-pair__cta:not(.rv-pair__cta--soldout):hover{background-size:0 1px}}
