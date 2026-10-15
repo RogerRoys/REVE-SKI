@@ -23,6 +23,7 @@
     {%- endif -%}
   </div>
   <div class="rv-hero__shade"></div>
+  {%- if s.hero_link != blank -%}<a class="rv-hero__link" href="{{ s.hero_link }}" aria-label="{{ s.heading | default: s.button_label | escape }}"></a>{%- endif -%}
   <div class="rv-hero__inner rv-wrap">
     <div class="rv-hero__caption">
       {%- if s.heading != blank -%}<h1 class="rv-hero__title">{{ s.heading | escape }}</h1>{%- endif -%}
@@ -107,6 +108,12 @@
    "type": "url",
    "id": "button_link",
    "label": "Button link"
+  },
+  {
+   "type": "url",
+   "id": "hero_link",
+   "label": "Whole hero link",
+   "info": "Optional. Makes the entire hero image clickable (the button keeps its own link)."
   },
   {
    "type": "header",
