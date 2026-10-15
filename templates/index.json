@@ -192,6 +192,7 @@
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
         "rv_letter_spacing": 0,
+        "rv_line_height": 0,
         "rv_text_size": 0,
         "rv_text_size_mobile": 0,
         "rv_small_size": 0,
@@ -225,7 +226,7 @@
           "type": "service",
           "settings": {
             "title": "Easy Returns",
-            "text": "<p>Returns are accepted within 14 days of delivery. For more information, please refer to our Returns & Exchanges page.</p>",
+            "text": "<p>Returns are accepted within 14 days of delivery. For more information, please refer to <a href=\"/pages/returns\" title=\"Returns\">our Returns & Exchanges page.</a></p>",
             "link_label": "",
             "link": ""
           }
