@@ -145,43 +145,21 @@
     {%- assign menu = section.settings.menu -%}
     {%- assign sidebar_menu = section.settings.sidebar_menu -%}
 
-    {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 or section.settings.use_custom_links -%}
+    {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 -%}
       <nav class="header__primary-nav {% if section.settings.layout == 'logo_center_navigation_below' or section.settings.layout == 'logo_left_navigation_center' %}header__primary-nav--center{% endif %}" aria-label="{{ 'header.general.primary_navigation' | t | escape }}">
         <button type="button" aria-controls="sidebar-menu" {% unless section.settings.layout == 'drawer' %}class="md:hidden"{% endunless %}>
           <span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
           {%- render 'icon' with 'hamburger', class: 'header__nav-icon' -%}
         </button>
+        {%- if section.settings.enable_search -%}
+          {%- comment -%} Mobile: search sits next to the menu icon; the right side keeps wishlist + cart {%- endcomment -%}
+          <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}" class="md:hidden header__mobile-search">
+            <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
+            {%- render 'icon' with 'search', class: 'header__nav-icon' -%}
+          </a>
+        {%- endif -%}
 
-        {%- if section.settings.use_custom_links and section.settings.layout != 'drawer' -%}
-          {%- comment -%} Links defined in the theme editor (Header > Menu links) instead of a Shopify navigation menu {%- endcomment -%}
-          <ul class="contents unstyled-list md-max:hidden">
-            {%- for i in (1..4) -%}
-              {%- assign text_key = 'link_' | append: i | append: '_text' -%}
-              {%- assign url_key = 'link_' | append: i | append: '_url' -%}
-              {%- assign menu_key = 'link_' | append: i | append: '_menu' -%}
-              {%- assign sub_menu = section.settings[menu_key] -%}
-              {%- if section.settings[text_key] != blank -%}
-                <li class="header__primary-nav-item" data-title="{{ section.settings[text_key] | escape }}">
-                  {%- if sub_menu != blank and sub_menu.links.size > 0 -%}
-                    {%- comment -%} Dropdown from a Shopify navigation menu (theme dropdown behaviour) {%- endcomment -%}
-                    <details is="dropdown-menu-disclosure" class="header__menu-disclosure" follow-summary-link trigger="{{ section.settings.menu_open_trigger }}">
-                      <summary data-follow-link="{{ section.settings[url_key] | default: '#' }}" class="h6">
-                        {{- section.settings[text_key] -}}
-                      </summary>
-                      <ul class="header__dropdown-menu header__dropdown-menu--restrictable unstyled-list" role="list">
-                        {%- for sub_link in sub_menu.links -%}
-                          <li><a href="{{ sub_link.url }}" class="link-faded-reverse" {% if sub_link.current %}aria-current="page"{% endif %}>{{ sub_link.title }}</a></li>
-                        {%- endfor -%}
-                      </ul>
-                    </details>
-                  {%- else -%}
-                    <a href="{{ section.settings[url_key] | default: '#' }}" class="block h6" {% if section.settings[url_key] == request.path %}aria-current="page"{% endif %}>{{ section.settings[text_key] }}</a>
-                  {%- endif -%}
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        {%- elsif menu.links.size > 0 and section.settings.layout != 'drawer' -%}
+        {%- if menu.links.size > 0 and section.settings.layout != 'drawer' -%}
           <ul class="contents unstyled-list md-max:hidden">
             {%- for link in menu.links -%}
               {% liquid
@@ -297,7 +275,7 @@
       {%- endif -%}
 
       {%- if section.settings.enable_search -%}
-        <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}">
+        <a href="{{ routes.search_url }}" aria-controls="header-search-{{ section.id }}" class="md-max:hidden">
           <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
 
           {%- if section.settings.show_icons -%}
@@ -337,9 +315,7 @@
 
     {%- assign sidebar_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 
-    {%- if section.settings.use_custom_links -%}
-      {%- render 'header-sidebar-custom', show_dividers: section.settings.sidebar_show_dividers -%}
-    {%- elsif sidebar_menu.links.size > 0 -%}
+    {%- if sidebar_menu.links.size > 0 -%}
       {%- render 'header-sidebar', menu: sidebar_menu, show_dividers: section.settings.sidebar_show_dividers -%}
     {%- endif -%}
   </x-header>
@@ -404,84 +380,8 @@
       "default": 100
     },
     {
-      "type": "header",
-      "content": "Menu links"
-    },
-    {
       "type": "paragraph",
       "content": "Turn this on to manage the header links here instead of a Shopify navigation menu."
-    },
-    {
-      "type": "checkbox",
-      "id": "use_custom_links",
-      "label": "Use the links below",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "link_1_text",
-      "label": "Link 1 text",
-      "default": "Shop"
-    },
-    {
-      "type": "url",
-      "id": "link_1_url",
-      "label": "Link 1 URL"
-    },
-    {
-      "type": "link_list",
-      "id": "link_1_menu",
-      "label": "Link 1 dropdown menu",
-      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
-    },
-    {
-      "type": "text",
-      "id": "link_2_text",
-      "label": "Link 2 text",
-      "default": "About"
-    },
-    {
-      "type": "url",
-      "id": "link_2_url",
-      "label": "Link 2 URL"
-    },
-    {
-      "type": "link_list",
-      "id": "link_2_menu",
-      "label": "Link 2 dropdown menu",
-      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
-    },
-    {
-      "type": "text",
-      "id": "link_3_text",
-      "label": "Link 3 text"
-    },
-    {
-      "type": "url",
-      "id": "link_3_url",
-      "label": "Link 3 URL"
-    },
-    {
-      "type": "link_list",
-      "id": "link_3_menu",
-      "label": "Link 3 dropdown menu",
-      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
-    },
-    {
-      "type": "text",
-      "id": "link_4_text",
-      "label": "Link 4 text"
-    },
-    {
-      "type": "url",
-      "id": "link_4_url",
-      "label": "Link 4 URL"
-    },
-    {
-      "type": "link_list",
-      "id": "link_4_menu",
-      "label": "Link 4 dropdown menu",
-      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
     },
     {
       "type": "header",

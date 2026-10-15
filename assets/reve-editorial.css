@@ -608,3 +608,7 @@
 
 /* Mobile menu: dropdown items under a custom header link */
 .rv-sidebar__sub{font-size:var(--text-sm);padding-block:.5rem!important;padding-inline-start:1rem;opacity:.85}
+
+/* Mobile header: search icon next to the menu icon; icons never wrap */
+.header__mobile-search{display:inline-flex;align-items:center}
+@media screen and (max-width:999px){.header__secondary-nav{flex-wrap:nowrap;gap:.9rem}}
