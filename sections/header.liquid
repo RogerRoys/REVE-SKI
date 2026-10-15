@@ -158,9 +158,25 @@
             {%- for i in (1..4) -%}
               {%- assign text_key = 'link_' | append: i | append: '_text' -%}
               {%- assign url_key = 'link_' | append: i | append: '_url' -%}
+              {%- assign menu_key = 'link_' | append: i | append: '_menu' -%}
+              {%- assign sub_menu = section.settings[menu_key] -%}
               {%- if section.settings[text_key] != blank -%}
                 <li class="header__primary-nav-item" data-title="{{ section.settings[text_key] | escape }}">
-                  <a href="{{ section.settings[url_key] | default: '#' }}" class="block h6" {% if section.settings[url_key] == request.path %}aria-current="page"{% endif %}>{{ section.settings[text_key] }}</a>
+                  {%- if sub_menu != blank and sub_menu.links.size > 0 -%}
+                    {%- comment -%} Dropdown from a Shopify navigation menu (theme dropdown behaviour) {%- endcomment -%}
+                    <details is="dropdown-menu-disclosure" class="header__menu-disclosure" follow-summary-link trigger="{{ section.settings.menu_open_trigger }}">
+                      <summary data-follow-link="{{ section.settings[url_key] | default: '#' }}" class="h6">
+                        {{- section.settings[text_key] -}}
+                      </summary>
+                      <ul class="header__dropdown-menu header__dropdown-menu--restrictable unstyled-list" role="list">
+                        {%- for sub_link in sub_menu.links -%}
+                          <li><a href="{{ sub_link.url }}" class="link-faded-reverse" {% if sub_link.current %}aria-current="page"{% endif %}>{{ sub_link.title }}</a></li>
+                        {%- endfor -%}
+                      </ul>
+                    </details>
+                  {%- else -%}
+                    <a href="{{ section.settings[url_key] | default: '#' }}" class="block h6" {% if section.settings[url_key] == request.path %}aria-current="page"{% endif %}>{{ section.settings[text_key] }}</a>
+                  {%- endif -%}
                 </li>
               {%- endif -%}
             {%- endfor -%}
@@ -413,6 +429,12 @@
       "label": "Link 1 URL"
     },
     {
+      "type": "link_list",
+      "id": "link_1_menu",
+      "label": "Link 1 dropdown menu",
+      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
+    },
+    {
       "type": "text",
       "id": "link_2_text",
       "label": "Link 2 text",
@@ -422,6 +444,12 @@
       "type": "url",
       "id": "link_2_url",
       "label": "Link 2 URL"
+    },
+    {
+      "type": "link_list",
+      "id": "link_2_menu",
+      "label": "Link 2 dropdown menu",
+      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
     },
     {
       "type": "text",
@@ -434,6 +462,12 @@
       "label": "Link 3 URL"
     },
     {
+      "type": "link_list",
+      "id": "link_3_menu",
+      "label": "Link 3 dropdown menu",
+      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
+    },
+    {
       "type": "text",
       "id": "link_4_text",
       "label": "Link 4 text"
@@ -442,6 +476,12 @@
       "type": "url",
       "id": "link_4_url",
       "label": "Link 4 URL"
+    },
+    {
+      "type": "link_list",
+      "id": "link_4_menu",
+      "label": "Link 4 dropdown menu",
+      "info": "Optional. Pick a navigation menu to show its items as a dropdown under this link."
     },
     {
       "type": "header",

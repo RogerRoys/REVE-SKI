@@ -604,3 +604,6 @@
   .rv-qb .quick-buy-modal__mobile-info .product-title{font-family:var(--rv-mono);font-weight:700;font-size:15px;text-transform:uppercase}
   .rv-qb__info{gap:14px;padding:20px 20px 24px}
 }
+
+/* Mobile menu: dropdown items under a custom header link */
+.rv-sidebar__sub{font-size:var(--text-sm);padding-block:.5rem!important;padding-inline-start:1rem;opacity:.85}

@@ -34,11 +34,20 @@ navigation menu. Mirrors the structure of header-sidebar.liquid for a flat, sing
         {%- for i in (1..4) -%}
           {%- assign text_key = 'link_' | append: i | append: '_text' -%}
           {%- assign url_key = 'link_' | append: i | append: '_url' -%}
+          {%- assign menu_key = 'link_' | append: i | append: '_menu' -%}
+          {%- assign sub_menu = section.settings[menu_key] -%}
           {%- if section.settings[text_key] != blank -%}
             <li>
               <a href="{{ section.settings[url_key] | default: '#' }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
                 {{- section.settings[text_key] -}}
               </a>
+              {%- if sub_menu != blank and sub_menu.links.size > 0 -%}
+                <ul class="header-sidebar__nested-linklist unstyled-list" role="list">
+                  {%- for sub_link in sub_menu.links -%}
+                    <li><a href="{{ sub_link.url }}" class="header-sidebar__linklist-button rv-sidebar__sub">{{ sub_link.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
             </li>
           {%- endif -%}
         {%- endfor -%}
