@@ -203,7 +203,7 @@
           "type": "service",
           "settings": {
             "title": "Flexible Payment Plans",
-            "text": "Shop now, pay later. Split your purchase into smaller payments with flexible payment options available at checkout. Choose what works best for you and pay over time.",
+            "text": "<p>Shop now, pay later. Split your purchase into smaller payments with flexible payment options available at checkout. Choose what works best for you and pay over time.</p>",
             "link_label": "",
             "link": ""
           }
@@ -212,7 +212,7 @@
           "type": "service",
           "settings": {
             "title": "1-Year Limited Warranty",
-            "text": "All REVE SKI products are covered by a one-year limited warranty against manufacturing defects in materials and workmanship. More info here.",
+            "text": "<p>All REVE SKI products are covered by a one-year limited warranty against manufacturing defects in materials and workmanship. More info here.</p>",
             "link_label": "",
             "link": ""
           }
@@ -221,7 +221,7 @@
           "type": "service",
           "settings": {
             "title": "Easy Returns",
-            "text": "Returns are accepted within 14 days of delivery. For more information, please refer to our Returns & Exchanges page.",
+            "text": "<p>Returns are accepted within 14 days of delivery. For more information, please refer to our Returns & Exchanges page.</p>",
             "link_label": "",
             "link": ""
           }

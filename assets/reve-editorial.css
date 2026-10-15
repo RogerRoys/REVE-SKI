@@ -193,6 +193,9 @@
 .rv-service__num{font-family:var(--rv-mono);font-weight:700;font-size:13px}
 .rv-service__title{font-weight:700;font-size:15px;letter-spacing:.04em}
 .rv-service__text{margin:0;max-width:42ch;font-family:var(--rv-mono);font-weight:100;font-size:13px;line-height:1.65;text-wrap:pretty}
+.rv-service__text p{margin:0}
+.rv-service__text p+p{margin-top:8px}
+.rv-service__text a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .rv-service .rv-link{align-self:flex-start}
 
 /* Newsletter */
