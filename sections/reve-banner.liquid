@@ -1,6 +1,7 @@
 {%- render 'reve-section-style' -%}
 {%- assign s = section.settings -%}
-<section class="rv rv-banner"{% if s.anchor != blank %} id="{{ s.anchor | handleize }}"{% endif %} style="--rv-banner-pos:{{ s.focal | default: '50% 30%' }}">
+<section class="rv rv-banner{% if s.background == 'solid' %} rv-banner--solid{% endif %}{% if s.height == 'compact' %} rv-banner--compact{% endif %}"{% if s.anchor != blank %} id="{{ s.anchor | handleize }}"{% endif %} style="--rv-banner-pos:{{ s.focal | default: '50% 30%' }}">
+  {%- if s.background != 'solid' -%}
   <div class="rv-banner__media">
     {%- if s.image != blank -%}
       <img src="{{ s.image | image_url: width: 1920 }}" srcset="{{ s.image | image_url: width: 750 }} 750w, {{ s.image | image_url: width: 1200 }} 1200w, {{ s.image | image_url: width: 1920 }} 1920w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | escape }}" loading="lazy">
@@ -11,6 +12,7 @@
     {%- endif -%}
   </div>
   <div class="rv-banner__shade"></div>
+  {%- endif -%}
   <div class="rv-wrap rv-banner__content">
     {%- if s.heading != blank -%}<h2 class="rv-banner__title">{{ s.heading | escape }}</h2>{%- endif -%}
     {%- if s.button_label != blank -%}<a href="{{ s.button_link | default: '#' }}" class="rv-btn rv-btn--outline">{{ s.button_label | escape }}</a>{%- endif -%}
@@ -22,6 +24,26 @@
  "tag": "div",
  "class": "rv-sec-banner",
  "settings": [
+  {
+   "type": "select",
+   "id": "background",
+   "label": "Background",
+   "default": "image",
+   "options": [
+    { "value": "image", "label": "Image" },
+    { "value": "solid", "label": "Solid black (no image)" }
+   ]
+  },
+  {
+   "type": "select",
+   "id": "height",
+   "label": "Height",
+   "default": "tall",
+   "options": [
+    { "value": "tall", "label": "Tall (image banner)" },
+    { "value": "compact", "label": "Compact (fits the text)" }
+   ]
+  },
   {
    "type": "image_picker",
    "id": "image",

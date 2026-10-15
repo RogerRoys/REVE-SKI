@@ -179,6 +179,8 @@
     "about": {
       "type": "reve-banner",
       "settings": {
+        "background": "solid",
+        "height": "compact",
         "image": "shopify://shop_images/final.jpg",
         "image_asset": "rv-about-banner-mountain.jpg",
         "focal": "50% 30%",
