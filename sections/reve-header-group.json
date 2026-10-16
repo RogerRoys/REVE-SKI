@@ -17,7 +17,7 @@
         "message_new_season": {
           "type": "message",
           "settings": {
-            "text": "The new season starts here. <a href=\"/collections/new-arrivals\">Shop new arrivals</a>"
+            "text": "The new season starts here. <a href=\"/collections/new-arrivals-1\" target=\"_blank\" title=\"New Arrivals\">Shop new arrivals</a>"
           }
         },
         "message_shipping": {
