@@ -237,6 +237,9 @@
         "s2",
         "s3"
       ],
+      "custom_css": [
+        ".rv-service a {text-decoration: underline;}"
+      ],
       "settings": {
         "numbers": false,
         "show_line": false,
