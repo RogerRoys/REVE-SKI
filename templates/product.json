@@ -23,7 +23,7 @@
         "acc2": {
           "type": "accordion",
           "settings": {
-            "title": "Fabric & Care",
+            "title": "Fabric",
             "content": "{{ product.metafields.custom.fabric_care | metafield_tag }}",
             "open": false
           }
