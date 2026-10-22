@@ -174,7 +174,17 @@
       });
       if (v.featured_media) {
         var target = gallery.querySelector('[data-rv-media-id="' + v.featured_media.id + '"]');
-        if (target && window.innerWidth < 990) target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        if (target) {
+          // Show the selected variant's image first (theme behaviour: the variant image becomes the active one)
+          target.hidden = false;
+          if (gallery.firstElementChild !== target) gallery.insertBefore(target, gallery.firstElementChild);
+          if (window.innerWidth < 990) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } else {
+            var top = gallery.getBoundingClientRect().top + window.scrollY - 90;
+            if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        }
       }
     }
     if (sticky) {

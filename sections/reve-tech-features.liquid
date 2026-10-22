@@ -40,7 +40,7 @@
       <div class="rv-tech__media">
         {%- assign timg = s.image | default: product.media.last -%}
         {%- if timg -%}
-          <img src="{{ timg | image_url: width: 1400 }}" srcset="{{ timg | image_url: width: 700 }} 700w, {{ timg | image_url: width: 1000 }} 1000w, {{ timg | image_url: width: 1400 }} 1400w" sizes="(min-width: 990px) 50vw, 100vw" alt="" loading="lazy">
+          <img src="{{ timg | image_url: width: 2000 }}" srcset="{{ timg | image_url: width: 900 }} 900w, {{ timg | image_url: width: 1400 }} 1400w, {{ timg | image_url: width: 2000 }} 2000w, {{ timg | image_url: width: 2600 }} 2600w" sizes="(min-width: 990px) 70vw, 130vw" alt="" loading="lazy" decoding="async">
         {%- else -%}
           {{ 'detailed-apparel-1' | placeholder_svg_tag: 'rv-placeholder' }}
         {%- endif -%}
