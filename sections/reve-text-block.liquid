@@ -1,0 +1,169 @@
+{%- render 'reve-section-style' -%}
+{%- assign s = section.settings -%}
+<section class="rv rv-textblock{% if s.width == 'narrow' %} rv-textblock--narrow{% endif %}{% if s.layout == 'columns' %} rv-textblock--columns{% endif %}">
+  <div class="rv-wrap rv-textblock__inner">
+    {%- if s.label != blank -%}<h2 class="rv-textblock__label">{{ s.label | escape }}</h2>{%- endif -%}
+    {%- if s.text != blank -%}<div class="rv-textblock__text">{{ s.text }}</div>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+ "name": "Reve · Text block",
+ "tag": "div",
+ "class": "rv-sec-textblock",
+ "settings": [
+  {
+   "type": "text",
+   "id": "label",
+   "label": "Heading",
+   "default": "About"
+  },
+  {
+   "type": "richtext",
+   "id": "text",
+   "label": "Text",
+   "default": "<p>Founded in 2023 by former Revolve designer Lisa Lin, REVE SKI was born from a desire to bring a different perspective to skiwear.</p>"
+  },
+  {
+   "type": "select",
+   "id": "layout",
+   "label": "Layout",
+   "default": "stacked",
+   "options": [
+    { "value": "stacked", "label": "Heading above text" },
+    { "value": "columns", "label": "Heading left, text right" }
+   ]
+  },
+  {
+   "type": "select",
+   "id": "width",
+   "label": "Width",
+   "default": "narrow",
+   "options": [
+    { "value": "narrow", "label": "Narrow (document, ~900px)" },
+    { "value": "full", "label": "Page width" }
+   ]
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_line_height",
+   "label": "Heading line height",
+   "info": "0 = design default (90%)",
+   "min": 0,
+   "max": 140,
+   "step": 5,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image banner"
+  }
+ ],
+ "presets": [ { "name": "Reve · Text block" } ]
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+{%- render 'reve-section-style' -%}
+{%- assign s = section.settings -%}
+<section class="rv rv-intro{% if s.width == 'narrow' %} rv-intro--narrow{% endif %}">
+  {%- if s.heading != blank -%}
+    <div class="rv-wrap rv-intro__head"><h1 class="rv-intro__title">{{ s.heading | escape }}</h1></div>
+  {%- endif -%}
+  {%- if s.image != blank or s.image_asset != blank -%}
+    <div class="rv-wrap rv-intro__media" style="--rv-pos:{{ s.focal | default: '50% 50%' }}">
+      {%- if s.image != blank -%}
+        <img src="{{ s.image | image_url: width: 2400 }}" srcset="{{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1500 }} 1500w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | default: s.heading | escape }}" loading="eager">
+      {%- else -%}
+        <img src="{{ s.image_asset | asset_url }}" sizes="100vw" width="1732" height="1156" alt="{{ s.heading | escape }}" loading="eager">
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+ "name": "Reve · Heading + image",
+ "tag": "div",
+ "class": "rv-sec-intro",
+ "settings": [
+  {
+   "type": "text",
+   "id": "heading",
+   "label": "Heading",
+   "default": "Skiwear with a point of view."
+  },
+  {
+   "type": "image_picker",
+   "id": "image",
+   "label": "Image"
+  },
+  {
+   "type": "text",
+   "id": "image_asset",
+   "label": "Fallback image file (assets)",
+   "info": "Used only when no image is picked above"
+  },
+  {
+   "type": "text",
+   "id": "focal",
+   "label": "Image position",
+   "default": "50% 50%"
+  },
+  {
+   "type": "select",
+   "id": "width",
+   "label": "Width",
+   "default": "narrow",
+   "options": [
+    { "value": "narrow", "label": "Narrow (document, ~900px)" },
+    { "value": "full", "label": "Page width" }
+   ]
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_line_height",
+   "label": "Heading line height",
+   "info": "0 = design default (90%)",
+   "min": 0,
+   "max": 140,
+   "step": 5,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image banner"
+  }
+ ],
+ "presets": [ { "name": "Reve · Heading + image" } ]
+}
+{% endschema %}

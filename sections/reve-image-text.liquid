@@ -1,0 +1,208 @@
+{%- render 'reve-section-style' -%}
+{%- assign s = section.settings -%}
+<section class="rv rv-imgtext{% if s.width == 'narrow' %} rv-imgtext--narrow{% endif %} rv-imgtext--{{ s.layout | default: 'stacked' }}">
+  <div class="rv-wrap rv-imgtext__inner">
+    {%- if s.image != blank or s.image_asset != blank -%}
+      <div class="rv-imgtext__media" style="--rv-img-w:{{ s.image_width | default: 520 }}px">
+        {%- if s.image != blank -%}
+          <img src="{{ s.image | image_url: width: 1200 }}" srcset="{{ s.image | image_url: width: 600 }} 600w, {{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1200 }} 1200w" sizes="(min-width: 990px) 45vw, 100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | default: s.label | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ s.image_asset | asset_url }}" sizes="(min-width: 990px) 45vw, 100vw" width="1174" height="1764" alt="{{ s.label | escape }}" loading="lazy">
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="rv-imgtext__body">
+      {%- if s.label != blank -%}<h2 class="rv-textblock__label">{{ s.label | escape }}</h2>{%- endif -%}
+      {%- if s.text != blank -%}<div class="rv-textblock__text">{{ s.text }}</div>{%- endif -%}
+      {%- if s.signature != blank -%}<p class="rv-imgtext__signature">{{ s.signature | escape }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+ "name": "Reve · Image + text",
+ "tag": "div",
+ "class": "rv-sec-imgtext",
+ "settings": [
+  {
+   "type": "image_picker",
+   "id": "image",
+   "label": "Image"
+  },
+  {
+   "type": "text",
+   "id": "image_asset",
+   "label": "Fallback image file (assets)",
+   "info": "Used only when no image is picked above"
+  },
+  {
+   "type": "range",
+   "id": "image_width",
+   "label": "Image width (stacked layout)",
+   "min": 240,
+   "max": 900,
+   "step": 20,
+   "unit": "px",
+   "default": 520
+  },
+  {
+   "type": "text",
+   "id": "label",
+   "label": "Heading",
+   "default": "The founder's story"
+  },
+  {
+   "type": "richtext",
+   "id": "text",
+   "label": "Text",
+   "default": "<p>REVE SKI began with a simple frustration: I couldn't find skiwear I actually wanted to wear.</p>"
+  },
+  {
+   "type": "text",
+   "id": "signature",
+   "label": "Signature"
+  },
+  {
+   "type": "select",
+   "id": "layout",
+   "label": "Layout",
+   "default": "stacked",
+   "options": [
+    { "value": "stacked", "label": "Image above text" },
+    { "value": "left", "label": "Image left, text right" },
+    { "value": "right", "label": "Image right, text left" }
+   ]
+  },
+  {
+   "type": "select",
+   "id": "width",
+   "label": "Width",
+   "default": "narrow",
+   "options": [
+    { "value": "narrow", "label": "Narrow (document, ~900px)" },
+    { "value": "full", "label": "Page width" }
+   ]
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_line_height",
+   "label": "Heading line height",
+   "info": "0 = design default (90%)",
+   "min": 0,
+   "max": 140,
+   "step": 5,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image banner"
+  }
+ ],
+ "presets": [ { "name": "Reve · Image + text" } ]
+}
+{% endschema %}
