@@ -1,18 +1,55 @@
 {
   "sections": {
-    "about": {
-      "type": "reve-about",
+    "intro": {
+      "type": "reve-intro",
       "settings": {
-        "layout": "document",
-      "tagline": "Skiwear with a point of view.",
+        "heading": "Skiwear with a point of view.",
         "image_asset": "rv-about-landscape.jpg",
         "focal": "50% 50%",
-        "about_label": "About",
-        "about_text": "<p>Founded in 2023 by former Revolve designer Lisa Lin, REVE SKI was born from a desire to bring a different perspective to skiwear.</p><p>Drawing inspiration from personal style and vintage ski culture, REVE SKI approaches mountain dressing with an emphasis on individuality. Each piece explores unexpected silhouettes, considered details, and the balance between technical performance and style. Through functional materials and thoughtful construction, our designs are made to meet the demands of the mountain without compromising their distinct aesthetic. Each piece is thoughtfully developed and produced in small batches.</p><p>We believe what you wear on the mountain should feel just as expressive as what you wear anywhere else. Our pieces are designed with that philosophy in mind, bringing a distinct point of view to the slopes and beyond.</p>",
-        "portrait_asset": "rv-about-founder.jpg",
-        "story_label": "The founder's story",
-        "story_text": "<p>REVE SKI began with a simple frustration: I couldn't find skiwear I actually wanted to wear.</p><p>As a fashion designer who loved skiing, I often found myself choosing between technical functionality and the clothes I naturally gravitated toward. I wanted to create pieces that could offer both.</p><p>In 2022, I began experimenting with my own designs. I spent months developing samples from home, exploring silhouettes, sourcing materials, and learning how to translate my ideas into functional skiwear.</p><p>What started as a personal project eventually took me to factories, where I spent months working alongside manufacturers, learning firsthand about technical construction and the complexities of creating ski clothing.</p><p>In 2023, REVE SKI officially launched, bringing that original vision to life.</p>",
+        "width": "narrow",
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_line_height": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
+      }
+    },
+    "about": {
+      "type": "reve-text-block",
+      "settings": {
+        "label": "About",
+        "layout": "stacked",
+        "width": "narrow",
+        "text": "<p>Founded in 2023 by former Revolve designer Lisa Lin, REVE SKI was born from a desire to bring a different perspective to skiwear.</p><p>Drawing inspiration from personal style and vintage ski culture, REVE SKI approaches mountain dressing with an emphasis on individuality. Each piece explores unexpected silhouettes, considered details, and the balance between technical performance and style. Through functional materials and thoughtful construction, our designs are made to meet the demands of the mountain without compromising their distinct aesthetic. Each piece is thoughtfully developed and produced in small batches.</p><p>We believe what you wear on the mountain should feel just as expressive as what you wear anywhere else. Our pieces are designed with that philosophy in mind, bringing a distinct point of view to the slopes and beyond.</p>",
+        "rv_heading_size": 0,
+        "rv_heading_size_mobile": 0,
+        "rv_heading_uppercase": "default",
+        "rv_letter_spacing": 0,
+        "rv_line_height": 0,
+        "rv_text_size": 0,
+        "rv_text_size_mobile": 0,
+        "rv_small_size": 0,
+        "rv_text_color": "",
+        "rv_bg_color": "",
+        "rv_accent_color": ""
+      }
+    },
+    "founder": {
+      "type": "reve-image-text",
+      "settings": {
+        "image_asset": "rv-about-founder.jpg",
+        "image_width": 520,
+        "label": "The founder's story",
+        "layout": "stacked",
+        "width": "narrow",
         "signature": "— Lisa",
+        "text": "<p>REVE SKI began with a simple frustration: I couldn't find skiwear I actually wanted to wear.</p><p>As a fashion designer who loved skiing, I often found myself choosing between technical functionality and the clothes I naturally gravitated toward. I wanted to create pieces that could offer both.</p><p>In 2022, I began experimenting with my own designs. I spent months developing samples from home, exploring silhouettes, sourcing materials, and learning how to translate my ideas into functional skiwear.</p><p>What started as a personal project eventually took me to factories, where I spent months working alongside manufacturers, learning firsthand about technical construction and the complexities of creating ski clothing.</p><p>In 2023, REVE SKI officially launched, bringing that original vision to life.</p>",
         "rv_heading_size": 0,
         "rv_heading_size_mobile": 0,
         "rv_heading_uppercase": "default",
@@ -28,6 +65,8 @@
     }
   },
   "order": [
-    "about"
+    "intro",
+    "about",
+    "founder"
   ]
 }
