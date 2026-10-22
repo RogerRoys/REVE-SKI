@@ -30,7 +30,7 @@
   endif
 -%}
 {%- if visible -%}
-<section class="rv rv-tech">
+<section class="rv rv-tech" style="--rv-tech-zoom:{{ s.image_zoom | default: 100 | divided_by: 100.0 }};--rv-tech-pos:{{ s.image_focal | default: '50% 40%' }}">
   <div class="rv-wrap rv-tech__inner">
     <div class="rv-tech__intro">
       <h2 class="rv-h-xl">{{ s.heading | escape }}</h2>
@@ -99,6 +99,23 @@
    "id": "image",
    "label": "Image",
    "info": "Leave empty to use the product's last image"
+  },
+  {
+   "type": "range",
+   "id": "image_zoom",
+   "label": "Image zoom",
+   "min": 100,
+   "max": 180,
+   "step": 5,
+   "unit": "%",
+   "default": 115
+  },
+  {
+   "type": "text",
+   "id": "image_focal",
+   "label": "Image position",
+   "default": "50% 40%",
+   "info": "e.g. 50% 30% (horizontal vertical)"
   },
   {
    "type": "header",
