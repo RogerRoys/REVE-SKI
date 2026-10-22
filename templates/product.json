@@ -186,6 +186,8 @@
         "heading": "{{ product.metafields.custom.technical_features.value.heading.value }}",
         "text": "<p>Elevated style meets technical performance, with every detail designed for the mountain.</p>",
         "image": "{{ product.metafields.custom.technical_features.value.image.value }}",
+        "image_zoom": 115,
+        "image_focal": "50% 40%",
         "rv_heading_size": 44,
         "rv_heading_size_mobile": 40,
         "rv_heading_uppercase": "default",
