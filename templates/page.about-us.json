@@ -3,7 +3,8 @@
     "about": {
       "type": "reve-about",
       "settings": {
-        "tagline": "Skiwear with a point of view.",
+        "layout": "document",
+      "tagline": "Skiwear with a point of view.",
         "image_asset": "rv-about-landscape.jpg",
         "focal": "50% 50%",
         "about_label": "About",

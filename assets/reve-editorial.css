@@ -636,3 +636,17 @@
   .rv-about__story{grid-template-columns:1fr;gap:28px}
   .rv-about__portrait{max-width:420px}
 }
+
+/* About page — document layout: single column, stacked exactly in the brief's order */
+.rv-about--doc .rv-about__intro,.rv-about--doc .rv-about__block,.rv-about--doc .rv-about__story{max-width:min(var(--rv-max),900px)}
+.rv-about--doc .rv-about__tagline{max-width:none;font-size:var(--rv-h,clamp(28px,3.6vw,56px))}
+.rv-about--doc .rv-about__hero{max-width:min(var(--rv-max),900px);margin:0 auto;aspect-ratio:3/2;max-height:none;padding:0 var(--rv-pad)}
+.rv-about--doc .rv-about__hero img{aspect-ratio:3/2}
+.rv-about--doc .rv-about__block{display:flex;flex-direction:column;gap:18px;padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(40px,5vw,72px)}
+.rv-about--doc .rv-about__text{max-width:none}
+.rv-about--doc .rv-about__text--about>p:first-child{font-family:var(--rv-sans);font-weight:400;font-size:var(--rv-t,16px);line-height:1.65;max-width:none;margin-bottom:0}
+.rv-about--doc .rv-about__text--about>p:first-child+p{margin-top:1.1em}
+.rv-about--doc .rv-about__story{display:flex;flex-direction:column;gap:28px;align-items:flex-start;padding-bottom:clamp(56px,8vw,112px)}
+.rv-about--doc .rv-about__portrait{width:min(100%,520px);aspect-ratio:2/3}
+.rv-about--doc .rv-about__story-text{max-width:none}
+.rv-about--doc .rv-about__label{font-family:var(--rv-mono);font-weight:700;font-size:16px;letter-spacing:.08em;text-transform:uppercase}

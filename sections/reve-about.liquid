@@ -1,6 +1,6 @@
 {%- render 'reve-section-style' -%}
 {%- assign s = section.settings -%}
-<section class="rv rv-about">
+<section class="rv rv-about{% if s.layout == 'document' %} rv-about--doc{% endif %}">
   {%- comment -%} 1. Tagline + landscape image {%- endcomment -%}
   <div class="rv-wrap rv-about__intro">
     {%- if s.tagline != blank -%}<h1 class="rv-about__tagline">{{ s.tagline | escape }}</h1>{%- endif -%}
@@ -47,6 +47,16 @@
  "tag": "div",
  "class": "rv-sec-about",
  "settings": [
+  {
+   "type": "select",
+   "id": "layout",
+   "label": "Layout",
+   "default": "document",
+   "options": [
+    { "value": "document", "label": "Document (stacked, like the brief)" },
+    { "value": "editorial", "label": "Editorial (two columns)" }
+   ]
+  },
   {
    "type": "header",
    "content": "Intro"
