@@ -1,0 +1,249 @@
+{%- render 'reve-section-style' -%}
+{%- assign s = section.settings -%}
+<section class="rv rv-about">
+  {%- comment -%} 1. Tagline + landscape image {%- endcomment -%}
+  <div class="rv-wrap rv-about__intro">
+    {%- if s.tagline != blank -%}<h1 class="rv-about__tagline">{{ s.tagline | escape }}</h1>{%- endif -%}
+  </div>
+  {%- if s.image != blank or s.image_asset != blank -%}
+    <div class="rv-about__hero" style="--rv-about-pos:{{ s.focal | default: '50% 50%' }}">
+      {%- if s.image != blank -%}
+        <img src="{{ s.image | image_url: width: 2400 }}" srcset="{{ s.image | image_url: width: 900 }} 900w, {{ s.image | image_url: width: 1500 }} 1500w, {{ s.image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ s.image.width }}" height="{{ s.image.height }}" alt="{{ s.image.alt | default: s.tagline | escape }}" loading="eager">
+      {%- else -%}
+        <img src="{{ s.image_asset | asset_url }}" sizes="100vw" width="1732" height="1156" alt="{{ s.tagline | escape }}" loading="eager">
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 2. About text {%- endcomment -%}
+  {%- if s.about_text != blank -%}
+    <div class="rv-wrap rv-about__block">
+      <div class="rv-about__label"><span class="rv-eyebrow">{{ s.about_label | escape }}</span></div>
+      <div class="rv-about__text rv-about__text--about">{{ s.about_text }}</div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 3. Founder portrait + story {%- endcomment -%}
+  {%- if s.story_text != blank or s.portrait != blank or s.portrait_asset != blank -%}
+    <div class="rv-wrap rv-about__story">
+      <div class="rv-about__portrait">
+        {%- if s.portrait != blank -%}
+          <img src="{{ s.portrait | image_url: width: 1200 }}" srcset="{{ s.portrait | image_url: width: 600 }} 600w, {{ s.portrait | image_url: width: 900 }} 900w, {{ s.portrait | image_url: width: 1200 }} 1200w" sizes="(min-width: 990px) 42vw, 100vw" width="{{ s.portrait.width }}" height="{{ s.portrait.height }}" alt="{{ s.portrait.alt | default: s.story_label | escape }}" loading="lazy">
+        {%- elsif s.portrait_asset != blank -%}
+          <img src="{{ s.portrait_asset | asset_url }}" sizes="(min-width: 990px) 42vw, 100vw" width="1174" height="1764" alt="{{ s.story_label | escape }}" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="rv-about__story-text">
+        {%- if s.story_label != blank -%}<span class="rv-eyebrow rv-about__label">{{ s.story_label | escape }}</span>{%- endif -%}
+        {%- if s.story_text != blank -%}<div class="rv-about__text">{{ s.story_text }}</div>{%- endif -%}
+        {%- if s.signature != blank -%}<p class="rv-about__signature">{{ s.signature | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+ "name": "Reve · About page",
+ "tag": "div",
+ "class": "rv-sec-about",
+ "settings": [
+  {
+   "type": "header",
+   "content": "Intro"
+  },
+  {
+   "type": "text",
+   "id": "tagline",
+   "label": "Tagline",
+   "default": "Skiwear with a point of view."
+  },
+  {
+   "type": "image_picker",
+   "id": "image",
+   "label": "Landscape image"
+  },
+  {
+   "type": "text",
+   "id": "image_asset",
+   "label": "Fallback image file (assets)",
+   "info": "Used only when no image is picked above"
+  },
+  {
+   "type": "text",
+   "id": "focal",
+   "label": "Image position",
+   "default": "50% 50%",
+   "info": "e.g. 50% 30% (horizontal vertical)"
+  },
+  {
+   "type": "header",
+   "content": "About"
+  },
+  {
+   "type": "text",
+   "id": "about_label",
+   "label": "Label",
+   "default": "About"
+  },
+  {
+   "type": "richtext",
+   "id": "about_text",
+   "label": "Text",
+   "default": "<p>Founded in 2023 by former Revolve designer Lisa Lin, REVE SKI was born from a desire to bring a different perspective to skiwear.</p>"
+  },
+  {
+   "type": "header",
+   "content": "Founder's story"
+  },
+  {
+   "type": "image_picker",
+   "id": "portrait",
+   "label": "Portrait image"
+  },
+  {
+   "type": "text",
+   "id": "portrait_asset",
+   "label": "Fallback portrait file (assets)",
+   "info": "Used only when no image is picked above"
+  },
+  {
+   "type": "text",
+   "id": "story_label",
+   "label": "Label",
+   "default": "The founder's story"
+  },
+  {
+   "type": "richtext",
+   "id": "story_text",
+   "label": "Text",
+   "default": "<p>REVE SKI began with a simple frustration: I couldn't find skiwear I actually wanted to wear.</p>"
+  },
+  {
+   "type": "text",
+   "id": "signature",
+   "label": "Signature",
+   "default": "— Lisa"
+  },
+  {
+   "type": "header",
+   "content": "Text & colors"
+  },
+  {
+   "type": "paragraph",
+   "content": "0 or empty = use the design default."
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size",
+   "label": "Heading size (desktop)",
+   "min": 0,
+   "max": 200,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_heading_size_mobile",
+   "label": "Heading size (mobile)",
+   "min": 0,
+   "max": 120,
+   "step": 2,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "select",
+   "id": "rv_heading_uppercase",
+   "label": "Heading case",
+   "options": [
+    {
+     "value": "default",
+     "label": "Design default"
+    },
+    {
+     "value": "on",
+     "label": "Uppercase"
+    },
+    {
+     "value": "off",
+     "label": "As typed"
+    }
+   ],
+   "default": "default"
+  },
+  {
+   "type": "range",
+   "id": "rv_letter_spacing",
+   "label": "Heading letter spacing",
+   "min": -5,
+   "max": 30,
+   "step": 1,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_line_height",
+   "label": "Heading line height",
+   "info": "0 = design default (90%)",
+   "min": 0,
+   "max": 140,
+   "step": 5,
+   "unit": "%",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size",
+   "label": "Text size (desktop)",
+   "min": 0,
+   "max": 32,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_text_size_mobile",
+   "label": "Text size (mobile)",
+   "min": 0,
+   "max": 28,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "range",
+   "id": "rv_small_size",
+   "label": "Small text / labels size",
+   "min": 0,
+   "max": 20,
+   "step": 1,
+   "unit": "px",
+   "default": 0
+  },
+  {
+   "type": "color",
+   "id": "rv_text_color",
+   "label": "Text color"
+  },
+  {
+   "type": "color",
+   "id": "rv_bg_color",
+   "label": "Background color"
+  },
+  {
+   "type": "color",
+   "id": "rv_accent_color",
+   "label": "Accent color (links, lines, buttons)"
+  }
+ ],
+ "presets": [
+  {
+   "name": "Reve · Image banner"
+  }
+ ],
+ "presets": [ { "name": "Reve · About page" } ]
+}
+{% endschema %}
