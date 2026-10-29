@@ -53,7 +53,7 @@
       "type": "reve-image-text",
       "settings": {
         "image_asset": "rv-about-founder.jpg",
-        "image_width": 520,
+        "image_width": 360,
         "label": "The founder's story",
         "layout": "stacked",
         "width": "narrow",
