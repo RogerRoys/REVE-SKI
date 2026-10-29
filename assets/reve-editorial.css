@@ -267,8 +267,8 @@
 .rv-pairs--after-acc .rv-pairs__title{border-top:0;padding-top:4px}
 .rv-pairs__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .rv-pair{display:flex;flex-direction:column;gap:8px}
-.rv-pair__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--rv-img)}
-.rv-pair__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.rv-pair__media{position:relative;overflow:hidden}
+.rv-pair__media img{display:block;width:100%;height:auto}
 .rv-pair__media{display:block}
 .rv-pair__name{font-family:var(--rv-mono);font-weight:700;font-size:12.5px;color:inherit;text-decoration:none}
 .rv-pair__price{font-size:12px;letter-spacing:.04em;opacity:.8}
