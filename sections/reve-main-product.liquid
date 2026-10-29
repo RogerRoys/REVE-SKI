@@ -109,7 +109,7 @@
                 <div class="rv-pairs__grid">
                   {%- for p in block.settings.products limit: 4 -%}
                     <div class="rv-pair">
-                      <a href="{{ p.url }}" class="rv-pair__media" tabindex="-1" aria-hidden="true">{%- if p.featured_media -%}<img src="{{ p.featured_media | image_url: width: 500 }}" width="{{ p.featured_media.preview_image.width }}" height="{{ p.featured_media.preview_image.height }}" alt="{{ p.title | escape }}" loading="lazy">{%- endif -%}</a>
+                      <a href="{{ p.url }}" class="rv-pair__media" tabindex="-1" aria-hidden="true" style="aspect-ratio:auto;background:none">{%- if p.featured_media -%}<img src="{{ p.featured_media | image_url: width: 800 }}" width="{{ p.featured_media.preview_image.width }}" height="{{ p.featured_media.preview_image.height }}" alt="{{ p.title | escape }}" loading="lazy" style="position:static;width:100%;height:auto;object-fit:unset">{%- endif -%}</a>
                       <a href="{{ p.url }}" class="rv-pair__name">{{ p.title | escape }}</a>
                       <span class="rv-pair__price">{% if p.price_varies %}From {% endif %}{{ p.price | money }}</span>
                       {%- comment -%} Theme quick buy: one variant adds straight to the cart, otherwise the quick buy modal opens {%- endcomment -%}
