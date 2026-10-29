@@ -217,7 +217,7 @@
           "type": "service",
           "settings": {
             "title": "1-Year Limited Warranty",
-            "text": "<p>All REVE SKI products are covered by a one-year limited warranty against manufacturing defects in materials and workmanship. More info here.</p>",
+            "text": "<p>All REVE SKI products are covered by a one-year limited warranty against manufacturing defects in materials and workmanship.</p>",
             "link_label": "",
             "link": ""
           }
