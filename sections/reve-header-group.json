@@ -30,7 +30,7 @@
         "message_returns": {
           "type": "message",
           "settings": {
-            "text": "&nbsp;Easy Returns Within 14 Days of Delivery&nbsp;"
+            "text": "Easy Returns Within 14 Days of Delivery&nbsp;"
           }
         }
       },
