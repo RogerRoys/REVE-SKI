@@ -177,7 +177,8 @@
         "feature_NjycCc"
       ],
       "custom_css": [
-        ".rv-tech__media {aspect-ratio: 3 / 3;}"
+        ".rv-tech__media {aspect-ratio: 3 / 3;}",
+        ".rv-tech__media img {top: 28px;}"
       ],
       "settings": {
         "enabled": true,
