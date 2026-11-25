@@ -9,6 +9,9 @@
  */
 {
   "current": {
+    "discount_mode": "percentage",
+    "product_on_sale_accent": "#000000",
+    "show_discount": true,
     "section_vertical_spacing": "xs",
     "button_border_radius": 14,
     "input_border_radius": 0,
